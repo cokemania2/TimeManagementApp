@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "41065491326",
+    "firebase_url": "https://timemanagementapp-46cf6.firebaseio.com",
+    "project_id": "timemanagementapp-46cf6",
+    "storage_bucket": "timemanagementapp-46cf6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41065491326:android:6e9d5b1c842793dc07a12f",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41065491326-0q7ji955q5neqm31hqdo0je99r0a3bsv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapplication",
+            "certificate_hash": "1a78bc8e62bda3c06ad334ec6a36092d38d73026"
+          }
+        },
+        {
+          "client_id": "41065491326-anc1d4gsribk4gk3cpleafsiff7dgnnf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtmaZerh6kKcVE_KU2tCzT1vwAL-DnAg4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41065491326-anc1d4gsribk4gk3cpleafsiff7dgnnf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

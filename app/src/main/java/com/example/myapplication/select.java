@@ -8,21 +8,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class MainActivity extends AppCompatActivity {
+public class select extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ImageButton buttonlogo = findViewById(R.id.imageButton);
-
-        buttonlogo.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_select);
+        Button buttonUser = findViewById(R.id.user);
+        Button buttonAdmin = findViewById(R.id.admin);
+        buttonUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentToselect = new Intent(getApplicationContext(),select.class);
-                startActivity(intentToselect);
+                Intent intentTouser = new Intent(getApplicationContext(),select.class);
+                startActivity(intentTouser);
             }
         });
-
     }
 }
