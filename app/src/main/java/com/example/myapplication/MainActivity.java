@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,13 +15,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageButton buttonlogo = findViewById(R.id.imageButton);
+        CardView patentsB = findViewById(R.id.parent);
+        CardView childB = findViewById(R.id.child);
 
-        buttonlogo.setOnClickListener(new View.OnClickListener() {
+        patentsB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentToselect = new Intent(getApplicationContext(),select.class);
-                startActivity(intentToselect);
+                Intent goToparent = new Intent(getApplicationContext(),testActivity.class);
+                startActivity(goToparent);
+            }
+        });
+        childB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goTochild = new Intent(getApplicationContext(),userMain.class);
+                startActivity(goTochild);
             }
         });
 

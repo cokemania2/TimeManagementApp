@@ -19,5 +19,4 @@
         android:layout_height="wrap_content"
         android:text="사용자" />
 
-    
 </LinearLayout>
