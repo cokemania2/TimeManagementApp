@@ -233,7 +233,7 @@
                     android:layout_height="64dp"
                     android:background="@drawable/cerclebackgroundyello"
                     android:padding="10dp"
-                    android:src="@drawable/ic_attach_file_black_24dp" />
+                    android:src="@drawable/ic_people_black_24dp" />
 
                 <TextView
                     android:layout_width="wrap_content"

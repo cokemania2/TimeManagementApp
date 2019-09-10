@@ -84,14 +84,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="휴식성공시간"
-                        android:textSize="20sp" />
+                        android:text="가입코드"
+                        android:textSize="BQ1JF0212" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="10dp"
-                        android:text="20시간"
+                        android:text="BQ1JF0212"
                         android:textColor="@color/deeppurple"
                         android:textSize="20sp"
                         android:textStyle="bold" />
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="Wiliam@gmail.com"
+                android:text="이용자 확인 "
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -152,7 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:paddingLeft="20dp"
-                android:text="+266 225 225"
+                android:text="이용자 관리"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
