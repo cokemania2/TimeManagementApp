@@ -11,12 +11,16 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Button moveTest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         CardView patentsB = findViewById(R.id.parent);
         CardView childB = findViewById(R.id.child);
+        moveTest = findViewById(R.id.btn_moveTest);
 
         patentsB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,11 +29,20 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(goToparent);
             }
         });
+
         childB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent goTochild = new Intent(getApplicationContext(),userMain.class);
                 startActivity(goTochild);
+            }
+        });
+
+        moveTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, FirebaseTestActivity.class);
+                startActivity(intent);
             }
         });
 
