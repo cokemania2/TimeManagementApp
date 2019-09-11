@@ -85,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="가입코드"
-                        android:textSize="BQ1JF0212" />
+                        android:textSize="20dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
