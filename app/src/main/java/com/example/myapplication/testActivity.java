@@ -23,6 +23,9 @@ public class testActivity extends AppCompatActivity {
 
         ActionBar ab = getSupportActionBar() ;
         ab.setTitle("test") ;
+        ab.setIcon(R.drawable.gucc3) ;
+        ab.setDisplayUseLogoEnabled(true) ;
+        ab.setDisplayShowHomeEnabled(true) ;
 
         // 시간 깜빡이게 하기
         /*

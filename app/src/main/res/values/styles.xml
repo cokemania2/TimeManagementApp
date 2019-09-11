@@ -1,17 +1,35 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#FF9800</item>
-        <item name="colorPrimaryDark">#E65100</item>
-        <item name="colorAccent">#FF4081</item>
+        <item name="colorPrimary">#fff</item>
+        <item name="colorPrimaryDark">#ededed</item>
+        <item name="colorAccent">#66000000</item>
 
         <!-- 상태바 지우기
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         -->
 
+    </style>
+
+    <style name="AppTheme2" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#fff</item>
+        <item name="colorPrimaryDark">#ededed</item>
+        <item name="colorAccent">#66000000</item>
+
+        <!-- 상태바 지우기
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        -->
+
+    </style>
+
+    <style name="ToolbarTitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textColor">@color/black_overlay</item> <!-- Toolbar의 타이틀 텍스트 색상-->
+        <item name="android:textSize">15dp</item> <!-- Toolbar의 타이틀 텍스트 사이즈-->
     </style>
 
 </resources>

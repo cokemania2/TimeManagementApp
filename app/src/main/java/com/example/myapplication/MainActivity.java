@@ -22,9 +22,15 @@ public class MainActivity extends AppCompatActivity {
         CardView patentsB = findViewById(R.id.parent);
         CardView childB = findViewById(R.id.child);
 
+
+
+
         // 타이틀
         ActionBar ab = getSupportActionBar() ;
-        ab.setTitle("Main") ;
+        ab.setTitle("test") ;
+        ab.setIcon(R.drawable.gucc3) ;
+        ab.setDisplayUseLogoEnabled(true) ;
+        ab.setDisplayShowHomeEnabled(true) ;
 
         patentsB.setOnClickListener(new View.OnClickListener() {
             @Override

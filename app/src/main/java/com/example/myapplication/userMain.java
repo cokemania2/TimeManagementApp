@@ -12,7 +12,10 @@ public class userMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         ActionBar ab = getSupportActionBar() ;
-        ab.setTitle("userMain") ;
+        ab.setTitle("test") ;
+        ab.setIcon(R.drawable.gucc3) ;
+        ab.setDisplayUseLogoEnabled(true) ;
+        ab.setDisplayShowHomeEnabled(true) ;
 
         setContentView(R.layout.activity_user_main);
     }
