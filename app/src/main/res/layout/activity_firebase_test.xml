@@ -6,21 +6,36 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".FirebaseTestActivity">
-
-    <Button
-        android:id="@+id/btn_dbTest"
+    
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello Firebase"
-        tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="125dp" />
+        android:text="Parent" />
+    <TextView
+        android:id="@+id/tv_parentView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No database" />
 
     <TextView
-        android:id="@+id/tv_dataView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No database"
-        tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="250dp" />
+        android:text="Children" />
+    <TextView
+        android:id="@+id/tv_childView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No database" />
+
+    <Spinner
+        android:id="@+id/spn_sender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/spn_receiver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>
