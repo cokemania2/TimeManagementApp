@@ -11,8 +11,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -21,11 +23,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-public class FirebaseTestActivity extends AppCompatActivity {
+public class FirebaseTestActivity extends AppCompatActivity implements TimePicker.OnTimeChangedListener {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     @Override
@@ -34,35 +39,80 @@ public class FirebaseTestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_firebase_test);
 
         /////////////////////// FIrebase Database 데이터 쓰기 & 읽기
-
         // 사용자 데이터 삽입
         // final DatabaseReference dbRef = database.getReference();
-        // User tmp = new Parent(or Child) (이름, 포인트, 키)
-        // dbRef.child("parent(or child)").child(DB 상에 구분되어지는 카테고리).setValue(tmp);
+        // Parent(or Child) tmp = new Parent(or Child) (이름, 포인트, 키)
+        // dbRef.child("parent(or child)").child(DB 상에 구분되어지는 카테고리 ID).setValue(tmp);
 
         // Firebase에서 child의 데이터를 읽어와
-        DatabaseReference childRef = database.getReference("child");
+        final DatabaseReference childRef = database.getReference("child");
         final TextView tv_childView = findViewById(R.id.tv_childView);
         loadFromFirebase(childRef, tv_childView);
 
         // Firebase에서 parent의 데이터를 읽어와
         final TextView tv_parentView = findViewById(R.id.tv_parentView);
-        DatabaseReference parentRef = database.getReference("parent");
+        final DatabaseReference parentRef = database.getReference("parent");
         loadFromFirebase(parentRef, tv_parentView);
 
-        /////////////////////// sender, receiver 선택
+
+        /////////////////////// TimePicker 를 이용한 시간 저장
+        TimePicker tp_timeSave = findViewById(R.id.tp_timeSave);
+        tp_timeSave.setOnTimeChangedListener(this);
+
+
+        //////////////////////// point 보내기 (Nami > Loopy)
+        Button btn_sendPoint = findViewById(R.id.btn_sendPoint);
+        btn_sendPoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatabaseReference parentPointRef = parentRef.child("testParent2");
+                int parentPoint = getValue(parentPointRef);
+                Log.d("TEST parentPoint", "Value is " + parentPoint);
+                parentPointRef.setValue(parentPoint - 10);
+
+                DatabaseReference childPointRef = childRef.child("testChild2");
+                int childPoint = getValue(childPointRef);
+                Log.d("TEST childPoint", "Value is " + childPoint);
+                childPointRef.setValue(childPoint + 10);
+            }
+        });
 
     }
 
+    // 데이터 읽어오기
+    Integer getValue(DatabaseReference ref) {
+        final Integer[] v = new Integer[1];
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // TODO point 데이터 가져오기 !!
+                v[0] = (Integer) dataSnapshot.child("point").getValue();
+                Log.d("TEST getValue return", "value is " + v[0].toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // 데이터 읽기 실패
+            }
+        });
+        return v[0];
+    }
+
     // Firebase에서 데이터를 읽어서 TextView를 새로고침.
-    void loadFromFirebase(DatabaseReference ref, final TextView tv) {
-        // 해당 참조의 리스너 추가
+    void loadFromFirebase(final DatabaseReference ref, final TextView tv) {
+        // 해당 DB참조의 값변화리스너 추가
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String value = "";
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User tmpValue = snapshot.getValue(User.class);
+                    User tmpValue;
+                    if (ref.getKey().compareTo("child") == 0) {
+                        tmpValue = snapshot.getValue(Child.class);
+                    } else {
+                        tmpValue = snapshot.getValue(Parent.class);
+                    }
+
                     Log.d("FirebaseTestActivity", "ValueEventListener : " + tmpValue);
                     value = value.concat(tmpValue + "\n");
                 }
@@ -79,45 +129,25 @@ public class FirebaseTestActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onTimeChanged(TimePicker timePicker, int hour, int min) {
+        // 시와 분을 아래 format에 따라 문자열로 만듦
+        String str = hour + ":" + min;
+        long time = 0;
 
-    void searchFromFirebase(DatabaseReference ref) {
+        // 시간을 밀리초로 바꾸어 저장하기 위해서..
+        final DatabaseReference dbRef = database.getReference();
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        try {
+            Log.d("Time save at Firebase", "Value is: " + str);
+            Date date = timeFormat.parse(str);      // Date 객체를 만들어 저장
+            time = date.getTime();                  // Date의 getTime()을 이용하여 밀리초를 구한다.
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-        final List<User> listUsers = new ArrayList<>();
-        ArrayAdapter arrAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, listUsers);
-        Spinner spn_sender = findViewById(R.id.spn_sender);
-        spn_sender.setAdapter(arrAdapter);
-
-        // TODO point를 송금할 Sender를 선택하는 Spinner
-        spn_sender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                // 어떤 아이템이 선택됐을 때
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                // 아무것도 선택되지 않았을 때
-            }
-        });
-
-        // TODO Firebase 검색 방법
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("search database", "onChildAdded:" + dataSnapshot.getKey());
-
-
-                // Firebase 검색
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User tmpValue = snapshot.getValue(User.class);
-                    Log.d("FirebaseTestActivity", "ValueEventListener2 : " + tmpValue);
-                    listUsers.add(tmpValue);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.w("search database", "postComments:onCancelled", databaseError.toException());
-            }
-        });
+        // testChild로 로그인 되었다는 가정하에
+        // testChild(Minho)에 time을 저장
+        dbRef.child("child").child("testChild").child("time").setValue(time);
     }
 }

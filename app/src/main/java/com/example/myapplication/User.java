@@ -43,16 +43,33 @@ public class User {
     public void setKey(String key) {
         this.key = key;
     }
+
+
 }
 
 class Parent extends User {
+    Parent() {}
+
     Parent(String name, int point, String key) {
         super(name, point, key);
     }
 }
 
 class Child extends User {
+    private long time;
+
+    Child() {}
+
     Child(String name, int point, String key) {
         super(name, point, key);
     }
+
+    @Override
+    public String toString() {
+        return super.getName() + "\t\t" + super.getPoint() + "\t\t" + super.getKey() + "\t\t" + time;
+    }
+
+    public void setTime(long time) { this.time = time; }
+
+    public long getTime() { return time; }
 }

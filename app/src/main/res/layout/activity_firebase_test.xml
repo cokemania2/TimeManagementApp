@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".FirebaseTestActivity">
-    
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,15 +27,18 @@
         android:layout_height="wrap_content"
         android:text="No database" />
 
-    <Spinner
-        android:id="@+id/spn_sender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
-    <Spinner
-        android:id="@+id/spn_receiver"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <TimePicker
+        android:id="@+id/tp_timeSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:timePickerMode="spinner"/>
 
+
+    <Button
+        android:id="@+id/btn_sendPoint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="보내기" />
 
 </LinearLayout>
