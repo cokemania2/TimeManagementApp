@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         CardView patentsB = findViewById(R.id.parent);
         CardView childB = findViewById(R.id.child);
-
+        Button button  = findViewById(R.id.button);
 
 
         // 타이틀
@@ -53,14 +53,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button button  = findViewById(R.id.button);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("message");
-
-                myRef.setValue("Hello, World!");
+                Intent goToregister = new Intent(getApplicationContext(),register.class);
+                startActivity(goToregister);
             }
         });
 

@@ -24,7 +24,7 @@ public class register extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
 
         //입력 받은 값
         nameE = (EditText) findViewById(R.id.nameEdit);

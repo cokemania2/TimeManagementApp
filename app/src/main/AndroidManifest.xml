@@ -25,6 +25,7 @@
         <activity android:name=".userMain" />
         <activity android:name=".select" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".register" />
     </application>
 
 </manifest>
