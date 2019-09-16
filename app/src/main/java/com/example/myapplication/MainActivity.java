@@ -35,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
         patentsB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToparent = new Intent(getApplicationContext(),testActivity.class);
+                Intent goToparent = new Intent(getApplicationContext(),userMain.class);
                 startActivity(goToparent);
             }
         });
         childB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goTochild = new Intent(getApplicationContext(),userMain.class);
+                Intent goTochild = new Intent(getApplicationContext(),testActivity.class);
                 startActivity(goTochild);
             }
         });
@@ -59,4 +59,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 }
