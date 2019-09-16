@@ -30,7 +30,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Elina Grofild"
+            android:text="100포인트가 지급되었습니다"
             android:textStyle="bold"
             android:textColor="@color/backgroundcolor"
             android:layout_gravity="center_horizontal"
@@ -38,7 +38,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Montreal,Canada"
+            android:text="경기도 지역화폐"
             android:textColor="@color/backgroundcolor"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"/>
