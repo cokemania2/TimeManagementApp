@@ -12,13 +12,13 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 
 
 public class testActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,14 @@ public class testActivity extends AppCompatActivity {
         */
 
 
+        LinearLayout linear_restTime = findViewById(R.id.linear_restTime);
+        linear_restTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToSetTime = new Intent(getApplicationContext(), setTimeActivity.class);
+                startActivity(goToSetTime);
+            }
+        });
 
     }
 }
