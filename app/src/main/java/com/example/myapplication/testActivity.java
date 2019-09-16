@@ -26,6 +26,8 @@ public class testActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         CardView gorest = (CardView)findViewById(R.id.gorest);
+        CardView Info = (CardView)findViewById(R.id.bankcardId);
+
 
         ActionBar ab = getSupportActionBar() ;
         ab.setTitle("test") ;
@@ -36,8 +38,16 @@ public class testActivity extends AppCompatActivity {
         gorest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent gorest = new Intent(getApplicationContext(),restAcitivity.class);
+                Intent gorest = new Intent(getApplicationContext(),SplahScreenActivity2.class);
                 startActivity(gorest);
+            }
+        });
+
+        Info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Info = new Intent(getApplicationContext(),Info.class);
+                startActivity(Info);
             }
         });
 

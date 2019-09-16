@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18.3dp"
+        android:layout_marginTop="20.3dp"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:fontFamily="@font/roboto_regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="18.3sp"
+            android:text="John Doe"
+            android:textColor="#394556"
+            android:textSize="23.3sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:layout_marginLeft="27dp"
+            android:layout_marginBottom="25.2dp"
+            android:layout_marginRight="29.3dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="보유 포인트 : 30000p"
+                android:letterSpacing="0.03"
+                android:textColor="#394556"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_gravity="center" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="19.7dp"
+            android:layout_marginRight="18.7dp"
+            android:background="#1A979797" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27.2dp"
+            android:layout_marginLeft="26dp"
+            android:layout_marginBottom="25.8dp"
+            android:layout_marginRight="29.3dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="이번주 휴식 시간 : 30 시간 "
+                android:letterSpacing="0.03"
+                android:textColor="#394556"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_gravity="center" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="19.7dp"
+            android:layout_marginRight="18.7dp"
+            android:background="#1A979797" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27.2dp"
+            android:layout_marginLeft="27dp"
+            android:layout_marginBottom="25.8dp"
+            android:layout_marginRight="30.3dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:letterSpacing="0.03"
+                android:gravity="center"
+                android:text="휴식 기록"
+                android:textColor="#394556"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="7dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="19.7dp"
+            android:layout_marginRight="18.7dp"
+            android:background="#1A979797" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27.2dp"
+            android:layout_marginLeft="27dp"
+            android:layout_marginBottom="25.8dp"
+            android:layout_marginRight="30.3dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:letterSpacing="0.03"
+                android:text="1일차 : 15:00 ~ 20:00 / 5시간 / 실패"
+                android:textColor="#394556"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="10dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:tint="#a9a9b0"/>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="19.7dp"
+            android:layout_marginRight="18.7dp"
+            android:background="#1A979797" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27.2dp"
+            android:layout_marginLeft="27dp"
+            android:layout_marginBottom="25.8dp"
+            android:layout_marginRight="30.3dp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:fontFamily="@font/roboto_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1일차 : 15:00 ~ 20:00 / 5시간 / 실패"
+                android:letterSpacing="0.03"
+                android:textColor="#394556"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="11dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center"/>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="19.7dp"
+            android:layout_marginRight="18.7dp"
+            android:background="#1A979797" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
