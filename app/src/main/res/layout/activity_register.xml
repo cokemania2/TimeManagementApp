@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:fontFamily="@font/roboto_regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="회원가입"
+        android:textSize="13.3sp"
+        android:layout_marginTop="25dp"
+        android:layout_gravity="center"
+        android:textColor="#394556" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="가입 유형"/>
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/parent_btn"
+            android:text="부모"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:id="@+id/child_btn"
+            android:text="자식"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="이름"
+                >
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="3dp"
+            android:paddingTop="9dp"
+            android:paddingBottom="9dp"
+            android:background="@drawable/rect">
+            <EditText
+                android:id="@+id/nameEdit"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="예: 홍길동"
+                android:background="#00000000"
+                android:textSize="15sp"
+                android:paddingLeft="3dp"
+                android:layout_marginTop="3.5dp"
+                android:textColor="#6c7581"
+                />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="관리자 코드"
+                >
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="3dp"
+        android:paddingTop="9dp"
+        android:paddingBottom="9dp"
+        android:background="@drawable/rect">
+
+        <EditText
+            android:id="@+id/keyEdit"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="관리자 코드를 입력해주세요."
+            android:background="#00000000"
+            android:textSize="15sp"
+            android:maxLength="12"
+            android:paddingLeft="3dp"
+            android:layout_marginTop="3.5dp"
+            android:textColor="#6c7581"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="추천인 코드"
+                >
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="3dp"
+        android:paddingTop="9dp"
+        android:paddingBottom="9dp"
+        android:background="@drawable/rect">
+        <EditText
+            android:id="@+id/recommendedkeyEdit"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="추천인 코드를 입력해주세요."
+            android:background="#00000000"
+            android:textSize="15sp"
+            android:maxLength="12"
+            android:paddingLeft="3dp"
+            android:layout_marginTop="3.5dp"
+            android:textColor="#6c7581"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/register_sendbt"
+        android:fontFamily="@font/roboto_regular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="16.7sp"
+        android:background="#d5d5d5"
+        android:gravity="center"
+        android:paddingTop="12.5dp"
+        android:paddingBottom="13.5dp"
+        android:layout_marginRight="24.7dp"
+        android:layout_marginLeft="25.3dp"
+        android:letterSpacing="0.03"
+        android:layout_marginTop="120.7dp"
+        android:layout_marginBottom="10dp"
+        android:elevation="1dp"
+        android:text="NEXT"/>
+
+
+</LinearLayout>
