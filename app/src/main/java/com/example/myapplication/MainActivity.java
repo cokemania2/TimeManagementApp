@@ -67,12 +67,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
     }
     public void ShowPopup(View v) {
         TextView txtclose;
         myDialog.setContentView(R.layout.custompopup);
         txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
-        txtclose.setText("M");
+        txtclose.setText("X");
         txtclose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
     }
+
 
 
 }
