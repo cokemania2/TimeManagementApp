@@ -54,22 +54,11 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-<<<<<<< HEAD
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation "io.aergo:heraj-transport:1.1.0"
     implementation "io.aergo:heraj-wallet:1.1.0"
     implementation "io.aergo:heraj-smart-contract:1.1.0"
     implementation "io.aergo:heraj-common:1.1.0"
     implementation "io.aergo:heraj-util:1.1.0"
-=======
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'com.android.support:multidex:1.0.3'
 
-    //aergo
-    implementation 'io.aergo:heraj-common:1.1.0'
-    implementation 'io.aergo:heraj-util:1.1.0'
-    implementation 'io.aergo:heraj-transport:1.1.0'
-    implementation 'io.aergo:heraj-wallet:1.1.0'
-    implementation 'io.aergo:heraj-smart-contract:1.1.0'
->>>>>>> f5b3f254f5b06f0c8d94ae6b584211f290dda61f
 }
