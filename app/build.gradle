@@ -4,6 +4,9 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 29
     buildToolsVersion '29.0.2'
+    packagingOptions {
+        exclude 'META-INF/INDEX.LIST'
+    }
     defaultConfig {
         applicationId "com.example.myapplication"
         minSdkVersion 15
@@ -11,6 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -36,7 +40,8 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-<<<<<<< HEAD
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
 
     //aergo
     implementation 'io.aergo:heraj-common:1.1.0'
@@ -44,9 +49,4 @@ dependencies {
     implementation 'io.aergo:heraj-transport:1.1.0'
     implementation 'io.aergo:heraj-wallet:1.1.0'
     implementation 'io.aergo:heraj-smart-contract:1.1.0'
-=======
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    //noinspection GradleCompatible
-    implementation 'com.android.support:recyclerview-v7:28.0.0'
->>>>>>> 875255d30a053f5528aa68576891626f996a3c2a
 }

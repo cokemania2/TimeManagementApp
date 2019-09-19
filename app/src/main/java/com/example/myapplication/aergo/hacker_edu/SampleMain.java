@@ -1,12 +1,7 @@
 package com.example.myapplication.aergo.hacker_edu;
 
-import com.example.myapplication.aergo.hacker_edu.*;
-import hera.api.model.ContractAddress;
-import hera.api.model.ContractResult;
-import hera.api.model.ContractTxReceipt;
 import hera.api.model.Transaction;
 import hera.api.model.TxHash;
-import hera.client.AergoClient;
 import hera.wallet.Wallet;
 
 
