@@ -1,9 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,16 +7,11 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         patentsB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToparent = new Intent(getApplicationContext(),userMain.class);
+                Intent goToparent = new Intent(getApplicationContext(), adminMain.class);
                 startActivity(goToparent);
             }
         });
