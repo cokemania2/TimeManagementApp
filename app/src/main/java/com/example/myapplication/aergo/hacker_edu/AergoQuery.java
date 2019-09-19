@@ -13,7 +13,7 @@ import hera.wallet.Wallet;
 public class AergoQuery {
 
     //wallet으로 잔고 조회
-    public static void getBlance(Wallet wallet, String address) {
+    public static void getBalance(Wallet wallet, String address) {
         //조회할 주소 설정
         AccountAddress accountAddress = AccountAddress.of(address);
         //Account 상태 조회

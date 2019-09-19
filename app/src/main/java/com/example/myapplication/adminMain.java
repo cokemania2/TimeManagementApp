@@ -1,7 +1,10 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +39,16 @@ public class adminMain extends AppCompatActivity {
         tv_userList = findViewById(R.id.tv_userList);
         final DatabaseReference childRef = database.getReference("user_list");
         loadFromFirebase(childRef);
+
+        // 임시로 이용자 정보를 보기 위한 버튼
+        Button btn_userInfo = findViewById(R.id.btn_userInfo);
+        btn_userInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent gotoUserInfo = new Intent(getApplicationContext(), UserInfoActivity.class);
+                startActivity(gotoUserInfo);
+            }
+        });
     }
 
     // Firebase에서 데이터를 읽어서 recycle_userListView를 새로고침.
@@ -49,12 +62,13 @@ public class adminMain extends AppCompatActivity {
                 userList = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User tmpUser;
-                    tmpUser= snapshot.getValue(User.class);
+                    tmpUser = snapshot.getValue(User.class);
 
                     Log.d("FirebaseTestActivity", "ValueEventListener : " + tmpUser);
                     userList.add(tmpUser);
-                    ul[0] = ul[0].concat(tmpUser.toString() + "\n");
+                    ul[0] = ul[0].concat(tmpUser.toString() + "\n\n");
                 }
+
                 tv_userList.setText(ul[0]);
             }
 

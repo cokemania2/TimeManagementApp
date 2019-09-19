@@ -89,7 +89,8 @@ public class AergoTransaction {
 			
 			System.out.println(">>>>>>>> 트랜잭션 Send");
 			TxHash txHash = wallet.send(accountAddress , Aer.of(amount, Unit.GAER), Fee.of(Aer.of(fee, Unit.AER), 5), new BytesValue(payload.getBytes()));
-			
+
+
 			return txHash;
 		}
 		

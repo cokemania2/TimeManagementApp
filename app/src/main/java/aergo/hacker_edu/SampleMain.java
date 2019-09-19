@@ -57,7 +57,7 @@ public class SampleMain {
 		
 		Wallet wallet = AergoCommon.getAergoWallet(endpoint);
 		
-		AergoQuery.getBlance(wallet, fromAddress);
+		AergoQuery.getBalance(wallet, fromAddress);
 		
 		//client 종료
 		wallet.close();

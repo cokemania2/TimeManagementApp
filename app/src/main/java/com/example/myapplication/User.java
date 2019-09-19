@@ -1,29 +1,52 @@
 package com.example.myapplication;
 
-public class User {
-    private String account;
-    private String name;
+import java.util.ArrayList;
 
-    public User() {
+public class User {
+
+
+    private String address;
+    private String name;
+    private String privateKey;
+    private ArrayList<String> txList;
+
+
+    public String getPrivateKey() {
+        return privateKey;
     }
 
-    public User(String account, String name) {
-        this.account = account;
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
+    }
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public void setTxList(ArrayList<String> txList) {
+        this.txList = txList;
+    }
+
+    public ArrayList<String> getTxList() {
+        return txList;
+    }
+
+    public User() {
+
+    }
+
+    public User(String address, String name,String privateKey) {
+        this.address = address;
         this.name = name;
+        this.privateKey = privateKey;
     }
 
 
     @Override
     public String toString() {
-        return "[" + name + "]" + " account: " + account;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
+        return "[" + name + "]" + " address: " + address +"\n transaction: " + txList;
     }
 
     public String getName() {
