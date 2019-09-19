@@ -18,7 +18,12 @@ import java.util.Date;
 
 public class setTimeActivity extends AppCompatActivity {
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //DB코드
+    //FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+    //지갑 객체
+    //wallet 선언부
+    String payLoad = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,11 +83,16 @@ public class setTimeActivity extends AppCompatActivity {
                 TextView tv3 = findViewById(R.id.tv_timeView3);
                 int restTime = Integer.valueOf((String) tv3.getText());
 
-                // testChild2(Loopy)로 로그인된 상황이라는 전제하에
-                DatabaseReference loopyRef = database.getReference("child/testChild2");
-                loopyRef.child("startTime").setValue(time1);
-                loopyRef.child("endTime").setValue(time2);
-                loopyRef.child("restTime").setValue(restTime);
+                // DB 코드
+//                DatabaseReference loopyRef = database.getReference("child/testChild2");
+//                loopyRef.child("startTime").setValue(time1);
+//                loopyRef.child("endTime").setValue(time2);
+//                loopyRef.child("restTime").setValue(restTime);
+
+                //블록체인 코드
+                payLoad = time1 + "_" + time2;
+                //wallet.send(payLoad);
+
 
                 Intent goToSetBack = new Intent(getApplicationContext(), testActivity.class);
                 startActivity(goToSetBack);
