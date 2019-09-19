@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -10,10 +9,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class restAcitivity extends AppCompatActivity {
     TextView timer;
@@ -21,11 +17,19 @@ public class restAcitivity extends AppCompatActivity {
     Button btnstart;
     //TextView datetext;
     Button btnstop;
+    CheckBox chk1;
+    CheckBox chk2;
+    CheckBox chk3;
+
+    TextView gonetime;
+
     boolean remain;
     long sec;
     long stopsec;
     //목표 휴식시간
     long goal;
+
+    boolean pause_or_go;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +37,17 @@ public class restAcitivity extends AppCompatActivity {
         //datetext = (TextView)findViewById(R.id.datetime);
         timer = (TextView)findViewById(R.id.restTime);
         btnstart = (Button)findViewById(R.id.button3);
-        btnstop = (Button)findViewById(R.id.button4);
-        remain = false;
+        btnstop = (Button)findViewById(R.id.button7);
 
+        gonetime = (TextView)findViewById(R.id.goneTime);
+        chk1 = (CheckBox)findViewById(R.id.check1);
+        chk2 = (CheckBox)findViewById(R.id.check2);
+        chk3 = (CheckBox)findViewById(R.id.check3);
+
+        remain = false;
+        pause_or_go = false;
+
+        btnstop.setClickable(false);
 
         //클릭리스너
 
@@ -84,33 +96,64 @@ public class restAcitivity extends AppCompatActivity {
         */
     }
     public void timerStart(View v){
-        if(remain==false) {
-            //DB에서 휴식시간 가져와서 넣기
-            CDT = new MyTimer(goal+1000, 1000);
-            CDT.start();
+        if((chk1.isChecked() == chk2.isChecked()) && (chk3.isChecked() == true) && (chk1.isChecked()==chk3.isChecked())) {
+            if(remain==false) {
+                pause_or_go = true; //중단 가능하게 된 상태가 됨.
+                //DB에서 휴식시간 가져와서 넣기
+                CDT = new MyTimer(goal + 1000, 1000);
+                CDT.start();
+                btnstop.setText("중지");
+                btnstop.setClickable(true);
+            }
+            else {
+                pause_or_go = true;
+                CDT = new MyTimer(goal, 1000);
+                CDT.start();
+                btnstop.setText("중지");
+                btnstop.setClickable(true);
+            }
         }
-        else {
-            CDT = new MyTimer(goal, 1000);
-            CDT.start();
+        else{
+            if(pause_or_go==true){
+                btnstart.setClickable(true);
+                btnstop.setClickable(false);
+                remain = true;
+                stopsec = sec;
+                timer.setText(stopsec / 3600 + " 시" + (stopsec % 3600 / 60) + " 분" + stopsec % 3600 % 60 + " 초");
+                CDT.cancel();
+                chk1.setChecked(false);
+                chk2.setChecked(false);
+                chk3.setChecked(false);
+                pause_or_go=false;
+            }
         }
     }
     public void timerPause(View v){
-        btnstart.setClickable(true);
-        btnstop.setClickable(false);
-        remain = true;
-        stopsec = sec;
-        timer.setText(stopsec / 3600 + " 시" + (stopsec % 3600 / 60) + " 분" + stopsec % 3600 % 60 + " 초");
-        CDT.cancel();
+        if(pause_or_go==true) {
+            btnstart.setClickable(true);
+            btnstop.setClickable(false);
+            remain = true;
+            stopsec = sec;
+            timer.setText(stopsec / 3600 + " 시" + (stopsec % 3600 / 60) + " 분" + stopsec % 3600 % 60 + " 초");
+            CDT.cancel();
+            chk1.setChecked(false);
+            chk2.setChecked(false);
+            chk3.setChecked(false);
+            pause_or_go=false;
+        }
+        else{
+
+        }
     }
 
     public void timerFast(View v){
         goal=goal-(3600*1000);
-        timer.setText(goal / 3600000 + " 시" + (goal % 3600000 / 60) + " 분" + goal % 3600000 % 60 + " 초");
+        timer.setText(goal / 3600000 + " 시" + (goal % 3600 / 60000) + " 분" + goal/1000 % 3600 % 60 + " 초");
     }
 
     public void timerBack(View v){
-        goal=goal+(10*1000);
-        timer.setText(goal / 3600000 + " 시" + (goal % 3600000 / 60) + " 분" + goal % 3600000 % 60 + " 초");
+        goal=goal+(5*1000);
+        timer.setText(goal/1000 / 3600 + " 시" + (goal/1000 % 3600 / 60) + " 분" + goal/1000 % 3600 % 60 + " 초");
     }
 
     public class MyTimer extends CountDownTimer{
@@ -122,15 +165,23 @@ public class restAcitivity extends AppCompatActivity {
         public void onTick(long millisUntilFinished) {
             Log.d("ontick","in");
             long t = millisUntilFinished / 1000;
-            timer.setText(t / 3600 + " 시" + (t % 3600 / 60) + " 분" + t % 3600 % 60 + " 초");
             sec = t;
+            timer.setText(t / 3600 + " 시" + (t % 3600 / 60) + " 분" + t % 3600 % 60 + " 초");
+            long t2 = goal/1000 - t;
+            gonetime.setText(t2 / 3600 + " 시" + (t2 % 3600 / 60) + " 분" + t2 % 3600 % 60 + " 초");
+            if(t==1){
+                t=0;
+            }
             btnstart.setClickable(false);
             btnstop.setClickable(true);
         }
 
         public void onFinish() {
+            long t=0;
+            timer.setText("0 시 0 분 0 초");
 
-
+            activity_popup e = activity_popup.getInstance();
+            e.show(getSupportFragmentManager(),activity_popup.TAG_EVENT_DIALOG);
         }
     }
 }
