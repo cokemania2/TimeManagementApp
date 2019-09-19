@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="24.7dp">
+
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="80.3dp"
+        android:layout_height="80.3dp"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="14dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="#394556"
+                    android:letterSpacing="0.03"
+                    android:text="사용자 이름"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/user_account"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="11.7sp"
+                        android:letterSpacing="0.03"
+                        android:textColor="#6c7581"
+                        android:text="사용자 지갑 주소"/>
+
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

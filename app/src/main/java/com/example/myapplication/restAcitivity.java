@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -18,7 +19,7 @@ public class restAcitivity extends AppCompatActivity {
     TextView timer;
     CountDownTimer CDT;
     Button btnstart;
-    TextView datetext;
+    //TextView datetext;
     Button btnstop;
     boolean remain;
     long sec;
@@ -29,18 +30,27 @@ public class restAcitivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rest_acitivity);
-        datetext = (TextView)findViewById(R.id.datetime);
+        //datetext = (TextView)findViewById(R.id.datetime);
         timer = (TextView)findViewById(R.id.restTime);
         btnstart = (Button)findViewById(R.id.button3);
         btnstop = (Button)findViewById(R.id.button4);
         remain = false;
 
+
+        //클릭리스너
+
+
+
         //DB에서 휴식시간 가져와서 넣기
-        goal = 3600*1000;
+        goal = 18000*1000;
         ((TextView)findViewById(R.id.targetTime)).setText(goal/1000 / 3600 + " 시" + (goal/1000 % 3600 / 60) + " 분" + goal/1000 % 3600 % 60 + " 초");
         ((TextView)findViewById(R.id.restTime)).setText(goal/1000 / 3600 + " 시" + (goal/1000 % 3600 / 60) + " 분" + goal/1000 % 3600 % 60 + " 초");
 
+
+
+
         //시계
+        /*
         Thread thread = new Thread() {
             @Override
             public void run() {
@@ -71,6 +81,7 @@ public class restAcitivity extends AppCompatActivity {
             } // run()
         };
         thread.start();
+        */
     }
     public void timerStart(View v){
         if(remain==false) {
@@ -79,7 +90,7 @@ public class restAcitivity extends AppCompatActivity {
             CDT.start();
         }
         else {
-            CDT = new MyTimer(stopsec * 1000+1000, 1000);
+            CDT = new MyTimer(goal, 1000);
             CDT.start();
         }
     }
@@ -90,6 +101,16 @@ public class restAcitivity extends AppCompatActivity {
         stopsec = sec;
         timer.setText(stopsec / 3600 + " 시" + (stopsec % 3600 / 60) + " 분" + stopsec % 3600 % 60 + " 초");
         CDT.cancel();
+    }
+
+    public void timerFast(View v){
+        goal=goal-(3600*1000);
+        timer.setText(goal / 3600000 + " 시" + (goal % 3600000 / 60) + " 분" + goal % 3600000 % 60 + " 초");
+    }
+
+    public void timerBack(View v){
+        goal=goal+(10*1000);
+        timer.setText(goal / 3600000 + " 시" + (goal % 3600000 / 60) + " 분" + goal % 3600000 % 60 + " 초");
     }
 
     public class MyTimer extends CountDownTimer{

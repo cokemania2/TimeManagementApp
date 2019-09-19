@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,19 +18,19 @@ public class register extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-    EditText nameE;
     EditText keyE;
+    EditText nameE;
     EditText recommendedkeyE;
     public String msg;
 
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
         //입력 받은 값
         nameE = (EditText) findViewById(R.id.nameEdit);
         keyE = (EditText) findViewById(R.id.keyEdit);
         recommendedkeyE = (EditText) findViewById(R.id.recommendedkeyEdit);
+        super.onCreate(savedInstanceState);
 
         //가입 버튼
         sendbt = (Button) findViewById(R.id.register_sendbt);
@@ -42,6 +43,13 @@ public class register extends AppCompatActivity {
                 databaseReference.child("child").child("testChild3").child("point").push().setValue("100");
                 msg = recommendedkeyE.getText().toString();
                 databaseReference.child("child").child("testChild3").child("recommededKey").push().setValue(msg);
+            }
+        });
+        sendbt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToMain = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(goToMain);
             }
         });
     }
