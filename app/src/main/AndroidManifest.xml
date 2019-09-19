@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
-    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -10,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".activity_popup"></activity>
+        <activity android:name=".UserInfoActivity"></activity>
         <activity android:name=".Info" />
         <activity android:name=".SplahScreenActivity2" />
         <activity android:name=".setTimeActivity" />
@@ -28,5 +29,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".register" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

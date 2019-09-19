@@ -38,7 +38,11 @@ import androidx.recyclerview.widget.RecyclerView;
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.name.setText(userList.get(position).getName());
+<<<<<<< HEAD
 
+=======
+            holder.account.setText(userList.get(position).getAddress());
+>>>>>>> d3d41da4e490676d6a7e3f51c369c92cc82c7fca
         }
 
         @Override

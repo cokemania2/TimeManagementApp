@@ -46,7 +46,11 @@ public class User {
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "[" + name + "]" + " address: " + address + "\n privateKey : "+ privateKey + "\ntransaction: " + txList;
+=======
+        return "[" + name + "]" + " address: " + address +"\n transaction: " + txList;
+>>>>>>> d3d41da4e490676d6a7e3f51c369c92cc82c7fca
     }
 
     public String getName() {

@@ -1,8 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -77,7 +74,5 @@ public class MainActivity extends AppCompatActivity {
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
     }
-
-
 
 }

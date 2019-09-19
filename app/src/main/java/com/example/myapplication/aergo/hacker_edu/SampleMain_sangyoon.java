@@ -5,22 +5,22 @@ import hera.api.model.TxHash;
 import hera.wallet.Wallet;
 
 
-public class SampleMain {
+public class SampleMain_sangyoon {
 
     //테스트넷 접속 주소
     protected static String endpoint = "testnet.aergo.io:7845";
 
     //개인키
-    protected static String encPrivateKey = "486tPdWFAiUBS98iv46Q2JSkrZyiuxaPmxzi2tXv9jmEomYnfoPi89rUdp55YrcnEf67j5Toc";
+    protected static String encPrivateKey = "485XeGg5e8xrFsvEZFrmRoPrAsgEnzw5bLtFWoTaVGbR2mCeAewoAr3eNNFPm5FFuAHZXBz9z"; //관리자 키
 
     //송신자 주소
-    protected static String fromAddress = "AmLbknvUr9N7M5smiy7RwFtYqqSsjCW6HoHoAJTickEJukzPFMEP";
+    protected static String fromAddress = "AmMDaD8pFMiL5i8Bcqpvy7sZj6L8pcHEiXJm5zmYp8dkJF2cKojD"; //관리자 주소
 
     //패스워드 설정
     protected static String password = "password";
 
     //수신자 주소
-    protected static String toAddress = "AmNzmdLAWBHCGVQUS4DFRxBqaf7PEEXJseiKJm5dhmdBokPyRv5u";
+    protected static String toAddress = "AmMbSKr6YV8XA6Xvt3USamFcgnEDesPn6mLyVbNCwJamhGby82YE"; //상윤 주소
 
     //수수료 정책
     protected static String fee = "0";
@@ -73,10 +73,8 @@ public class SampleMain {
         String amount = "1";
 
         //paylaod data
-        String payload = "I'm SangYoon";
-
+        String payload = "Time:11:58:00_Msg:I'm SangYoon";
         TxHash txhash = AergoTransaction.sendTransaction(wallet, toAddress, password, encPrivateKey, payload, amount, fee);
-
 
         //comfirm을 위해 대기
         try {

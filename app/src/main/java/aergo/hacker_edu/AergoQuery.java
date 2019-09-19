@@ -15,15 +15,32 @@ public class AergoQuery {
 	
 	
 	//wallet으로 잔고 조회 
+<<<<<<< HEAD
 	public static String getBlance(Wallet wallet, String address) {
+=======
+	public static void getBalance(Wallet wallet, String address) {
+>>>>>>> d3d41da4e490676d6a7e3f51c369c92cc82c7fca
 		//조회할 주소 설정
 		AccountAddress accountAddress = AccountAddress.of(address);
 		//Account 상태 조회
 		AccountState accountState = wallet.getAccountState(accountAddress);
 		System.out.println("==== Wallet Used ===== ");
 		System.out.println(">>>>>>>> 주소(Address) :: "+accountState.getAddress().getEncoded().toString());
+<<<<<<< HEAD
 		System.out.println(">>>>>>>> 잔고(Blance) :: " + accountState.getBalance().toString());
 
+=======
+		System.out.println(">>>>>>>> 잔고(Balance) :: " + accountState.getBalance().toString());
+
+	}
+
+	// return string
+	public static String getBalance_(Wallet wallet, String address) {
+		//조회할 주소 설정
+		AccountAddress accountAddress = AccountAddress.of(address);
+		//Account 상태 조회
+		AccountState accountState = wallet.getAccountState(accountAddress);
+>>>>>>> d3d41da4e490676d6a7e3f51c369c92cc82c7fca
 		return accountState.getBalance().toString();
 	}
 	
@@ -140,5 +157,4 @@ public class AergoQuery {
 		
 			
 	}
-
 }
