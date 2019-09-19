@@ -12,10 +12,14 @@ public class Info extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
+
+
+
+
         // 타이틀
         ActionBar ab = getSupportActionBar() ;
-        ab.setTitle("test") ;
-        ab.setIcon(R.drawable.gucc3) ;
+        ab.setIcon(R.drawable.gucc5) ;
+        ab.setTitle("tsettttt") ;
         ab.setDisplayUseLogoEnabled(true) ;
         ab.setDisplayShowHomeEnabled(true) ;
     }

@@ -19,7 +19,7 @@
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:src="@drawable/gucc3" />
+            android:src="@drawable/gucc" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,6 +84,24 @@
         android:layout_marginStart="40dp"
         android:text="약속지키기 : [성공] - 지급 1coin" />
 
+
+    <Button
+        android:id="@+id/makeKey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="makeKey" />
+
+    <Button
+        android:id="@+id/getBlances"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="getBlances" />
+
+    <Button
+        android:id="@+id/sendTransaction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sendTransaction" />
 
     <Button
         android:id="@+id/popup"

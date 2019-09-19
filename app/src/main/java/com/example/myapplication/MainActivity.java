@@ -3,7 +3,6 @@ package com.example.myapplication;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -38,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         // 타이틀
         ActionBar ab = getSupportActionBar() ;
-        ab.setTitle("test") ;
-        ab.setIcon(R.drawable.gucc3) ;
+        ab.setIcon(R.drawable.gucc4) ;
+        ab.setTitle("tsettttt") ;
         ab.setDisplayUseLogoEnabled(true) ;
         ab.setDisplayShowHomeEnabled(true) ;
 

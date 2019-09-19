@@ -18,6 +18,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    android {
+        packagingOptions {
+            exclude 'META-INF/*'
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/license.txt'
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/NOTICE.txt'
+            exclude 'META-INF/notice.txt'
+            exclude 'META-INF/ASL2.0'
+            exclude 'META-INF/INDEX.LIST'
+        }
+    }
 }
 
 dependencies {
@@ -32,4 +45,10 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation "io.aergo:heraj-transport:1.1.0"
+    implementation "io.aergo:heraj-wallet:1.1.0"
+    implementation "io.aergo:heraj-smart-contract:1.1.0"
+    implementation "io.aergo:heraj-common:1.1.0"
+    implementation "io.aergo:heraj-util:1.1.0"
 }
