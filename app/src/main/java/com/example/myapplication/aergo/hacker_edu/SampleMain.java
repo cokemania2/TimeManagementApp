@@ -26,12 +26,10 @@ public class SampleMain {
     protected static String fee = "0";
 
     public static void main(String[] args) {
-
         run();
     }
 
     public static void run() {
-
 
         //1. Key생성(Account)
         //AergoCommon.createAergoKey();
@@ -41,7 +39,6 @@ public class SampleMain {
 
         //3 sendTransaction  & Transaction, Block 조회 with wallet
         sendTransaction();
-
 
     }
 

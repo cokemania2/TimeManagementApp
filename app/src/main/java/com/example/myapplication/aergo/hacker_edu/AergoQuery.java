@@ -12,7 +12,6 @@ import hera.wallet.Wallet;
 
 public class AergoQuery {
 
-
     //wallet으로 잔고 조회
     public static void getBlance(Wallet wallet, String address) {
         //조회할 주소 설정
@@ -22,7 +21,6 @@ public class AergoQuery {
         System.out.println("==== Wallet Used ===== ");
         System.out.println(">>>>>>>> 주소(Address) :: "+accountState.getAddress().getEncoded().toString());
         System.out.println(">>>>>>>> 잔고(Blance) :: " + accountState.getBalance().toString());
-
     }
 
     //aergoClient로 잔고 조회
@@ -135,8 +133,6 @@ public class AergoQuery {
         System.out.println(">>>>>>>> tx개수:: " +blockinfo.getTransactions().size());
         System.out.println(">>>>>>>> 블록생성시각:: " +blockinfo.getTimestamp());
         System.out.println(">>>>>>>> chainId:: " +blockinfo.getChainId());
-
-
     }
 
 }

@@ -20,7 +20,6 @@ import hera.wallet.Wallet;
 
 public class AergoTransaction {
 
-
     // 트랜잭션 build & commit
     public static TxHash buildCommitTransaction(Wallet wallet, String toAddress, String password, String encPrivateKey, String payload, String amount, String fee) {
 
