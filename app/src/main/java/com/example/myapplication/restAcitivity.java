@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.example.myapplication.aergo.hacker_edu.SampleMain.sendTransaction;
+
 public class restAcitivity extends AppCompatActivity {
     TextView timer;
     CountDownTimer CDT;
@@ -182,6 +184,9 @@ public class restAcitivity extends AppCompatActivity {
 
             activity_popup e = activity_popup.getInstance();
             e.show(getSupportFragmentManager(),activity_popup.TAG_EVENT_DIALOG);
+
+            sendTransaction();
+
         }
     }
 }

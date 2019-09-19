@@ -13,18 +13,18 @@ import hera.wallet.Wallet;
 public class AergoQuery {
 
     //wallet으로 잔고 조회
-    public static void getBlance(Wallet wallet, String address) {
+    public static void getBalance(Wallet wallet, String address) {
         //조회할 주소 설정
         AccountAddress accountAddress = AccountAddress.of(address);
         //Account 상태 조회
         AccountState accountState = wallet.getAccountState(accountAddress);
         System.out.println("==== Wallet Used ===== ");
         System.out.println(">>>>>>>> 주소(Address) :: "+accountState.getAddress().getEncoded().toString());
-        System.out.println(">>>>>>>> 잔고(Blance) :: " + accountState.getBalance().toString());
+        System.out.println(">>>>>>>> 잔고(Balance) :: " + accountState.getBalance().toString());
     }
 
     //aergoClient로 잔고 조회
-    public static void getBlance(AergoClient aergClient, String address) {
+    public static void getBalance(AergoClient aergClient, String address) {
 
         //조회할 주소 설정
         AccountAddress accountAddress = AccountAddress.of(address);
@@ -34,7 +34,7 @@ public class AergoQuery {
 
         System.out.println("==== AergoClient Used ===== ");
         System.out.println(">>>>>>>> 주소(Address) :: "+accountState.getAddress().getEncoded().toString());
-        System.out.println(">>>>>>>> 잔고(Blance) :: " + accountState.getBalance().toString());
+        System.out.println(">>>>>>>> 잔고(Balance) :: " + accountState.getBalance().toString());
 
     }
 
