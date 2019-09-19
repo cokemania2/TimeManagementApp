@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         patentsB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToparent = new Intent(getApplicationContext(), userMain.class);
+                Intent goToparent = new Intent(getApplicationContext(), adminMain.class);
                 startActivity(goToparent);
             }
         });
