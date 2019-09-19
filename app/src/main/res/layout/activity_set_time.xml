@@ -5,57 +5,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".setTimeActivity">
+    tools:context=".setTimeActivity"
+    android:gravity="center"
+    android:layout_gravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_gravity="center"
             android:text="시작시간 " />
         <TextView
             android:id="@+id/tv_timeView1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_gravity="center"
             android:text=" 00:00" />
         <Button
             android:id="@+id/btn_startTimeSelect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:text="시간선택" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_gravity="center"
             android:text="끝 시간 " />
         <TextView
             android:id="@+id/tv_timeView2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_gravity="center"
             android:text=" 00:00" />
         <Button
             android:id="@+id/btn_endTimeSelect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:text="시간선택" />
     </LinearLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
