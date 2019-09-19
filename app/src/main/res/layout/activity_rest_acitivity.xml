@@ -20,7 +20,9 @@
             android:text="00:00:00"
             android:textColor="#FFFFFF"
             android:textSize="60dp"
-            tools:ignore="MissingConstraints"></TextView>
+            tools:ignore="MissingConstraints">
+
+        </TextView>
     </LinearLayout>
 
     <LinearLayout
@@ -49,11 +51,12 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             >
-            <CheckBox
+            <Button
                 android:id="@+id/check1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:onClick="timerStart"
+                android:background="@drawable/bg"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
     </LinearLayout>
@@ -85,12 +88,12 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             >
-            <CheckBox
+            <Button
                 android:id="@+id/check2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-
                 android:onClick="timerStart"
+                android:background="@drawable/bg"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
     </LinearLayout>
@@ -120,11 +123,12 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             >
-            <CheckBox
+            <Button
                 android:id="@+id/check3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:onClick="timerStart"
+                android:background="@drawable/bg"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
     </LinearLayout>

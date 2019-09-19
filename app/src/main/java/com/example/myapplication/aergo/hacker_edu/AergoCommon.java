@@ -12,8 +12,6 @@ import hera.wallet.WalletType;
 
 public class AergoCommon {
 
-
-
     //AergoClient
     public static AergoClient getAergoClient(String endpoint) {
 
@@ -27,7 +25,6 @@ public class AergoCommon {
         return aergoClient;
     }
 
-
     //wallet
     public static Wallet getAergoWallet(String endpoint) {
 
@@ -39,9 +36,7 @@ public class AergoCommon {
                 .withRetry(3, 5, TimeUnit.SECONDS) // 재접속
                 .build(WalletType.Naive); // 월렛타입
 
-
         return wallet;
-
     }
 
     // 키 생성 함수
@@ -51,15 +46,14 @@ public class AergoCommon {
 
         //생성된 키와 비빌번호를 토대로 privateKey추출, password 부분은 필요한 값으로 수정하여 사용
         String encPrivatKey = key.export("password").toString();
-
         System.out.println(">>>>>>>> private encKey :: "+ encPrivatKey);
         System.out.println(">>>>>>>> Address :: "+ key.getAddress());
 
 		/*
-		 * 사용자로부터 키와 패스워드를 받을경우 키로 import
+		사용자로부터 키와 패스워드를 받을경우 키로 import
 		AergoKey key_2 = null;
 		key = AergoKey.of("encPrivatKey", "password");
-		 */
+		*/
 
         return key;
     }
