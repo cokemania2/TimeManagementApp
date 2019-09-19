@@ -128,7 +128,7 @@ public class userMain extends AppCompatActivity {
                 }
                 tv_userList.setText(userList.get(1).getName());
                 Wallet wallet = AergoCommon.getAergoWallet("testnet.aergo.io:7845");
-                AergoQuery.getBlance(wallet, userList.get(1).getAddress());
+                AergoQuery.getBalance(wallet, userList.get(1).getAddress());
 
                 wallet.close();
 

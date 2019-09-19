@@ -24,6 +24,7 @@ public class AergoQuery {
     }
 
     //aergoClient로 잔고 조회
+    /*
     public static void getBalance(AergoClient aergClient, String address) {
 
         //조회할 주소 설정
@@ -37,6 +38,7 @@ public class AergoQuery {
         System.out.println(">>>>>>>> 잔고(Balance) :: " + accountState.getBalance().toString());
 
     }
+    */
 
     //Wallet Transaction 조회
     public static Transaction getTransactionInfo(Wallet wallet, String txHash) {

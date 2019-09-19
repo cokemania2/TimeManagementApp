@@ -68,7 +68,7 @@ public class Info extends AppCompatActivity {
                 //userList.indexOf(jiwoo);
                 tv_userList.setText(userList.get(1).getName());
                 Wallet wallet = AergoCommon.getAergoWallet("testnet.aergo.io:7845");
-                String balance = AergoQuery.getBlance(wallet,userList.get(1).getAddress());
+                String balance = AergoQuery.getBalance_(wallet,userList.get(1).getAddress());
                 wallet.close();
                 Log.d("balance : ", balance);
                 point.setText(balance);
