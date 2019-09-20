@@ -94,11 +94,8 @@ public class SampleMain {
 		
 	}
 
-<<<<<<< HEAD
-	public static void sendTransaction(String toAddress,String encPrivateKey) {
-=======
+
 	public static void sendTransaction(String toAddress,String encPrivateKey, String payLoad) {
->>>>>>> 65e14186aa4a049420630c397a9a828b976009a6
 		//client 생성
 		Wallet wallet = AergoCommon.getAergoWallet(endpoint);
 
@@ -106,11 +103,8 @@ public class SampleMain {
 		String amount = "1";
 
 		//paylaod data
-<<<<<<< HEAD
-		String payload = "time_point";
-=======
+
 		String payload = payLoad;
->>>>>>> 65e14186aa4a049420630c397a9a828b976009a6
 
 		TxHash txhash = AergoTransaction.sendTransaction(wallet, toAddress, password, encPrivateKey, payload, amount, fee);
 

@@ -5,16 +5,17 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-<<<<<<< HEAD
-import android.service.autofill.TextValueSanitizer;
 
 import android.util.Log;
-=======
->>>>>>> 65e14186aa4a049420630c397a9a828b976009a6
+
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -140,7 +141,7 @@ public class testActivity extends AppCompatActivity {
                 }
                 key = userList.get(0).getPrivateKey(); // 관리자 키
                 address = userList.get(1).getAddress(); // user주소
-                SampleMain.sendTransaction(address,key);
+                SampleMain.sendTransaction(address,key,"0");
             }
 
             @Override
