@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +28,8 @@ public class Info extends AppCompatActivity {
     private ArrayList<User> userList;
     TextView tv_userList;
     TextView point;
+    TextView txlist;
+    String txString = "";
     String balance="";
 
     @Override
@@ -42,21 +45,23 @@ public class Info extends AppCompatActivity {
         ab.setDisplayShowHomeEnabled(true) ;
 
         //ProgressBar
+        /*
         ProgressDialog dialog = new ProgressDialog(this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         dialog.setMessage("데이터 확인중");
         dialog.show();
+        */
+
 
         //유저정보 조회
         DatabaseReference dbRef = database.getReference("user_list");
         tv_userList = findViewById(R.id.user_name);
         point = findViewById(R.id.point);
+        txlist = findViewById(R.id.txlist);
+
         loadFromFirebase(dbRef);
 
-        //ProgressFinish
-        if (balance != NULL) {
-            dialog.cancel();
-        }
+        setProgressBarIndeterminateVisibility(false);
     }
 
     void loadFromFirebase(final DatabaseReference ref) {
@@ -84,7 +89,7 @@ public class Info extends AppCompatActivity {
                 wallet.close();
                 Log.d("balance : ", balance);
                 point.setText(balance);
-
+                printTXlist(userList.get(1).getTxList());
             }
 
             @Override
@@ -93,5 +98,11 @@ public class Info extends AppCompatActivity {
                 Log.w("Read Firebase database", "Failed to read value.", error.toException());
             }
         });
+    }
+
+    public void printTXlist (ArrayList<String> args) {
+        for (String tx : args) {
+            txlist.setText(tx+"\n");
+        }
     }
 }
