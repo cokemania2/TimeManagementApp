@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 public class select extends AppCompatActivity {
 
@@ -23,7 +22,7 @@ public class select extends AppCompatActivity {
         ab.setDisplayUseLogoEnabled(true) ;
         ab.setDisplayShowHomeEnabled(true) ;
 
-        Button buttonUser = findViewById(R.id.user);
+        Button buttonUser = findViewById(R.id.user_addr);
         Button buttonAdmin = findViewById(R.id.admin);
         buttonUser.setOnClickListener(new View.OnClickListener() {
             @Override

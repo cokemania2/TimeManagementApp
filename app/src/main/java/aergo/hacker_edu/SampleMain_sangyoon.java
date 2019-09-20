@@ -1,9 +1,5 @@
 package aergo.hacker_edu;
 
-import aergo.hacker_edu.AergoCommon;
-import aergo.hacker_edu.AergoQuery;
-import aergo.hacker_edu.AergoTransaction;
-
 import hera.api.model.Transaction;
 import hera.api.model.TxHash;
 import hera.wallet.Wallet;
@@ -24,8 +20,8 @@ public class SampleMain_sangyoon {
     protected static String password = "password";
 
     //수신자 주소
-    protected static String toAddress = "AmMbSKr6YV8XA6Xvt3USamFcgnEDesPn6mLyVbNCwJamhGby82YE"; //상윤 주소
-
+    //protected static String toAddress = "AmMbSKr6YV8XA6Xvt3USamFcgnEDesPn6mLyVbNCwJamhGby82YE"; //상윤 주소
+    protected static String toAddress = "AmPfZP5Jr8YvsZDdaDwbCnEvutASJJ5WZ1j87v5mZ6ukX3FXQKb9";
     //수수료 정책
     protected static String fee = "0";
 

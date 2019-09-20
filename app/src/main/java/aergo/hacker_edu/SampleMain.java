@@ -1,11 +1,7 @@
 package aergo.hacker_edu;
 
-import hera.api.model.ContractAddress;
-import hera.api.model.ContractResult;
-import hera.api.model.ContractTxReceipt;
 import hera.api.model.Transaction;
 import hera.api.model.TxHash;
-import hera.client.AergoClient;
 import hera.wallet.Wallet;
 
 public class SampleMain {
@@ -35,7 +31,7 @@ public class SampleMain {
 		AergoCommon.createAergoKey();
 		
 		//2. 잔고 조회 
-		//getBlances();
+		//getBalances();
 		
 		//3 sendTransaction  & Transaction, Block 조회 with wallet
 		//sendTransaction();
@@ -46,11 +42,11 @@ public class SampleMain {
 	
 	
 	//잔고 조회 
-	public static void getBlances() {
+	public static void getBalances() {
 		
 //		AergoClient aergoClient = AergoCommon.getAergoClient(endpoint);
 //		
-//		AergoQuery.getBlance(aergoClient, fromAddress);
+//		AergoQuery.getBalance(aergoClient, fromAddress);
 //
 //		aergoClient.close();
 		Wallet wallet = AergoCommon.getAergoWallet(endpoint);
@@ -98,7 +94,11 @@ public class SampleMain {
 		
 	}
 
+<<<<<<< HEAD
 	public static void sendTransaction(String toAddress,String encPrivateKey) {
+=======
+	public static void sendTransaction(String toAddress,String encPrivateKey, String payLoad) {
+>>>>>>> 65e14186aa4a049420630c397a9a828b976009a6
 		//client 생성
 		Wallet wallet = AergoCommon.getAergoWallet(endpoint);
 
@@ -106,7 +106,11 @@ public class SampleMain {
 		String amount = "1";
 
 		//paylaod data
+<<<<<<< HEAD
 		String payload = "time_point";
+=======
+		String payload = payLoad;
+>>>>>>> 65e14186aa4a049420630c397a9a828b976009a6
 
 		TxHash txhash = AergoTransaction.sendTransaction(wallet, toAddress, password, encPrivateKey, payload, amount, fee);
 
