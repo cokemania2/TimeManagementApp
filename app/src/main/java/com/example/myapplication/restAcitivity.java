@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import static com.example.myapplication.aergo.hacker_edu.SampleMain.sendTransaction;
+import static com.example.myapplication.aergo.hacker_edu.SampleMain_sangyoon.sendTransaction;
 
 public class restAcitivity extends AppCompatActivity {
     TextView timer;
