@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,33 +9,39 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import aergo.hacker_edu.AergoCommon;
+import aergo.hacker_edu.AergoTransaction;
+import aergo.hacker_edu.SampleMain;
+import hera.api.model.TxHash;
+import hera.wallet.Wallet;
+
 public class setTimeActivity extends AppCompatActivity {
 
     //DB코드
-    //FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-    //지갑 객체
-    //wallet 선언부
+    //로그인한 유저
+    User jiwoo = new User("addr","jiwoo","key ");
+
     String payLoad = "";
-
+    TextView user_addr = null;
+    TextView user_addr2 = null;
+    TextView user_key = null;
+    TextView user_key2 = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_time);
-
-        // 타이틀
-        ActionBar ab = getSupportActionBar() ;
-        ab.setTitle("test") ;
-        ab.setIcon(R.drawable.gucc) ;
-        ab.setDisplayUseLogoEnabled(true) ;
-        ab.setDisplayShowHomeEnabled(true) ;
 
         Button btn_startTimeSelect = findViewById(R.id.btn_startTimeSelect);
         btn_startTimeSelect.setOnClickListener(new View.OnClickListener() {
@@ -47,15 +52,7 @@ public class setTimeActivity extends AppCompatActivity {
             }
         });
 
-        int maxTime;
-        Button btn_endTimeSelect = findViewById(R.id.btn_endTimeSelect);
-        btn_endTimeSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TimePickerFragment newFragment = new TimePickerFragment(2);
-                newFragment.show(getSupportFragmentManager(), "TimePicker");
-            }
-        });
+
 
         Button btn_restTimeSelect = findViewById(R.id.btn_restTimeSelect);
         btn_restTimeSelect.setOnClickListener(new View.OnClickListener() {
@@ -83,24 +80,25 @@ public class setTimeActivity extends AppCompatActivity {
                 TextView tv1 = findViewById(R.id.tv_timeView1);
                 long time1 = getMill((String) tv1.getText());
 
-                // 끝 시간
-                TextView tv2 = findViewById(R.id.tv_timeView2);
-                long time2 = getMill((String) tv2.getText());
-
                 // 휴식할 시간
                 TextView tv3 = findViewById(R.id.tv_timeView3);
                 int restTime = Integer.valueOf((String) tv3.getText());
 
-                // DB 코드
-//                DatabaseReference loopyRef = database.getReference("child/testChild2");
-//                loopyRef.child("startTime").setValue(time1);
-//                loopyRef.child("endTime").setValue(time2);
-//                loopyRef.child("restTime").setValue(restTime);
-
                 //블록체인 코드
-                payLoad = time1 + "_" + time2;
-                //wallet.send(payLoad);
+                payLoad = time1 + "_" + restTime;
+                Log.d("payLoad",payLoad);
 
+                Log.d("들어오는지","체크1");
+
+
+
+                final DatabaseReference childRef = database.getReference("user_list"); //송신할 사용자 계정
+
+                Log.d("들어오는지","체크2");
+
+                loadFromFirebase(childRef, user_addr);
+
+                Log.d("들어오는지","체크4 ");
 
                 Intent goToSetBack = new Intent(getApplicationContext(), testActivity.class);
                 startActivity(goToSetBack);
@@ -108,7 +106,43 @@ public class setTimeActivity extends AppCompatActivity {
         });
 
     }
+    void loadFromFirebase(final DatabaseReference ref, final TextView tv) {
+        // 해당 DB참조의 값변화리스너 추가
+        Log.d("들어오는지","체크6");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("들어오는지","체크5");
+                String admin = "";
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    User tmpValue;
+                    if (snapshot.getKey().equals("admin")) {
+                        tmpValue = snapshot.getValue(User.class);
 
+                        admin = tmpValue.getAddress();
+                        //test
+
+                        Log.d("TEST 관리자", tmpValue.getAddress());
+                        Log.d("TEST 관리자키", tmpValue.getPrivateKey());
+
+
+                    } else if(snapshot.getKey().equals(jiwoo.getName())){
+                        tmpValue = snapshot.getValue(User.class);
+                        Log.d("유저db",tmpValue.getAddress());
+                        SampleMain.sendTransaction(admin, tmpValue.getPrivateKey(), payLoad);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Read Firebase database", "Failed to read value.", error.toException());
+            }
+
+        });
+    }
     long getMill(String str) {
         long time = 0;
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");

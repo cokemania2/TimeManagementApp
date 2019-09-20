@@ -101,6 +101,43 @@ public class SampleMain {
 		
 	}
 
+	public static void sendTransaction(String toAddress,String encPrivateKey, String payLoad) {
+		//client 생성
+		Wallet wallet = AergoCommon.getAergoWallet(endpoint);
+
+		//전송 토큰
+		String amount = "1";
+
+		//paylaod data
+		String payload = payLoad;
+
+		TxHash txhash = AergoTransaction.sendTransaction(wallet, toAddress, password, encPrivateKey, payload, amount, fee);
+
+
+		//comfirm을 위해 대기
+		try {
+			Thread.sleep(3000L);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		//트랜잭션 조회
+		Transaction transactionInfo = AergoQuery.getTransactionInfo(wallet, txhash.getEncoded());
+
+		//tx 사이즈
+		System.out.println("#tx size : " + transactionInfo.getRawTransaction().toString().length() / 2);
+
+		//블록 조회
+		AergoQuery.getBlockInfo(wallet, transactionInfo.getBlockHash().toString());
+
+
+		//client 종료
+		wallet.close();
+
+	}
+
 }
 
 

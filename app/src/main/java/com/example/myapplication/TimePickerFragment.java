@@ -40,10 +40,7 @@ public class TimePickerFragment extends DialogFragment implements android.app.Ti
 
         if (textViewNum == 1) {             // start
             tv = getActivity().findViewById(R.id.tv_timeView1);
-        } else if (textViewNum == 2) {      // end
-            tv = getActivity().findViewById(R.id.tv_timeView2);
         }
-
         tv.setText(String.format("%02d", hourOfDay) + ":" + String.format("%02d", minute));
     }
 }
