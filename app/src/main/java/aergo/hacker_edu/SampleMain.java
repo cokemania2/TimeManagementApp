@@ -97,7 +97,7 @@ public class SampleMain {
 		
 	}
 
-	public static void sendTransaction(String toAddress,String encPrivateKey, String payLoad) {
+	public static TxHash sendTransaction(String toAddress,String encPrivateKey, String payLoad) {
 		//client 생성
 		Wallet wallet = AergoCommon.getAergoWallet(endpoint);
 
@@ -131,6 +131,8 @@ public class SampleMain {
 
 		//client 종료
 		wallet.close();
+
+		return txhash;
 
 	}
 

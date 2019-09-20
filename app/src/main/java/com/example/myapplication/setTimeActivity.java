@@ -113,23 +113,31 @@ public class setTimeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("들어오는지","체크5");
-                String admin = "";
+                User admin = null;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User tmpValue;
                     if (snapshot.getKey().equals("admin")) {
-                        tmpValue = snapshot.getValue(User.class);
 
-                        admin = tmpValue.getAddress();
-                        //test
+                        admin = snapshot.getValue(User.class);
 
-                        Log.d("TEST 관리자", tmpValue.getAddress());
-                        Log.d("TEST 관리자키", tmpValue.getPrivateKey());
+                        Log.d("TEST 관리자", admin.getAddress());
+                        Log.d("TEST 관리자키", admin.getPrivateKey());
 
 
                     } else if(snapshot.getKey().equals(jiwoo.getName())){
                         tmpValue = snapshot.getValue(User.class);
                         Log.d("유저db",tmpValue.getAddress());
-                        SampleMain.sendTransaction(admin, tmpValue.getPrivateKey(), payLoad);
+                        TxHash txHash = SampleMain.sendTransaction(admin.getAddress(), tmpValue.getPrivateKey(), payLoad);
+
+                        //전송한 해쉬값 관리자 txlist에 추가
+                        txList_update_from_firebase(database.getReference("user_list/admin/txList"), txHash.toString());
+                        String count_tostring = Integer.toString(cnt);
+                        Log.d("Cnt fasdf", "count : "+ cnt);
+                        database.getReference("user_list/admin/txList").child(count_tostring).setValue(txHash.toString());
+
+
+                        //유저 db에 payLoad 저장
+                        database.getReference("user_list/jiwoo/payLoad").setValue(payLoad);
 
                     }
                 }
