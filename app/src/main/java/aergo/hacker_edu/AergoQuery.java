@@ -4,7 +4,6 @@ import hera.api.model.AccountAddress;
 import hera.api.model.AccountState;
 import hera.api.model.Block;
 import hera.api.model.BlockHash;
-import hera.api.model.BlockHeader;
 import hera.api.model.BlockchainStatus;
 import hera.api.model.Transaction;
 import hera.api.model.TxHash;
@@ -39,7 +38,7 @@ public class AergoQuery {
 	
 	//aergoClient로 잔고 조회
 	/*
-	public static void getBlance(AergoClient aergClient, String address) {
+	public static void getBalance(AergoClient aergClient, String address) {
 		
 		//조회할 주소 설정
 		AccountAddress accountAddress = AccountAddress.of(address);
@@ -49,7 +48,7 @@ public class AergoQuery {
 		
 		System.out.println("==== AergoClient Used ===== ");
 		System.out.println(">>>>>>>> 주소(Address) :: "+accountState.getAddress().getEncoded().toString());
-		System.out.println(">>>>>>>> 잔고(Blance) :: " + accountState.getBalance().toString());
+		System.out.println(">>>>>>>> 잔고(Balance) :: " + accountState.getBalance().toString());
 		
 	}
 	*/
