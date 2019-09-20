@@ -9,10 +9,20 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import aergo.hacker_edu.AergoCommon;
+import aergo.hacker_edu.AergoTransaction;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import hera.api.model.TxHash;
+import hera.wallet.Wallet;
 
-import static aergo.hacker_edu.SampleMain_sangyoon.sendTransaction;
+
 
 public class restAcitivity extends AppCompatActivity {
     TextView timer;
@@ -31,8 +41,24 @@ public class restAcitivity extends AppCompatActivity {
     long stopsec;
     //목표 휴식시간
     long goal;
-
+    //중지 가능
     boolean pause_or_go;
+
+    int memed=0;
+
+    //Transactions Test
+    protected static String endpoint = "testnet.aergo.io:7845";
+    //개인키
+    protected static String encPrivateKey = "485XeGg5e8xrFsvEZFrmRoPrAsgEnzw5bLtFWoTaVGbR2mCeAewoAr3eNNFPm5FFuAHZXBz9z";
+    //송신자 주소
+    protected static String fromAddress = "AmMDaD8pFMiL5i8Bcqpvy7sZj6L8pcHEiXJm5zmYp8dkJF2cKojD";
+    //패스워드 설정
+    protected static String password = "password";
+    //수신자 주소
+    protected static String toAddress = "AmPfZP5Jr8YvsZDdaDwbCnEvutASJJ5WZ1j87v5mZ6ukX3FXQKb9";
+    //수수료 정책
+    protected static String fee = "0";
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -167,6 +193,37 @@ public class restAcitivity extends AppCompatActivity {
         timer.setText(goal/1000 / 3600 + " 시" + (goal/1000 % 3600 / 60) + " 분" + goal/1000 % 3600 % 60 + " 초");
     }
 
+
+    //DB
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference jw_dbref = database.getReference("user_list/jiwoo/txList");
+
+
+    public void txList_update_from_firebase(DatabaseReference ref, final String txhash) {
+        // 해당 DB참조의 값변화리스너 추가 한번만 됨.
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            int count = 0;
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String tmpHash;
+                    tmpHash = snapshot.getValue(String.class);
+                    count = count+1;
+                    Log.d("FirebaseTestActivity", "ValueEventListener : " + tmpHash);
+                }
+                String count_tostring = Integer.toString(count);
+                jw_dbref.child(count_tostring).setValue(txhash);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Read Firebase database", "Failed to read value.", error.toException());
+            }
+        });
+    }
+
+
     public class MyTimer extends CountDownTimer{
 
         public MyTimer(long millisInFuture, long countDownInterval)
@@ -187,15 +244,22 @@ public class restAcitivity extends AppCompatActivity {
             btnstop.setClickable(true);
         }
 
+
         public void onFinish() {
             long t=0;
             timer.setText("0 시 0 분 0 초");
+            Wallet wallet = AergoCommon.getAergoWallet(endpoint);
+                //전송 토큰
+            String amount = "1";
 
+                //paylaod data
+            String payload = "time_point";
+
+            TxHash tx = AergoTransaction.sendTransaction(wallet, toAddress, password, encPrivateKey, payload, amount, fee);
+            String tx_string = tx.toString();
+            txList_update_from_firebase(jw_dbref, tx_string);
             activity_popup e = activity_popup.getInstance();
             e.show(getSupportFragmentManager(),activity_popup.TAG_EVENT_DIALOG);
-
-            sendTransaction();
-
         }
     }
 }

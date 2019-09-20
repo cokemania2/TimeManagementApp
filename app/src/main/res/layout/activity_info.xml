@@ -116,7 +116,7 @@
                 android:layout_weight="1"
                 android:letterSpacing="0.03"
                 android:gravity="center"
-                android:text="휴식 기록"
+                android:text="생성된 트렌잭션"
                 android:textColor="#394556"
                 android:textSize="15sp" />
 
@@ -147,6 +147,7 @@
 
 
             <TextView
+                android:id="@+id/txlist"
                 android:fontFamily="@font/roboto_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -182,20 +183,6 @@
             android:orientation="horizontal">
 
 
-            <TextView
-                android:fontFamily="@font/roboto_regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="1일차 : 15:00 ~ 20:00 / 5시간 / 실패"
-                android:letterSpacing="0.03"
-                android:textColor="#394556"
-                android:textSize="15sp" />
-
-            <ImageView
-                android:layout_width="11dp"
-                android:layout_height="12dp"
-                android:layout_gravity="center"/>
 
 
         </LinearLayout>
