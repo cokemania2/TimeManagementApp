@@ -14,7 +14,7 @@
         android:text="관리자" />
 
     <Button
-        android:id="@+id/user"
+        android:id="@+id/user_addr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="사용자" />

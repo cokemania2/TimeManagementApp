@@ -17,12 +17,18 @@ import java.util.ArrayList;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import adapter.Item_Home_Adapter;
 
 public class adminMain extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private ArrayList<User> userList;
-    private TextView tv_userList;
+
+    private Item_Home_Adapter item_home_adapter;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,19 +50,9 @@ public class adminMain extends AppCompatActivity {
 //        dbRef.child("myeongjin").child("account").setValue("D71810CD8B54E8E787ED0C61C4718409");
 
         // Firebase에서 UserList 가져오기
-        tv_userList = findViewById(R.id.tv_userList);
         final DatabaseReference childRef = database.getReference("user_list");
         loadFromFirebase(childRef);
 
-        // 임시로 이용자 정보를 보기 위한 버튼
-        Button btn_userInfo = findViewById(R.id.btn_userInfo);
-        btn_userInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent gotoUserInfo = new Intent(getApplicationContext(), UserInfoActivity.class);
-                startActivity(gotoUserInfo);
-            }
-        });
     }
 
     // Firebase에서 데이터를 읽어서 recycle_userListView를 새로고침.
@@ -77,7 +73,12 @@ public class adminMain extends AppCompatActivity {
                     ul[0] = ul[0].concat(tmpUser.toString() + "\n\n");
                 }
 
-                tv_userList.setText(ul[0]);
+                recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(adminMain.this);
+                recyclerView.setLayoutManager(layoutManager);
+
+                item_home_adapter = new Item_Home_Adapter(adminMain.this, userList);
+                recyclerView.setAdapter(item_home_adapter);
             }
 
             @Override
