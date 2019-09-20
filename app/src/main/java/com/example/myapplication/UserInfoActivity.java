@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -33,6 +34,13 @@ public class UserInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
+
+        // 타이틀
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("test") ;
+        ab.setIcon(R.drawable.gucc) ;
+        ab.setDisplayUseLogoEnabled(true) ;
+        ab.setDisplayShowHomeEnabled(true) ;
 
         tv_userTx = findViewById(R.id.tv_userTx);
         tv_userBalance = findViewById(R.id.tv_userBalance);

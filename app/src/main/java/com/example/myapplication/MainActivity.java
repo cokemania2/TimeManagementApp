@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         // 타이틀
         ActionBar ab = getSupportActionBar() ;
-        ab.setIcon(R.drawable.gucc4) ;
-        ab.setTitle("tsettttt") ;
+        ab.setTitle("test") ;
+        ab.setIcon(R.drawable.gucc) ;
         ab.setDisplayUseLogoEnabled(true) ;
         ab.setDisplayShowHomeEnabled(true) ;
 

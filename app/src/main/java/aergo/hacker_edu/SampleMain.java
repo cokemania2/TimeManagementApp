@@ -51,19 +51,17 @@ public class SampleMain {
 //		AergoClient aergoClient = AergoCommon.getAergoClient(endpoint);
 //		
 //		AergoQuery.getBlance(aergoClient, fromAddress);
-//		
+//
 //		aergoClient.close();
-		
-		
+
 		Wallet wallet = AergoCommon.getAergoWallet(endpoint);
 		
 		AergoQuery.getBalance(wallet, fromAddress);
 		
 		//client 종료
 		wallet.close();
-
 	}
-	
+
 	
 	//TX 전송 및 조회 used wallet.send
 	public static void sendTransaction() {

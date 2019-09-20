@@ -9,6 +9,7 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class register extends AppCompatActivity {
@@ -25,6 +26,14 @@ public class register extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_register);
+
+
+        // 타이틀
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("test") ;
+        ab.setIcon(R.drawable.gucc) ;
+        ab.setDisplayUseLogoEnabled(true) ;
+        ab.setDisplayShowHomeEnabled(true) ;
 
         //입력 받은 값
         nameE = (EditText) findViewById(R.id.nameEdit);

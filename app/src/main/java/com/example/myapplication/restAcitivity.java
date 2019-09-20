@@ -9,9 +9,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import static com.example.myapplication.aergo.hacker_edu.SampleMain_sangyoon.sendTransaction;
+import static aergo.hacker_edu.SampleMain_sangyoon.sendTransaction;
 
 public class restAcitivity extends AppCompatActivity {
     TextView timer;
@@ -36,6 +37,14 @@ public class restAcitivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rest_acitivity);
+
+        // 타이틀
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("test") ;
+        ab.setIcon(R.drawable.gucc) ;
+        ab.setDisplayUseLogoEnabled(true) ;
+        ab.setDisplayShowHomeEnabled(true) ;
+
         //datetext = (TextView)findViewById(R.id.datetime);
         timer = (TextView)findViewById(R.id.restTime);
         btnstart = (Button)findViewById(R.id.button3);

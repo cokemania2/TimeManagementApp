@@ -15,7 +15,9 @@ public class AergoQuery {
 	
 	
 	//wallet으로 잔고 조회 
+
 	public static void getBalance(Wallet wallet, String address) {
+
 		//조회할 주소 설정
 		AccountAddress accountAddress = AccountAddress.of(address);
 		//Account 상태 조회
@@ -35,7 +37,8 @@ public class AergoQuery {
 		return accountState.getBalance().toString();
 	}
 	
-	//aergoClient로 잔고 조회  
+	//aergoClient로 잔고 조회
+	/*
 	public static void getBlance(AergoClient aergClient, String address) {
 		
 		//조회할 주소 설정
@@ -49,16 +52,17 @@ public class AergoQuery {
 		System.out.println(">>>>>>>> 잔고(Blance) :: " + accountState.getBalance().toString());
 		
 	}
+	*/
 	
-	//Wallet Transaction 조회 
+	//Wallet Transaction 조회
 	public static Transaction getTransactionInfo(Wallet wallet, String txHash) {
-		
+
 		//조회할 tx설정
 		TxHash tx = new TxHash(txHash);
-		
+
 		//트랜잭션 조회
 		Transaction transactionInfo = wallet.getTransaction(tx);
-		
+
 		System.out.println("==== Wallet Used ===== ");
 		System.out.println(">>>>>>>> 송신자 주소:: "+transactionInfo.getSender().toString());
 		System.out.println(">>>>>>>> 수신자 주소:: "+transactionInfo.getRecipient().toString());
@@ -66,21 +70,21 @@ public class AergoQuery {
 		System.out.println(">>>>>>>> TransactionHash :: "+transactionInfo.getHash().toString());
 		System.out.println(">>>>>>>> blockhash:: "+transactionInfo.getBlockHash().toString());
 		System.out.println(">>>>>>>> payload:: "+new String(transactionInfo.getPayload().getValue()));
-		
-		
+
+
 		return transactionInfo;
-		
+
 	}
+
 	
-	
-	//AergoClient Transaction 조회 
+	//AergoClient Transaction 조회
 	public static Transaction getTransactionInfo(AergoClient aergClient, String txHash) {
 		//조회할 tx설정
 		TxHash tx = new TxHash(txHash);
-		
+
 		//트랜잭션 조회
 		Transaction transactionInfo = aergClient.getTransactionOperation().getTransaction(tx);
-		
+
 		System.out.println("==== AergClient Used ===== ");
 		System.out.println(">>>>>>>> 송신자 주소:: "+transactionInfo.getSender().toString());
 		System.out.println(">>>>>>>> 수신자 주소:: "+transactionInfo.getRecipient().toString());
@@ -88,9 +92,9 @@ public class AergoQuery {
 		System.out.println(">>>>>>>> TransactionHash :: "+transactionInfo.getHash().toString());
 		System.out.println(">>>>>>>> blockhash:: "+transactionInfo.getBlockHash().toString());
 		System.out.println(">>>>>>>> payload:: "+new String(transactionInfo.getPayload().getValue()));
-		
+
 		return transactionInfo;
-			
+
 	}
 	
 	//wallet block 조회

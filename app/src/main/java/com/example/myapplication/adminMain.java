@@ -15,6 +15,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class adminMain extends AppCompatActivity {
@@ -27,6 +28,13 @@ public class adminMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
+
+        // 타이틀
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("test") ;
+        ab.setIcon(R.drawable.gucc) ;
+        ab.setDisplayUseLogoEnabled(true) ;
+        ab.setDisplayShowHomeEnabled(true) ;
 
         // 임의의 사용자 계정 삽입. MD5 hash 이용
         DatabaseReference dbRef = database.getReference("user_list");

@@ -17,6 +17,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
 
+        // 타이틀
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("test") ;
+        ab.setIcon(R.drawable.gucc) ;
+        ab.setDisplayUseLogoEnabled(true) ;
+        ab.setDisplayShowHomeEnabled(true) ;
+
         Thread background = new Thread() {
             public void run() {
 
