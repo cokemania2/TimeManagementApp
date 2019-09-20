@@ -104,7 +104,6 @@ public class SampleMain {
 		
 	}
 
-<<<<<<< HEAD
 	public static TxHash sendTransaction(String toAddress,String encPrivateKey, String payLoad) {
 		//client 생성
 		Wallet wallet = AergoCommon.getAergoWallet(endpoint);
@@ -141,9 +140,8 @@ public class SampleMain {
 		wallet.close();
 
 		return txhash;
-
-=======
-	public void txListPush(final DatabaseReference ref, final String txhash) {
+	}
+	public static void txListPush(final DatabaseReference ref, final String txhash) {
 		// 해당 DB참조의 값변화리스너 추가 한번만 됨.
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
 			int count = 0;
@@ -165,7 +163,6 @@ public class SampleMain {
 				Log.w("Read Firebase database", "Failed to read value.", error.toException());
 			}
 		});
->>>>>>> 2fc2590ba179d300d1c11d8ec1a33b0ba53075ae
 	}
 
 }
