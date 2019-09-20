@@ -1,8 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,17 +7,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class setTimeActivity extends AppCompatActivity {
 
     //DB코드
     //FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //DatabaseReference loopyRef = database.getReference("child/testChild2");
 
     //지갑 객체
     //wallet 선언부
