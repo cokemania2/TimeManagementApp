@@ -1,5 +1,12 @@
 package aergo.hacker_edu;
 
+import android.util.Log;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
 import hera.api.model.Transaction;
 import hera.api.model.TxHash;
 import hera.wallet.Wallet;
@@ -97,6 +104,7 @@ public class SampleMain {
 		
 	}
 
+<<<<<<< HEAD
 	public static TxHash sendTransaction(String toAddress,String encPrivateKey, String payLoad) {
 		//client 생성
 		Wallet wallet = AergoCommon.getAergoWallet(endpoint);
@@ -134,6 +142,30 @@ public class SampleMain {
 
 		return txhash;
 
+=======
+	public void txListPush(final DatabaseReference ref, final String txhash) {
+		// 해당 DB참조의 값변화리스너 추가 한번만 됨.
+		ref.addListenerForSingleValueEvent(new ValueEventListener() {
+			int count = 0;
+			@Override
+			public void onDataChange(DataSnapshot dataSnapshot) {
+				for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+					String tmpHash;
+					tmpHash = snapshot.getValue(String.class);
+					count = count+1;
+					Log.d("FirebaseTestActivity", "ValueEventListener : " + tmpHash);
+				}
+				String count_tostring = Integer.toString(count);
+				ref.child(count_tostring).setValue(txhash);
+			}
+
+			@Override
+			public void onCancelled(DatabaseError error) {
+				// Failed to read value
+				Log.w("Read Firebase database", "Failed to read value.", error.toException());
+			}
+		});
+>>>>>>> 2fc2590ba179d300d1c11d8ec1a33b0ba53075ae
 	}
 
 }
