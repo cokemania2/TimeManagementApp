@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -21,11 +22,12 @@ import aergo.hacker_edu.AergoQuery;
 import hera.wallet.Wallet;
 
 public class Info extends AppCompatActivity {
+    private static final String NULL ="";
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private ArrayList<User> userList;
     TextView tv_userList;
     TextView point;
-
+    String balance="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +36,27 @@ public class Info extends AppCompatActivity {
 
         // 타이틀
         ActionBar ab = getSupportActionBar() ;
-        ab.setIcon(R.drawable.gucc5) ;
-        ab.setTitle("GUCC") ;
+        ab.setTitle("test") ;
+        ab.setIcon(R.drawable.gucc) ;
         ab.setDisplayUseLogoEnabled(true) ;
         ab.setDisplayShowHomeEnabled(true) ;
 
-        //유저정보 조회 
+        //ProgressBar
+        ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.setMessage("데이터 확인중");
+        dialog.show();
+
+        //유저정보 조회
         DatabaseReference dbRef = database.getReference("user_list");
         tv_userList = findViewById(R.id.user_name);
         point = findViewById(R.id.point);
         loadFromFirebase(dbRef);
 
-
+        //ProgressFinish
+        if (balance != NULL) {
+            dialog.cancel();
+        }
     }
 
     void loadFromFirebase(final DatabaseReference ref) {
@@ -65,13 +76,15 @@ public class Info extends AppCompatActivity {
                     Log.d("userList : ",userList.toString());
                     ul[0] = ul[0].concat(tmpUser.toString() + "\n");
                 }
+
                 //userList.indexOf(jiwoo);
                 tv_userList.setText(userList.get(1).getName());
                 Wallet wallet = AergoCommon.getAergoWallet("testnet.aergo.io:7845");
-                String balance = AergoQuery.getBalance_(wallet,userList.get(1).getAddress());
+                balance = AergoQuery.getBalance_(wallet,userList.get(1).getAddress());
                 wallet.close();
                 Log.d("balance : ", balance);
                 point.setText(balance);
+
             }
 
             @Override

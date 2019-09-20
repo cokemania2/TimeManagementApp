@@ -42,11 +42,10 @@ public class userMain extends AppCompatActivity {
 
 
 
-        //액션바
+        // 타이틀
         ActionBar ab = getSupportActionBar() ;
-        myDialog = new Dialog(this);
         ab.setTitle("test") ;
-        ab.setIcon(R.drawable.gucc3) ;
+        ab.setIcon(R.drawable.gucc) ;
         ab.setDisplayUseLogoEnabled(true) ;
         ab.setDisplayShowHomeEnabled(true) ;
 

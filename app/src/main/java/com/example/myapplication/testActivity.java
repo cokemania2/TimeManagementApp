@@ -5,7 +5,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.service.autofill.TextValueSanitizer;
 
@@ -25,19 +28,22 @@ import com.google.firebase.database.ValueEventListener;
 
 public class testActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
+    Dialog myDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-
+        myDialog = new Dialog(this);
 
         CardView gorest = (CardView)findViewById(R.id.gorest);
         CardView Info = (CardView)findViewById(R.id.bankcardId);
 
 
+        // 타이틀
         ActionBar ab = getSupportActionBar() ;
         ab.setTitle("test") ;
-        ab.setIcon(R.drawable.gucc3) ;
+        ab.setIcon(R.drawable.gucc) ;
         ab.setDisplayUseLogoEnabled(true) ;
         ab.setDisplayShowHomeEnabled(true) ;
 
@@ -69,7 +75,6 @@ public class testActivity extends AppCompatActivity {
         timerr.startAnimation(anim);
         */
 
-
         CardView linear_restTime = findViewById(R.id.linear_restTime);
         linear_restTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,5 +84,29 @@ public class testActivity extends AppCompatActivity {
             }
         });
 
+        CardView invite = findViewById(R.id.invite);
+        invite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShowPopup(view);
+            }
+        });
+
+
+
+    }
+    public void ShowPopup(View v) {
+        TextView txtclose;
+        myDialog.setContentView(R.layout.custompopup);
+        txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
+        txtclose.setText("X");
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
     }
 }
