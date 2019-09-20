@@ -141,6 +141,7 @@ public class SampleMain {
 
 		return txhash;
 	}
+
 	public static void txListPush(final DatabaseReference ref, final String txhash) {
 		// 해당 DB참조의 값변화리스너 추가 한번만 됨.
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="24.7dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="14dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- 표 전체 -->
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_txHash"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                    android:textColor="#394556"
+                    android:letterSpacing="0.03"
+                    android:text="Transaction Hash"/>
+
+                <!-- 송/수신자 주소, 거래금액 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- 앞에 속성을 보여주는 text 부분 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginRight="20dp">
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:fontFamily="@font/roboto_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:textSize="11.7sp"
+                            android:letterSpacing="0.03"
+                            android:textColor="#6c7581"
+                            android:text="송신자 주소"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:fontFamily="@font/roboto_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:textSize="11.7sp"
+                            android:letterSpacing="0.03"
+                            android:textColor="#6c7581"
+                            android:text="수신자 주소"/>
+                        <TextView
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:fontFamily="@font/roboto_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:textSize="11.7sp"
+                            android:letterSpacing="0.03"
+                            android:textColor="#6c7581"
+                            android:text="거래 금액"/>
+                    </LinearLayout>
+                    <!-- 앞에 속성을 보여주는 text 부분 END-->
+
+                    <!-- 뒤에 속성에 대한 결과값을 보여주는 부분 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="30dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_sender"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:textSize="11.7sp"
+                            android:letterSpacing="0.03"
+                            android:textColor="#6c7581"
+                            android:gravity="center_vertical"
+                            android:text="(송신자 주소)"/>
+                        <TextView
+                            android:id="@+id/tv_receiver"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:textSize="11.7sp"
+                            android:letterSpacing="0.03"
+                            android:textColor="#6c7581"
+                            android:gravity="center_vertical"
+                            android:text="(수신자 주소)"/>
+                        <TextView
+                            android:id="@+id/tv_amount"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:textSize="11.7sp"
+                            android:letterSpacing="0.03"
+                            android:textColor="#6c7581"
+                            android:gravity="center_vertical"
+                            android:text="(거래 금액)"/>
+                    </LinearLayout>
+                    <!-- 뒤에 속성에 대한 결과값을 보여주는 부분 END-->
+                </LinearLayout>
+                <!-- 송/수신자 주소, 거래금액 END-->
+            </LinearLayout>
+            <!-- 표 END -->
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

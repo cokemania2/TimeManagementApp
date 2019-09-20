@@ -1,7 +1,12 @@
 package aergo.hacker_edu;
 
+import android.util.Log;
+
+import java.math.BigInteger;
+
 import hera.api.model.AccountAddress;
 import hera.api.model.AccountState;
+import hera.api.model.Aer;
 import hera.api.model.Block;
 import hera.api.model.BlockHash;
 import hera.api.model.BlockchainStatus;
@@ -27,13 +32,19 @@ public class AergoQuery {
 
 	}
 
-	// return string
+	// 1 aergo = 1,000,000,000 gaer = 1,000,000,000,000,000,000 aer
+	// aer to gear
+	// 잔액 조회를 하는데 aer를 가져와서 gear로 환산해주는 함수
 	public static String getBalance_(Wallet wallet, String address) {
 		//조회할 주소 설정
 		AccountAddress accountAddress = AccountAddress.of(address);
 		//Account 상태 조회
 		AccountState accountState = wallet.getAccountState(accountAddress);
-		return accountState.getBalance().toString();
+		BigInteger balance = accountState.getBalance().getValue();
+
+		BigInteger aerToGear = balance.divide(new BigInteger("1000000000"));
+		Log.d("TEST BigInteger", "value is" + aerToGear.toString());
+		return String.format("%,d", aerToGear);
 	}
 	
 	//aergoClient로 잔고 조회
