@@ -31,21 +31,15 @@
             android:textStyle="bold" />
 
     </LinearLayout>
-    <Button
-        android:id="@+id/btn_userInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="임시 이용자정보 확인"/>
-    <ScrollView
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="400dp">
-
-        <TextView
-            android:id="@+id/tv_userList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="이용자 목록" />
-    </ScrollView>
-
+        android:layout_height="wrap_content"
+        android:paddingTop="16.3dp"
+        android:clipToPadding="false"
+        android:layout_marginLeft="16.7dp"
+        android:layout_marginRight="16.7dp"
+        android:layout_marginBottom="60dp"/>
 
 </LinearLayout>

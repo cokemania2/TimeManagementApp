@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -14,6 +15,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -28,6 +31,7 @@ public class UserInfoActivity extends AppCompatActivity {
     TextView tv_userAccount;
     TextView tv_userBalance;
     TextView tv_userTx;
+    TextView tv_userName;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -45,10 +49,13 @@ public class UserInfoActivity extends AppCompatActivity {
         tv_userTx = findViewById(R.id.tv_userTx);
         tv_userBalance = findViewById(R.id.tv_userBalance);
         tv_userAccount = findViewById(R.id.tv_userAccount);
+        tv_userName = findViewById(R.id.tv_userName);
 
-        // Intent로 admin 계정 정보 넘어왔다 치고
-        String userName = "admin";
-        // "admin"을  바탕으로 파이어베이스 검색
+        // Intent로 계정 정보 넘어오고
+        Intent intent = getIntent(); /*데이터 수신*/
+        String userName = intent.getExtras().getString("userName");
+        tv_userName.setText(userName);
+        // 그걸 바탕으로 파이어베이스 검색
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference dbRef = database.getReference("user_list/" + userName);
         Log.d("TEST dbRef path", dbRef.getPath().toString());
@@ -60,7 +67,7 @@ public class UserInfoActivity extends AppCompatActivity {
                 User tmpUser;
                 tmpUser = dataSnapshot.getValue(User.class);
 
-                Log.d("TEST admin", "tmpUser: " + tmpUser.toString());
+                Log.d("TEST user", "tmpUser: " + tmpUser.toString());
                 String userAccount = tmpUser.getAddress();
                 Log.d("TEST userAccount", "value is : " + userAccount);
                 tv_userAccount.setText(userAccount);
@@ -72,10 +79,15 @@ public class UserInfoActivity extends AppCompatActivity {
 
                 ArrayList<String> txList = new ArrayList<>();
                 String text = "Transaction List\n";
-                for(String tx : tmpUser.getTxList()) {
-                    text = text.concat(tx + "\n");
-                    txList.add(tx);
+
+                // tx hash list 가져오기. txList가 없으면 arrayList에 추가 안 함.
+                if (tmpUser.getTxList() != null) {
+                    for(String tx : tmpUser.getTxList()) {
+                        text = text.concat(tx + "\n");
+                        txList.add(tx);
+                    }
                 }
+
                 Log.d("TEST tx", "value is : " + text);
 
                 ArrayList<String> txInfo = new ArrayList<>();
