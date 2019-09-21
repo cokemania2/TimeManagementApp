@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,7 +31,7 @@ public class Info extends AppCompatActivity {
     private static final String NULL ="";
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private ArrayList<User> userList;
-
+    ProgressDialog dialog;
     TextView tv_userList;
     TextView point;
     TextView txlist;
@@ -52,12 +53,10 @@ public class Info extends AppCompatActivity {
         ab.setDisplayShowHomeEnabled(true) ;
 
         //ProgressBar
-        /*
-        ProgressDialog dialog = new ProgressDialog(this);
-        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        dialog.setMessage("데이터 확인중");
-        dialog.show();
-        */
+
+        dialog = ProgressDialog.show(Info.this, "",
+                "Loading. Please wait...", true);
+
 
 
         //유저정보 조회
@@ -67,7 +66,7 @@ public class Info extends AppCompatActivity {
 
         loadFromFirebase(dbRef);
 
-        setProgressBarIndeterminateVisibility(false);
+        setProgressBarIndeterminateVisibility(true);
     }
 
     void loadFromFirebase(final DatabaseReference ref) {
@@ -95,7 +94,7 @@ public class Info extends AppCompatActivity {
                 wallet.close();
                 Log.d("balance : ", balance);
                 point.setText(balance);
-
+                dialog.dismiss();
                 recyclerView = (RecyclerView) findViewById(R.id.txlist);
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Info.this);
                 recyclerView.setLayoutManager(layoutManager);
