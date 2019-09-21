@@ -3,6 +3,8 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -20,6 +22,8 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
+import adapter.Item_Home_Adapter;
+import adapter.Transaction_List_Adapter;
 import aergo.hacker_edu.AergoCommon;
 import aergo.hacker_edu.AergoQuery;
 import aergo.hacker_edu.SampleMain;
@@ -32,6 +36,9 @@ public class UserInfoActivity extends AppCompatActivity {
     TextView tv_userBalance;
     TextView tv_userTx;
     TextView tv_userName;
+
+    RecyclerView recycler_txList;
+    Transaction_List_Adapter transaction_list_adapter;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -48,8 +55,8 @@ public class UserInfoActivity extends AppCompatActivity {
 
         tv_userTx = findViewById(R.id.tv_userTx);
         tv_userBalance = findViewById(R.id.tv_userBalance);
-        tv_userAccount = findViewById(R.id.tv_userAccount);
-        tv_userName = findViewById(R.id.tv_userName);
+        tv_userAccount = findViewById(R.id.user_account);
+        tv_userName = findViewById(R.id.user_name);
 
         // Intent로 계정 정보 넘어오고
         Intent intent = getIntent(); /*데이터 수신*/
@@ -91,13 +98,25 @@ public class UserInfoActivity extends AppCompatActivity {
                 Log.d("TEST tx", "value is : " + text);
 
                 ArrayList<String> txInfo = new ArrayList<>();
+                ArrayList<Transaction> userTxList = new ArrayList<>();
+
                 text = "";
                 for(String txHash : txList) {
                     Transaction transactionInfo = AergoQuery.getTransactionInfo(wallet, txHash);
+                    userTxList.add(transactionInfo);
                     txInfo.add(txToString(transactionInfo));
                     text = text.concat(txToString(transactionInfo));
                 }
-                tv_userTx.setText(text);
+                // tv_userTx.setText(text);
+
+
+                // recycler view로 보여주기
+                recycler_txList = (RecyclerView) findViewById(R.id.recycler_txList);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(UserInfoActivity.this);
+                recycler_txList.setLayoutManager(layoutManager);
+
+                transaction_list_adapter = new Transaction_List_Adapter(UserInfoActivity.this, userTxList);
+                recycler_txList.setAdapter(transaction_list_adapter);
 
                 // wallet 종료
                 wallet.close();
@@ -105,11 +124,12 @@ public class UserInfoActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
 
     }
+
+// 1 aergo = 1,000,000,000 gaer = 1,000,000,000,000,000,000 aer
 
     String txToString(Transaction transactionInfo) {
         String info = "";

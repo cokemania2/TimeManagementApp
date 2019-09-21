@@ -18,7 +18,7 @@
             android:layout_height="125dp"
             android:background="@drawable/bg"
             android:gravity="center"
-            android:text="00:00:00"
+            android:text="0시 0분 0초"
             android:textColor="#FFFFFF"
             android:textSize="60dp"
             tools:ignore="MissingConstraints">

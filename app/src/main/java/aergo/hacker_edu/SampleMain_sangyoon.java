@@ -14,7 +14,7 @@ public class SampleMain_sangyoon {
     protected static String encPrivateKey = "485XeGg5e8xrFsvEZFrmRoPrAsgEnzw5bLtFWoTaVGbR2mCeAewoAr3eNNFPm5FFuAHZXBz9z"; //관리자 키
 
     //송신자 주소
-    protected static String fromAddress = "AmMDaD8pFMiL5i8Bcqpvy7sZj6L8pcHEiXJm5zmYp8dkJF2cKojD"; //관리자 주소
+    //protected static String fromAddress = "AmMDaD8pFMiL5i8Bcqpvy7sZj6L8pcHEiXJm5zmYp8dkJF2cKojD"; //관리자 주소
 
     //패스워드 설정
     protected static String password = "password";
@@ -45,6 +45,7 @@ public class SampleMain_sangyoon {
 
 
     //잔고 조회
+    /*
     public static void getBalances() {
 
 //		AergoClient aergoClient = AergoCommon.getAergoClient(endpoint);
@@ -61,7 +62,7 @@ public class SampleMain_sangyoon {
         //client 종료
         wallet.close();
 
-    }
+    }*/
 
 
     //TX 전송 및 조회 used wallet.send
@@ -73,7 +74,7 @@ public class SampleMain_sangyoon {
         String amount = "1";
 
         //paylaod data
-        String payload = "Time:11:58:00_Msg:I'm SangYoon";
+        String payload = "Time:11:58:00_Msg:I'm_SangYoon";
         TxHash txhash = AergoTransaction.sendTransaction(wallet, toAddress, password, encPrivateKey, payload, amount, fee);
 
         //comfirm을 위해 대기

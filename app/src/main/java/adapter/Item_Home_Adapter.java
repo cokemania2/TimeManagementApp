@@ -73,6 +73,7 @@ public class Item_Home_Adapter extends RecyclerView.Adapter<Item_Home_Adapter.Vi
                     if (pos != RecyclerView.NO_POSITION) {
                         User item = userList.get(pos) ;
                         Intent gotoUserInfo = new Intent(context, UserInfoActivity.class);
+
                         gotoUserInfo.putExtra("userName", item.getName());
                         context.startActivity(gotoUserInfo);
                     }

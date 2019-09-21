@@ -38,6 +38,7 @@ public class setTimeActivity extends AppCompatActivity {
     TextView user_addr2 = null;
     TextView user_key = null;
     TextView user_key2 = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,23 +53,31 @@ public class setTimeActivity extends AppCompatActivity {
             }
         });
 
-
-
-        Button btn_restTimeSelect = findViewById(R.id.btn_restTimeSelect);
-        btn_restTimeSelect.setOnClickListener(new View.OnClickListener() {
+        Button btn_endTimeSelect = findViewById(R.id.btn_endTimeSelect);
+        btn_endTimeSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NumberPickerFragment newFragment = new NumberPickerFragment();
-
-                // Dialog에는 bundle을 이용해서 파라미터를 전달한다
-                Bundle bundle = new Bundle(2); // 파라미터는 전달할 데이터 개수
-                bundle.putInt("maxValue", 6);           // 최대값을 범위 설정한 값을 가져오면 좋을 듯
-                bundle.putInt("defaultValue", 3);       // 기본값 3시간
-                newFragment.setArguments(bundle);
-
-                newFragment.show(getSupportFragmentManager(), "NumberPicker");
+                TimePickerFragment newFragment = new TimePickerFragment(2);
+                newFragment.show(getSupportFragmentManager(), "TimePicker");
             }
         });
+
+        // 숫자 선택하는 건 휴식시간 설정을 시작/종료 시간을 선택하는 걸로 바뀌어 쓰이지 않음.
+//        Button btn_restTimeSelect = findViewById(R.id.btn_restTimeSelect);
+//        btn_restTimeSelect.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                NumberPickerFragment newFragment = new NumberPickerFragment();
+//
+//                // Dialog에는 bundle을 이용해서 파라미터를 전달한다
+//                Bundle bundle = new Bundle(2); // 파라미터는 전달할 데이터 개수
+//                bundle.putInt("maxValue", 6);           // 최대값을 범위 설정한 값을 가져오면 좋을 듯
+//                bundle.putInt("defaultValue", 3);       // 기본값 3시간
+//                newFragment.setArguments(bundle);
+//
+//                newFragment.show(getSupportFragmentManager(), "NumberPicker");
+//            }
+//        });
 
         Button btn_submitTime = findViewById(R.id.btn_submitTime);
         btn_submitTime.setOnClickListener(new View.OnClickListener() {
@@ -80,12 +89,12 @@ public class setTimeActivity extends AppCompatActivity {
                 TextView tv1 = findViewById(R.id.tv_timeView1);
                 long time1 = getMill((String) tv1.getText());
 
-                // 휴식할 시간
-                TextView tv3 = findViewById(R.id.tv_timeView3);
-                int restTime = Integer.valueOf((String) tv3.getText());
+                // 끝 시간
+                TextView tv2 = findViewById(R.id.tv_timeView2);
+                long time2 = getMill((String) tv2.getText());
 
                 //블록체인 코드
-                payLoad = time1 + "_" + restTime;
+                payLoad = time1 + "_" + time2;
                 Log.d("payLoad",payLoad);
 
                 Log.d("들어오는지","체크1");
@@ -113,23 +122,30 @@ public class setTimeActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("들어오는지","체크5");
-                String admin = "";
+                User admin = null;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User tmpValue;
                     if (snapshot.getKey().equals("admin")) {
-                        tmpValue = snapshot.getValue(User.class);
 
-                        admin = tmpValue.getAddress();
-                        //test
+                        admin = snapshot.getValue(User.class);
 
-                        Log.d("TEST 관리자", tmpValue.getAddress());
-                        Log.d("TEST 관리자키", tmpValue.getPrivateKey());
+                        Log.d("TEST 관리자", admin.getAddress());
+                        Log.d("TEST 관리자키", admin.getPrivateKey());
 
 
                     } else if(snapshot.getKey().equals(jiwoo.getName())){
                         tmpValue = snapshot.getValue(User.class);
                         Log.d("유저db",tmpValue.getAddress());
-                        SampleMain.sendTransaction(admin, tmpValue.getPrivateKey(), payLoad);
+                        TxHash txHash = SampleMain.sendTransaction(admin.getAddress(), tmpValue.getPrivateKey(), payLoad);
+
+                        // 이걸 왜 관리자 리스트에 추가하지??
+                        // 트랜잭션이 "jiwoo >> admin" 이면 jiwoo 리스트에 추가되야 하는거 아닌가??
+                        //전송한 해쉬값 관리자 txlist에 추가
+                        SampleMain.txListPush(database.getReference("user_list/admin/txList"), txHash.toString());
+
+                        Log.d("payLoad2",payLoad);
+                        //유저 db에 payLoad 저장
+                        database.getReference("user_list/jiwoo/payLoad").setValue(payLoad);
 
                     }
                 }
