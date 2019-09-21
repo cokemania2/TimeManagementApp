@@ -3,6 +3,8 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -18,6 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import adapter.Item_Home_Adapter;
+import adapter.Item_tx_Adapter;
 import aergo.hacker_edu.AergoCommon;
 import aergo.hacker_edu.AergoQuery;
 import hera.wallet.Wallet;
@@ -26,11 +30,14 @@ public class Info extends AppCompatActivity {
     private static final String NULL ="";
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private ArrayList<User> userList;
+
     TextView tv_userList;
     TextView point;
     TextView txlist;
     String txString = "";
     String balance="";
+    private RecyclerView recyclerView;
+    private Item_tx_Adapter item_tx_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +64,6 @@ public class Info extends AppCompatActivity {
         DatabaseReference dbRef = database.getReference("user_list");
         tv_userList = findViewById(R.id.user_name);
         point = findViewById(R.id.point);
-        txlist = findViewById(R.id.txlist);
 
         loadFromFirebase(dbRef);
 
@@ -89,7 +95,13 @@ public class Info extends AppCompatActivity {
                 wallet.close();
                 Log.d("balance : ", balance);
                 point.setText(balance);
-                printTXlist(userList.get(1).getTxList());
+
+                recyclerView = (RecyclerView) findViewById(R.id.txlist);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Info.this);
+                recyclerView.setLayoutManager(layoutManager);
+
+                item_tx_adapter = new Item_tx_Adapter(Info.this, userList.get(1).getTxList());
+                recyclerView.setAdapter(item_tx_adapter);
             }
 
             @Override
@@ -100,9 +112,4 @@ public class Info extends AppCompatActivity {
         });
     }
 
-    public void printTXlist (ArrayList<String> args) {
-        for (String tx : args) {
-            txlist.setText(tx+"\n");
-        }
-    }
 }
