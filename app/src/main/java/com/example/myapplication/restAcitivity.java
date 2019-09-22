@@ -253,7 +253,7 @@ public class restAcitivity extends AppCompatActivity {
             String amount = "1";
 
                 //paylaod data
-            String payload = "time_point";
+            String payload = "point";
 
             TxHash tx = AergoTransaction.sendTransaction(wallet, toAddress, password, encPrivateKey, payload, amount, fee);
             String tx_string = tx.toString();
