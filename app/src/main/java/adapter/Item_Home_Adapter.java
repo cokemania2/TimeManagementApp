@@ -32,6 +32,9 @@ public class Item_Home_Adapter extends RecyclerView.Adapter<Item_Home_Adapter.Vi
         this.userList = userList;
     }
 
+
+
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.user_view, parent, false);
@@ -70,6 +73,7 @@ public class Item_Home_Adapter extends RecyclerView.Adapter<Item_Home_Adapter.Vi
                     if (pos != RecyclerView.NO_POSITION) {
                         User item = userList.get(pos) ;
                         Intent gotoUserInfo = new Intent(context, UserInfoActivity.class);
+
                         gotoUserInfo.putExtra("userName", item.getName());
                         context.startActivity(gotoUserInfo);
                     }

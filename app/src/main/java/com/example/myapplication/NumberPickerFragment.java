@@ -49,7 +49,7 @@ public class NumberPickerFragment extends DialogFragment implements NumberPicker
 
     @Override
     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-        TextView tv = getActivity().findViewById(R.id.tv_timeView3);
+        TextView tv = getActivity().findViewById(R.id.tv_timeView2);
         tv.setText(String.valueOf(numberPicker.getValue()));
     }
 }

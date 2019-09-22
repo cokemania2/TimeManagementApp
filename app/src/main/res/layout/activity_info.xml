@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="이번주 휴식 시간 : 30 시간 "
+                android:text="트랜젝션 리스트 "
                 android:letterSpacing="0.03"
                 android:textColor="#394556"
                 android:textSize="15sp" />
@@ -92,13 +92,6 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="19.7dp"
-            android:layout_marginRight="18.7dp"
-            android:background="#1A979797" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -109,90 +102,14 @@
             android:orientation="horizontal">
 
 
-            <TextView
-                android:fontFamily="@font/roboto_regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:letterSpacing="0.03"
-                android:gravity="center"
-                android:text="생성된 트렌잭션"
-                android:textColor="#394556"
-                android:textSize="15sp" />
-
-            <ImageView
-                android:layout_width="7dp"
-                android:layout_height="14dp"
-                android:layout_gravity="center"
-                android:scaleType="fitXY" />
+                android:id="@+id/txlist" />
 
 
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="19.7dp"
-            android:layout_marginRight="18.7dp"
-            android:background="#1A979797" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="27.2dp"
-            android:layout_marginLeft="27dp"
-            android:layout_marginBottom="25.8dp"
-            android:layout_marginRight="30.3dp"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:id="@+id/txlist"
-                android:fontFamily="@font/roboto_regular"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:letterSpacing="0.03"
-                android:text="1일차 : 15:00 ~ 20:00 / 5시간 / 실패"
-                android:textColor="#394556"
-                android:textSize="15sp" />
-
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:tint="#a9a9b0"/>
-
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="19.7dp"
-            android:layout_marginRight="18.7dp"
-            android:background="#1A979797" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="27.2dp"
-            android:layout_marginLeft="27dp"
-            android:layout_marginBottom="25.8dp"
-            android:layout_marginRight="30.3dp"
-            android:orientation="horizontal">
-
-
-
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="19.7dp"
-            android:layout_marginRight="18.7dp"
-            android:background="#1A979797" />
 
     </LinearLayout>
 
