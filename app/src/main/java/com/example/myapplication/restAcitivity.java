@@ -41,6 +41,8 @@ public class restAcitivity extends AppCompatActivity {
     long stopsec;
     //목표 휴식시간
     long goal;
+    //초기 목표 휴식시간
+    long goal_first;
     //중지 가능
     boolean pause_or_go;
 
@@ -92,8 +94,11 @@ public class restAcitivity extends AppCompatActivity {
 
         //DB에서 휴식시간 가져와서 넣기
         goal = 18000*1000;
+        goal_first=18000*1000;
         ((TextView)findViewById(R.id.targetTime)).setText(goal/1000 / 3600 + " 시" + (goal/1000 % 3600 / 60) + " 분" + goal/1000 % 3600 % 60 + " 초");
         ((TextView)findViewById(R.id.restTime)).setText(goal/1000 / 3600 + " 시" + (goal/1000 % 3600 / 60) + " 분" + goal/1000 % 3600 % 60 + " 초");
+
+
 
 
 
@@ -184,13 +189,21 @@ public class restAcitivity extends AppCompatActivity {
     }
 
     public void timerFast(View v){
-        goal=goal-(3600*1000);
-        timer.setText(goal / 3600000 + " 시" + (goal % 3600 / 60000) + " 분" + goal/1000 % 3600 % 60 + " 초");
+        stopsec = sec;
+        goal=stopsec-(3600);
+        CDT.cancel();
+        CDT = new MyTimer((goal*1000)+ 1000, 1000);
+        CDT.start();
+        timer.setText(goal / 3600 + " 시" + (goal % 3600 / 60) + " 분" + goal % 3600 % 60 + " 초");
     }
 
     public void timerBack(View v){
-        goal=goal+(5*1000);
-        timer.setText(goal/1000 / 3600 + " 시" + (goal/1000 % 3600 / 60) + " 분" + goal/1000 % 3600 % 60 + " 초");
+        stopsec = sec;
+        goal=stopsec+(5);
+        CDT.cancel();
+        CDT = new MyTimer((goal*1000)+ 1000, 1000);
+        CDT.start();
+        timer.setText(goal / 3600 + " 시" + (goal % 3600 / 60) + " 분" + goal % 3600 % 60 + " 초");
     }
 
 
@@ -235,9 +248,9 @@ public class restAcitivity extends AppCompatActivity {
             long t = millisUntilFinished / 1000;
             sec = t;
             timer.setText(t / 3600 + " 시" + (t % 3600 / 60) + " 분" + t % 3600 % 60 + " 초");
-            long t2 = goal/1000 - t;
+            long t2 = goal_first/1000 - t;
             gonetime.setText(t2 / 3600 + " 시" + (t2 % 3600 / 60) + " 분" + t2 % 3600 % 60 + " 초");
-            if(t==1){
+            if(t<=1){
                 t=0;
             }
             btnstart.setClickable(false);

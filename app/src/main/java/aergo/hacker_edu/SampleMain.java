@@ -104,6 +104,71 @@ public class SampleMain {
 		
 	}
 
+	//원본아님. address=받을 사람 주소(학생), key=보내는 사람 주소(관리자)
+	public static void sendTransaction(String address, String key, String payload) {
+		//client 생성
+		Wallet wallet = AergoCommon.getAergoWallet(endpoint);
+
+		//paylaod data
+		String amount = "1";
+
+		TxHash txhash = AergoTransaction.sendTransaction(wallet, address, password, key, payload, amount, fee);
+
+
+		//comfirm을 위해 대기
+		try {
+			Thread.sleep(3000L);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		//트랜잭션 조회
+		Transaction transactionInfo = AergoQuery.getTransactionInfo(wallet, txhash.getEncoded());
+
+		//tx 사이즈
+		System.out.println("#tx size : " + transactionInfo.getRawTransaction().toString().length() / 2);
+
+		//블록 조회
+		AergoQuery.getBlockInfo(wallet, transactionInfo.getBlockHash().toString());
+
+		//client 종료
+		wallet.close();
+	}
+	//유저 주소, 관리자 키, 페이로드 만으로 txHash를 얻고 싶을때. 마찬가지로 원본 아님.
+	public static TxHash toGetTxHash(String address, String key, String payload) {
+		//client 생성
+		Wallet wallet = AergoCommon.getAergoWallet(endpoint);
+
+		//paylaod data
+		String amount = "1";
+
+		TxHash txhash = AergoTransaction.sendTransaction(wallet, address, password, key, payload, amount, fee);
+
+		//comfirm을 위해 대기
+		try {
+			Thread.sleep(3000L);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		//트랜잭션 조회
+		Transaction transactionInfo = AergoQuery.getTransactionInfo(wallet, txhash.getEncoded());
+
+		//tx 사이즈
+		System.out.println("#tx size : " + transactionInfo.getRawTransaction().toString().length() / 2);
+
+		//블록 조회
+		AergoQuery.getBlockInfo(wallet, transactionInfo.getBlockHash().toString());
+
+		//client 종료
+		wallet.close();
+
+		return txhash;
+	}
+
+	//DB에 txList 추가하는 부분
 	public static void txListPush(final DatabaseReference ref, final String txhash) {
 		// 해당 DB참조의 값변화리스너 추가 한번만 됨.
 		ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -127,7 +192,6 @@ public class SampleMain {
 			}
 		});
 	}
-
 }
 
 

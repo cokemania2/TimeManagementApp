@@ -20,7 +20,7 @@
             android:gravity="center"
             android:text="0시 0분 0초"
             android:textColor="#FFFFFF"
-            android:textSize="60dp"
+            android:textSize="54dp"
             tools:ignore="MissingConstraints">
 
         </TextView>
