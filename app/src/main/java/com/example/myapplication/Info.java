@@ -37,7 +37,6 @@ public class Info extends AppCompatActivity {
     TextView txlist;
     String txString = "";
     String balance="";
-    private RecyclerView recyclerView;
     private Item_tx_Adapter item_tx_adapter;
 
     @Override

@@ -33,9 +33,6 @@ public class setTimeActivity extends AppCompatActivity {
 
     String payLoad = "";
     TextView user_addr = null;
-    TextView user_addr2 = null;
-    TextView user_key = null;
-    TextView user_key2 = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
