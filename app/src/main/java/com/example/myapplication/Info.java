@@ -3,8 +3,8 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+//import androidx.recyclerview.widget.LinearLayoutManager;
+//import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -63,51 +63,51 @@ public class Info extends AppCompatActivity {
         tv_userList = findViewById(R.id.user_name);
         point = findViewById(R.id.point);
 
-        loadFromFirebase(dbRef);
+//        loadFromFirebase(dbRef);
 
         setProgressBarIndeterminateVisibility(true);
     }
 
-    void loadFromFirebase(final DatabaseReference ref) {
-        // 해당 DB참조의 값변화리스너 추가
-        final String[] ul = new String[1];
-        ul[0] = "";
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                userList = new ArrayList<>();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User tmpUser;
-                    tmpUser= snapshot.getValue(User.class);
+//    void loadFromFirebase(final DatabaseReference ref) {
+//        // 해당 DB참조의 값변화리스너 추가
+//        final String[] ul = new String[1];
+//        ul[0] = "";
+//        ref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                userList = new ArrayList<>();
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    User tmpUser;
+//                    tmpUser= snapshot.getValue(User.class);
+//
+//                    Log.d("FirebaseTestActivity", "ValueEventListener : " + tmpUser);
+//                    userList.add(tmpUser);
+//                    Log.d("userList : ",userList.toString());
+//                    ul[0] = ul[0].concat(tmpUser.toString() + "\n");
+//                }
+//
+//                //userList.indexOf(jiwoo);
+//                tv_userList.setText(userList.get(1).getName());
+//                Wallet wallet = AergoCommon.getAergoWallet("testnet.aergo.io:7845");
+//                balance = AergoQuery.getBalance_(wallet,userList.get(1).getAddress());
+//                wallet.close();
+//                Log.d("balance : ", balance);
+//                point.setText(balance);
+//                dialog.dismiss();
+//                recyclerView = (RecyclerView) findViewById(R.id.txlist);
+//                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Info.this);
+//                recyclerView.setLayoutManager(layoutManager);
+//
+//                item_tx_adapter = new Item_tx_Adapter(Info.this, userList.get(1).getTxList());
+//                recyclerView.setAdapter(item_tx_adapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError error) {
+//                // Failed to read value
+//                Log.w("Read Firebase database", "Failed to read value.", error.toException());
+//            }
+//        });
 
-                    Log.d("FirebaseTestActivity", "ValueEventListener : " + tmpUser);
-                    userList.add(tmpUser);
-                    Log.d("userList : ",userList.toString());
-                    ul[0] = ul[0].concat(tmpUser.toString() + "\n");
-                }
-
-                //userList.indexOf(jiwoo);
-                tv_userList.setText(userList.get(1).getName());
-                Wallet wallet = AergoCommon.getAergoWallet("testnet.aergo.io:7845");
-                balance = AergoQuery.getBalance_(wallet,userList.get(1).getAddress());
-                wallet.close();
-                Log.d("balance : ", balance);
-                point.setText(balance);
-                dialog.dismiss();
-                recyclerView = (RecyclerView) findViewById(R.id.txlist);
-                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Info.this);
-                recyclerView.setLayoutManager(layoutManager);
-
-                item_tx_adapter = new Item_tx_Adapter(Info.this, userList.get(1).getTxList());
-                recyclerView.setAdapter(item_tx_adapter);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("Read Firebase database", "Failed to read value.", error.toException());
-            }
-        });
-    }
 
 }
