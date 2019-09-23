@@ -1,15 +1,21 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -36,10 +42,14 @@ public class UserInfoActivity extends AppCompatActivity {
     TextView tv_userBalance;
     TextView tv_userTx;
     TextView tv_userName;
+    ImageView userimg;
+
 
     RecyclerView recycler_txList;
     Transaction_List_Adapter transaction_list_adapter;
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +67,34 @@ public class UserInfoActivity extends AppCompatActivity {
         tv_userBalance = findViewById(R.id.tv_userBalance);
         tv_userAccount = findViewById(R.id.user_account);
         tv_userName = findViewById(R.id.user_name);
+        userimg = findViewById(R.id.imagee);
+
 
         // Intent로 계정 정보 넘어오고
         Intent intent = getIntent(); /*데이터 수신*/
         String userName = intent.getExtras().getString("userName");
+
+        // 이미지 삽입
+
+        if (userName.equals("jiwoo")) {
+            userimg.setImageResource(R.drawable.jiwoo);
+        }
+        else if (userName.equals("myeongjin")) {
+            userimg.setImageResource(R.drawable.myongjin);
+        }
+        else if (userName.equals("minho")) {
+            userimg.setImageResource(R.drawable.minho);
+        }
+        else if (userName.equals("sangyoon")) {
+            userimg.setImageResource(R.drawable.sangyoon);
+        }
+        else if (userName.equals("admin")) {
+            userimg.setImageResource(R.drawable.gucc);
+        }
+        userimg.setBackground(new ShapeDrawable(new OvalShape()));
+        userimg.setClipToOutline(true);
+
+
         tv_userName.setText(userName);
         // 그걸 바탕으로 파이어베이스 검색
         FirebaseDatabase database = FirebaseDatabase.getInstance();
