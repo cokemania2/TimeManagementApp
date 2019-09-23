@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -36,6 +37,7 @@ public class testActivity extends AppCompatActivity {
 
 
     private DatabaseReference mDatabase;
+    ProgressDialog dialog;
     Dialog myDialog;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private ArrayList<User> userList;
@@ -72,8 +74,10 @@ public class testActivity extends AppCompatActivity {
         Info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Info = new Intent(getApplicationContext(),Info.class);
-                startActivity(Info);
+                Intent gotoUserInfo = new Intent(getApplicationContext(), UserInfoActivity.class);
+
+                gotoUserInfo.putExtra("userName", "jiwoo");
+                startActivity(gotoUserInfo);
             }
         });
 
@@ -112,9 +116,13 @@ public class testActivity extends AppCompatActivity {
         invite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //ProgressBar
+                dialog = ProgressDialog.show(testActivity.this, "",
+                        "Loading. Please wait...", true);
                 DatabaseReference dbRef = database.getReference("user_list");
                 loadFromFirebase(dbRef);
                 SampleMain.sendTransaction();
+                loadFromFirebase(dbRef);
                 ShowPopup(view);
             }
         });
@@ -122,6 +130,7 @@ public class testActivity extends AppCompatActivity {
 
 
     }
+<<<<<<< HEAD
     public void ShowPopup(View v) {
         TextView txtclose;
         myDialog.setContentView(R.layout.custompopup);
@@ -136,7 +145,11 @@ public class testActivity extends AppCompatActivity {
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
     }
+=======
+
+>>>>>>> 3f3d740408bf475713e76877f216a5b874e44914
     void loadFromFirebase(final DatabaseReference ref) {
+
         // 해당 DB참조의 값변화리스너 추가
         final String[] ul = new String[1];
         ul[0] = "";
@@ -156,6 +169,7 @@ public class testActivity extends AppCompatActivity {
                 key = userList.get(0).getPrivateKey(); // 관리자 키
                 address = userList.get(1).getAddress(); // user주소
                 SampleMain.sendTransaction(address,key,"0");
+                dialog.dismiss();
             }
 
             @Override
@@ -164,7 +178,9 @@ public class testActivity extends AppCompatActivity {
                 Log.w("Read Firebase database", "Failed to read value.", error.toException());
             }
         });
+
     }
+<<<<<<< HEAD
 
     void loadFromFirebase(final DatabaseReference ref, final long startTime, final long endTime) {
 
@@ -201,6 +217,24 @@ public class testActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.timerr)).setText("오늘의 휴식시간이 설정하세여");
         }
 
+=======
+    public void ShowPopup(View v) {
+
+        TextView txtclose;
+        myDialog.setContentView(R.layout.custompopup);
+        txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
+        txtclose.setText("X");
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+                Intent intent = new Intent(getApplicationContext(),testActivity.class);
+                startActivity(intent);
+            }
+        });
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+>>>>>>> 3f3d740408bf475713e76877f216a5b874e44914
     }
 
 }

@@ -30,7 +30,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+<<<<<<< HEAD
                 android:background="@drawable/buttonstyle"
+=======
+                android:background="@drawable/gradientbackground"
+>>>>>>> 3f3d740408bf475713e76877f216a5b874e44914
                 android:gravity="center"
                 android:orientation="vertical">
 

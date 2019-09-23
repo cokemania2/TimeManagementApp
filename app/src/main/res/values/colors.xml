@@ -9,7 +9,10 @@
     <color name="green">#00bfa5</color>
     <color name="colorAccent">#FF4081</color>
     <color name="darkblue">#23283a</color>
+    <color name="blue">#04537D</color>
     <color name="testcolorblue">#152b38</color>
     <color name="pink">#fe104d</color>
     <color name="black_overlay">#66000000</color>
+    <color name="k1">#AF841D</color>
+    <color name="k2">#0050A3</color>
 </resources>
