@@ -17,13 +17,12 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:gravity="center"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="30dp"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
             android:layout_width="340dp"
             android:layout_height="150dp"
-            android:layout_margin="10dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground">
 
@@ -50,15 +49,15 @@
                     android:layout_marginTop="10dp"
                     android:text=""
                     android:textColor="#fff"
-                    android:textSize="40dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_between"
+                    android:id="@+id/starttime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="(00:00 ~ 24:00)"
+                    android:text="(18:00 ~ 24:00)"
                     android:textColor="#fff"
                     android:textStyle="bold" />
 
@@ -91,7 +90,7 @@
             android:clickable="true"
             android:id="@+id/bankcardId"
             android:layout_width="160dp"
-            android:layout_height="180dp"
+            android:layout_height="160dp"
             android:layout_margin="10dp">
 
             <LinearLayout
@@ -125,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Check my info"
+                    android:text="Check my Info"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -134,7 +133,7 @@
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:layout_width="160dp"
-            android:layout_height="180dp"
+            android:layout_height="160dp"
             android:layout_margin="10dp"
             android:id="@+id/linear_restTime">
             <LinearLayout
@@ -167,7 +166,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Set an appointment"
+                    android:text="Set an appointment time"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -215,7 +214,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Make good on your promise"
+                    android:text="Keep your appointment."
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
 
@@ -260,7 +259,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Recommend to your friend"
+                    android:text="Recommendation"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>

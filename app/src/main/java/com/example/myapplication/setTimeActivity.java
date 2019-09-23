@@ -1,12 +1,13 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,11 +19,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import aergo.hacker_edu.AergoCommon;
+import aergo.hacker_edu.AergoTransaction;
 import aergo.hacker_edu.SampleMain;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import hera.api.model.TxHash;
+import hera.wallet.Wallet;
 
 public class setTimeActivity extends AppCompatActivity {
 
@@ -30,7 +31,7 @@ public class setTimeActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     //로그인한 유저
-    User jiwoo = new User("addr","jiwoo","key ");
+    User jiwoo = new User("addr","jiwoo","key ","3000-1000");
 
     String payLoad = "";
     TextView user_addr = null;
@@ -39,13 +40,6 @@ public class setTimeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_time);
-
-        // 타이틀
-        ActionBar ab = getSupportActionBar() ;
-        ab.setTitle("test") ;
-        ab.setIcon(R.drawable.gucc) ;
-        ab.setDisplayUseLogoEnabled(true) ;
-        ab.setDisplayShowHomeEnabled(true) ;
 
         Button btn_startTimeSelect = findViewById(R.id.btn_startTimeSelect);
         btn_startTimeSelect.setOnClickListener(new View.OnClickListener() {
@@ -83,39 +77,41 @@ public class setTimeActivity extends AppCompatActivity {
 //        });
 
         Button btn_submitTime = findViewById(R.id.btn_submitTime);
-
-
-
         btn_submitTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Submit 클릭하면 Firebase에 저장 후 원래 액티비티로
+
                 // 시작 시간
                 TextView tv1 = findViewById(R.id.tv_timeView1);
                 long time1 = getMill((String) tv1.getText());
+
                 // 끝 시간
                 TextView tv2 = findViewById(R.id.tv_timeView2);
                 long time2 = getMill((String) tv2.getText());
 
-                if (isValidTime(time1, time2)) {
-                    // Submit 클릭하면 Firebase에 저장 후 원래 액티비티로
+                //블록체인 코드
+                payLoad = time1 + "_" + time2;
+                Log.d("payLoad",payLoad);
 
-                    //블록체인 코드
-                    payLoad = time1 + "_" + time2;
-                    Log.d("TEST payLoad",payLoad);
+                Log.d("들어오는지","체크1");
 
-                    final DatabaseReference childRef = database.getReference("user_list"); //송신할 사용자 계정
-                    loadFromFirebase(childRef, user_addr);
 
-                    Intent goToSetBack = new Intent(getApplicationContext(), testActivity.class);
-                    startActivity(goToSetBack);
-                } else {
-                    // exception
-                    Toast.makeText(getApplicationContext(), "잘못된 시간 선택입니다.", Toast.LENGTH_LONG).show();
-                }
+
+                final DatabaseReference childRef = database.getReference("user_list"); //송신할 사용자 계정
+
+                Log.d("들어오는지","체크2");
+
+                loadFromFirebase(childRef, user_addr);
+
+                Log.d("들어오는지","체크4 ");
+
+                Intent goToSetBack = new Intent(getApplicationContext(), testActivity.class);
+                startActivity(goToSetBack);
             }
         });
-    }
 
+    }
     void loadFromFirebase(final DatabaseReference ref, final TextView tv) {
         // 해당 DB참조의 값변화리스너 추가
         Log.d("들어오는지","체크6");
@@ -137,8 +133,7 @@ public class setTimeActivity extends AppCompatActivity {
                     } else if(snapshot.getKey().equals(jiwoo.getName())){
                         tmpValue = snapshot.getValue(User.class);
                         Log.d("유저db",tmpValue.getAddress());
-                        //PrivateKey= 송신자 키, getAddress=수신자 주소를 넣으면 돼.
-                        TxHash txHash = SampleMain.toGetTxHash(admin.getAddress(), tmpValue.getPrivateKey(), payLoad);
+                        TxHash txHash = SampleMain.sendTransaction(admin.getAddress(), tmpValue.getPrivateKey(), payLoad);
 
                         // 이걸 왜 관리자 리스트에 추가하지??
                         // 트랜잭션이 "jiwoo >> admin" 이면 jiwoo 리스트에 추가되야 하는거 아닌가??
@@ -173,27 +168,5 @@ public class setTimeActivity extends AppCompatActivity {
         }
 
         return time;
-    }
-
-    boolean isValidTime(long start, long end) {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:MM");
-        long now = getMill(sdf.format(new Date()));
-
-        if (start < now) {
-            Log.e("PastTimeSelectError", "현재시간보다 이전의 시간을 선택함 " + start + " / " + end + " / " + now);
-            return false;
-
-        } else if(end - start < 0) {
-            // 시간을 선택하기 때문에, 밤 24시 이후의 시간을 고려하지 못함.
-            Log.e("NagativeTimeSelectError", "끝 시간이 시작 시간보다 빠름 " + start + " / " + end);
-            return false;
-
-        } else if(start == end) {
-            Log.e("SameTimeSelectError", "시작 시간과 끝 시간이 같음 " + start + " / " + end);
-            return false;
-        }
-
-        return true;
     }
 }
