@@ -130,24 +130,7 @@ public class testActivity extends AppCompatActivity {
 
 
     }
-<<<<<<< HEAD
-    public void ShowPopup(View v) {
-        TextView txtclose;
-        myDialog.setContentView(R.layout.custompopup);
-        txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
-        txtclose.setText("X");
-        txtclose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myDialog.dismiss();
-            }
-        });
-        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        myDialog.show();
-    }
-=======
 
->>>>>>> 3f3d740408bf475713e76877f216a5b874e44914
     void loadFromFirebase(final DatabaseReference ref) {
 
         // 해당 DB참조의 값변화리스너 추가
@@ -180,7 +163,6 @@ public class testActivity extends AppCompatActivity {
         });
 
     }
-<<<<<<< HEAD
 
     void loadFromFirebase(final DatabaseReference ref, final long startTime, final long endTime) {
 
@@ -189,6 +171,7 @@ public class testActivity extends AppCompatActivity {
                 long st = 0;
                 long et = 0;
                 long time = 0;
+
                 public void onDataChange(DataSnapshot dataSnapshot) throws NullPointerException {
                     String payLoad = null;
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -196,7 +179,7 @@ public class testActivity extends AppCompatActivity {
                             payLoad = snapshot.getValue(User.class).getPayload();
                             st = Long.parseLong((payLoad.split("_"))[0]);
                             et = Long.parseLong((payLoad.split("_"))[1]);
-                            time = et-st;
+                            time = et - st;
                         }
                         break;
                     }
@@ -204,20 +187,20 @@ public class testActivity extends AppCompatActivity {
                         throw new NullPointerException();
 
                     else
-                        ((TextView)findViewById(R.id.timerr)).setText(time/1000 / 3600 + " 시" + (time/1000 % 3600 / 60) + " 분" + time/1000 % 3600 % 60 + " 초");
+                        ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + " 시" + (time / 1000 % 3600 / 60) + " 분" + time / 1000 % 3600 % 60 + " 초");
 
                 }
+
                 @Override
                 public void onCancelled(DatabaseError error) {
                     // Failed to read value
                     Log.w("Read Firebase database", "Failed to read value.", error.toException());
                 }
             });
-        }catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             ((TextView) findViewById(R.id.timerr)).setText("오늘의 휴식시간이 설정하세여");
         }
-
-=======
+    }
     public void ShowPopup(View v) {
 
         TextView txtclose;
@@ -234,7 +217,6 @@ public class testActivity extends AppCompatActivity {
         });
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
->>>>>>> 3f3d740408bf475713e76877f216a5b874e44914
     }
 
 }
