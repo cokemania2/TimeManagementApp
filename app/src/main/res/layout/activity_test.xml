@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:gravity="center"
+        android:layout_marginBottom="30dp"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
@@ -29,7 +30,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+<<<<<<< HEAD
+                android:background="@drawable/buttonstyle"
+=======
                 android:background="@drawable/gradientbackground"
+>>>>>>> 3f3d740408bf475713e76877f216a5b874e44914
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -39,24 +44,26 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="금일 스마트폰 휴식시간"
-                    android:textStyle="bold"
-                    android:textColor="#fff"/>
+                    android:textColor="#fff"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/timerr"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="03:00:00"
+                    android:text=""
+                    android:textColor="#fff"
                     android:textSize="50dp"
-                    android:textStyle="bold"
-                    android:textColor="#fff"/>
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="(18:00 ~ 24:00)"
-                    android:textStyle="bold"
-                    android:textColor="#fff"/>
+                    android:textColor="#fff"
+                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"
@@ -99,9 +106,9 @@
                 <ImageView
                     android:layout_width="68dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/signup"
+                    android:background="@drawable/cerclebackgroundyello"
                     android:padding="10dp"
-                    android:src="@drawable/ic_attach_money_black_24dp" />
+                    android:src="@drawable/signup" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -142,9 +149,9 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/cerclebackgroundpink"
-                    android:src="@drawable/ic_lightbulb_outline_black_24dp"
-                    android:padding="10dp"/>
+                    android:background="@drawable/cerclebackgroundpurple"
+                    android:padding="10dp"
+                    android:src="@drawable/ic_lightbulb_outline_black_24dp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -189,12 +196,13 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:gravity="center">
+
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/charging"
-                    android:src="@drawable/ic_brightness_3_black_24dp"
-                    android:padding="10dp"/>
+                    android:background="@drawable/cerclebackgroundpurple"
+                    android:padding="10dp"
+                    android:src="@drawable/charging" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
