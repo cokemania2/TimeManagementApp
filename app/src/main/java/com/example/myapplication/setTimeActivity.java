@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -82,41 +83,39 @@ public class setTimeActivity extends AppCompatActivity {
 //        });
 
         Button btn_submitTime = findViewById(R.id.btn_submitTime);
+
+
+
         btn_submitTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Submit 클릭하면 Firebase에 저장 후 원래 액티비티로
-
                 // 시작 시간
                 TextView tv1 = findViewById(R.id.tv_timeView1);
                 long time1 = getMill((String) tv1.getText());
-
                 // 끝 시간
                 TextView tv2 = findViewById(R.id.tv_timeView2);
                 long time2 = getMill((String) tv2.getText());
 
-                //블록체인 코드
-                payLoad = time1 + "_" + time2;
-                Log.d("payLoad",payLoad);
+                if (isValidTime(time1, time2)) {
+                    // Submit 클릭하면 Firebase에 저장 후 원래 액티비티로
 
-                Log.d("들어오는지","체크1");
+                    //블록체인 코드
+                    payLoad = time1 + "_" + time2;
+                    Log.d("TEST payLoad",payLoad);
 
+                    final DatabaseReference childRef = database.getReference("user_list"); //송신할 사용자 계정
+                    loadFromFirebase(childRef, user_addr);
 
-
-                final DatabaseReference childRef = database.getReference("user_list"); //송신할 사용자 계정
-
-                Log.d("들어오는지","체크2");
-
-                loadFromFirebase(childRef, user_addr);
-
-                Log.d("들어오는지","체크4 ");
-
-                Intent goToSetBack = new Intent(getApplicationContext(), testActivity.class);
-                startActivity(goToSetBack);
+                    Intent goToSetBack = new Intent(getApplicationContext(), testActivity.class);
+                    startActivity(goToSetBack);
+                } else {
+                    // exception
+                    Toast.makeText(getApplicationContext(), "잘못된 시간 선택입니다.", Toast.LENGTH_LONG).show();
+                }
             }
         });
-
     }
+
     void loadFromFirebase(final DatabaseReference ref, final TextView tv) {
         // 해당 DB참조의 값변화리스너 추가
         Log.d("들어오는지","체크6");
@@ -174,5 +173,27 @@ public class setTimeActivity extends AppCompatActivity {
         }
 
         return time;
+    }
+
+    boolean isValidTime(long start, long end) {
+
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:MM");
+        long now = getMill(sdf.format(new Date()));
+
+        if (start < now) {
+            Log.e("PastTimeSelectError", "현재시간보다 이전의 시간을 선택함 " + start + " / " + end + " / " + now);
+            return false;
+
+        } else if(end - start < 0) {
+            // 시간을 선택하기 때문에, 밤 24시 이후의 시간을 고려하지 못함.
+            Log.e("NagativeTimeSelectError", "끝 시간이 시작 시간보다 빠름 " + start + " / " + end);
+            return false;
+
+        } else if(start == end) {
+            Log.e("SameTimeSelectError", "시작 시간과 끝 시간이 같음 " + start + " / " + end);
+            return false;
+        }
+
+        return true;
     }
 }
