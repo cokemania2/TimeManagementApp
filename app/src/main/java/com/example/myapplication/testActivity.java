@@ -206,8 +206,8 @@ public class testActivity extends AppCompatActivity {
 
                     ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + "시간 " + (time / 1000 % 3600 / 60) + "분");
 
-                    // 선택한 시간 범위를 나타내는데 오전/오후 구분이 없어
-                    ((TextView) findViewById(R.id.tv_between)).setText("(" +  String.format("%02d", st/1000/3600) + ":00 ~ " + String.format("%02d", et/1000/3600) + ":00)");
+                    SimpleDateFormat sdfDate = new SimpleDateFormat("HH:mm");
+                    ((TextView) findViewById(R.id.tv_between)).setText("(" + sdfDate.format(st) + " ~ " + sdfDate.format(et) + ")");
 
                 }
 
