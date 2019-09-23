@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:gravity="center"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="0dp"
         android:orientation="horizontal">
 
         <androidx.cardview.widget.CardView
@@ -91,7 +91,7 @@
             android:clickable="true"
             android:id="@+id/bankcardId"
             android:layout_width="160dp"
-            android:layout_height="190dp"
+            android:layout_height="180dp"
             android:layout_margin="10dp">
 
             <LinearLayout
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Check your bank activities"
+                    android:text="Check my info"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -134,7 +134,7 @@
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
             android:layout_width="160dp"
-            android:layout_height="190dp"
+            android:layout_height="180dp"
             android:layout_margin="10dp"
             android:id="@+id/linear_restTime">
             <LinearLayout
@@ -167,7 +167,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Check your bank activities"
+                    android:text="Set an appointment"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
@@ -215,7 +215,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Check your bank activities"
+                    android:text="Make good on your promise"
                     android:padding="5dp"
                     android:textColor="@android:color/darker_gray"/>
 
@@ -246,7 +246,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="초대하기"
+                    android:text="추천하기"
                     android:textStyle="bold" />
 
                 <View
@@ -260,7 +260,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Check your bank activities"
+                    android:text="Recommend to your friend"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>

@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         CardView patentsB = findViewById(R.id.parent);
         CardView childB = findViewById(R.id.child);
-        Button button  = findViewById(R.id.button);
+        //Button button  = findViewById(R.id.button);
 
         myDialog = new Dialog(this);
 
@@ -50,13 +50,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent goToregister = new Intent(getApplicationContext(),register.class);
-                startActivity(goToregister);
-            }
-        });
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent goToregister = new Intent(getApplicationContext(),register.class);
+//                startActivity(goToregister);
+//            }
+//        });
 
 
     }

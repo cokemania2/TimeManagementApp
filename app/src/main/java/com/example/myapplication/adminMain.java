@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,11 +30,15 @@ public class adminMain extends AppCompatActivity {
 
     private Item_Home_Adapter item_home_adapter;
     private RecyclerView recyclerView;
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
+
+        dialog = ProgressDialog.show(adminMain.this, "",
+                "Loading. Please wait...", true);
 
         // 타이틀
         ActionBar ab = getSupportActionBar() ;
@@ -79,6 +84,8 @@ public class adminMain extends AppCompatActivity {
 
                 item_home_adapter = new Item_Home_Adapter(adminMain.this, userList);
                 recyclerView.setAdapter(item_home_adapter);
+
+                dialog.dismiss();
             }
 
             @Override
