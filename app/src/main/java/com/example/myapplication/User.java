@@ -8,7 +8,7 @@ public class User {
     private String address;
     private String name;
     private String privateKey;
-    private String payload;
+    private String payLoad;
     private ArrayList<String> txList;
 
 
@@ -33,8 +33,8 @@ public class User {
         return txList;
     }
 
-    public String getPayload() { return payload; }
-    public void setPayload(String payload) { this.payload = payload; }
+    public String getPayLoad() { return payLoad; }
+    public void setPayLoad(String payload) { this.payLoad = payload; }
 
     public User() { }
 
@@ -47,7 +47,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "[" + name + "]" + " address: " + address + "\nprivateKey : "+ privateKey + "\npayload : " + payload + "\ntransaction: " + txList;
+        return "[" + name + "]" + " address: " + address + "\nprivateKey : "+ privateKey + "\npayload : " + payLoad + "\ntransaction: " + txList;
     }
 
     public String getName() {

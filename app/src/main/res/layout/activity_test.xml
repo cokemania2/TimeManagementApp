@@ -30,11 +30,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-<<<<<<< HEAD
                 android:background="@drawable/buttonstyle"
-=======
-                android:background="@drawable/gradientbackground"
->>>>>>> 3f3d740408bf475713e76877f216a5b874e44914
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -54,14 +50,15 @@
                     android:layout_marginTop="10dp"
                     android:text=""
                     android:textColor="#fff"
-                    android:textSize="50dp"
+                    android:textSize="40dp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_between"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="(18:00 ~ 24:00)"
+                    android:text="(00:00 ~ 24:00)"
                     android:textColor="#fff"
                     android:textStyle="bold" />
 
