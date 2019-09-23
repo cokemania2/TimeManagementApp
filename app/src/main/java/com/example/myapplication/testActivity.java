@@ -129,24 +129,7 @@ public class testActivity extends AppCompatActivity {
 
     }
 
-<<<<<<< HEAD
-=======
-//    public void ShowPopup(View v) {
-//        TextView txtclose;
-//        myDialog.setContentView(R.layout.custompopup);
-//        txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
-//        txtclose.setText("X");
-//        txtclose.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                myDialog.dismiss();
-//            }
-//        });
-//        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        myDialog.show();
-//    }
 
->>>>>>> 3fa8782dd4f2cf368c2c3168b091daf62d0850e9
     void loadFromFirebase(final DatabaseReference ref) {
 
         // 해당 DB참조의 값변화리스너 추가
@@ -202,23 +185,16 @@ public class testActivity extends AppCompatActivity {
                             st = Long.parseLong((payLoad.split("_"))[0]);
                             et = Long.parseLong((payLoad.split("_"))[1]);
                             time = et - st;
-<<<<<<< HEAD
-=======
 
                             break;
->>>>>>> 3fa8782dd4f2cf368c2c3168b091daf62d0850e9
                         }
                     }
-
-<<<<<<< HEAD
                     else
-                        ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + " 시" + (time / 1000 % 3600 / 60) + " 분" + time / 1000 % 3600 % 60 + " 초");
-=======
+
                     ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + "시간 " + (time / 1000 % 3600 / 60) + "분");
 
                     // 선택한 시간 범위를 나타내는데 오전/오후 구분이 없어
                     ((TextView) findViewById(R.id.tv_between)).setText("(" +  String.format("%02d", st/1000/3600) + ":00 ~ " + String.format("%02d", et/1000/3600) + ":00)");
->>>>>>> 3fa8782dd4f2cf368c2c3168b091daf62d0850e9
 
                 }
 
@@ -232,10 +208,6 @@ public class testActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.timerr)).setText("오늘의 휴식시간이 설정하세여");
         }
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 3fa8782dd4f2cf368c2c3168b091daf62d0850e9
     public void ShowPopup(View v) {
 
         TextView txtclose;

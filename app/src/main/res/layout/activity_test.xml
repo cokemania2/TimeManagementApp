@@ -31,10 +31,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/buttonstyle"
-<<<<<<< HEAD
-
-=======
->>>>>>> 3fa8782dd4f2cf368c2c3168b091daf62d0850e9
                 android:gravity="center"
                 android:orientation="vertical">
 
