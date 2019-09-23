@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent goTochild = new Intent(getApplicationContext(),testActivity.class);
+                goTochild.putExtra("classname","setTime2-");
                 startActivity(goTochild);
             }
         });

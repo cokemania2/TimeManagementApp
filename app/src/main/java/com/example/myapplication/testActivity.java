@@ -51,6 +51,12 @@ public class testActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         myDialog = new Dialog(this);
+        View vieww = new View(this   );
+        Intent intent = getIntent(); /*데이터 수신*/
+        String name = intent.getExtras().getString("classname"); /*String형*/
+        if (name.equals("setTime")) {
+            ShowPopup(vieww);
+        }
 
         CardView gorest = (CardView)findViewById(R.id.gorest);
         CardView Info = (CardView)findViewById(R.id.bankcardId);
@@ -103,8 +109,6 @@ public class testActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //ProgressBar
-                dialog = ProgressDialog.show(testActivity.this, "",
-                        "Loading. Please wait...", true);
                 DatabaseReference dbRef = database.getReference("user_list");
                 loadFromFirebase(dbRef);
                 SampleMain.sendTransaction();

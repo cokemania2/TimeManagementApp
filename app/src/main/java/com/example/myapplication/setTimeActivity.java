@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,7 +30,7 @@ public class setTimeActivity extends AppCompatActivity {
 
     //DB코드
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-
+    ProgressDialog dialog;
     //로그인한 유저
     User jiwoo = new User("addr","jiwoo","key ","3000-1000");
 
@@ -81,7 +82,6 @@ public class setTimeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Submit 클릭하면 Firebase에 저장 후 원래 액티비티로
-
                 // 시작 시간
                 TextView tv1 = findViewById(R.id.tv_timeView1);
                 long time1 = getMill((String) tv1.getText());
@@ -106,7 +106,10 @@ public class setTimeActivity extends AppCompatActivity {
 
                 Log.d("들어오는지","체크4 ");
 
+
+
                 Intent goToSetBack = new Intent(getApplicationContext(), testActivity.class);
+                goToSetBack.putExtra("classname","setTime");
                 startActivity(goToSetBack);
             }
         });
