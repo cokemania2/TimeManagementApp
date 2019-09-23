@@ -9,23 +9,51 @@
     android:gravity="center"
     android:layout_gravity="center">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp">
+        android:layout_gravity="center">
 
         <TextView
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:gravity="center"
+            android:textSize="25dp"
+            android:textColor="@color/blue"
+            android:text="휴식할 시간 설정 " />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#1A979797" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="25dp"
             android:text="시작시간 " />
         <TextView
             android:id="@+id/tv_timeView1"
-            android:layout_width="70dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:textSize="25dp"
             android:gravity="center"
             android:layout_gravity="center"
             android:text=" 00:00" />
@@ -38,24 +66,33 @@
             android:text="시간선택" />
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#1A979797" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp">
+        android:layout_gravity="center">
 
         <TextView
-            android:layout_width="70dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:textSize="25dp"
             android:gravity="center"
             android:layout_gravity="center"
             android:text="끝 시간 " />
         <TextView
             android:id="@+id/tv_timeView2"
-            android:layout_width="70dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
+            android:textSize="25dp"
             android:gravity="center"
             android:layout_gravity="center"
             android:text=" 00:00" />
@@ -68,6 +105,14 @@
             android:text="시간선택" />
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginRight="19dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#1A979797" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,5 +125,6 @@
             android:layout_height="wrap_content"
             android:text="SUBMIT" />
     </LinearLayout>
+
 
 </LinearLayout>

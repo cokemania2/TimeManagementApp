@@ -18,6 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import aergo.hacker_edu.SampleMain;
+
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import hera.api.model.TxHash;
 
@@ -36,6 +38,13 @@ public class setTimeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_time);
+
+        // 타이틀
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("test") ;
+        ab.setIcon(R.drawable.gucc) ;
+        ab.setDisplayUseLogoEnabled(true) ;
+        ab.setDisplayShowHomeEnabled(true) ;
 
         Button btn_startTimeSelect = findViewById(R.id.btn_startTimeSelect);
         btn_startTimeSelect.setOnClickListener(new View.OnClickListener() {

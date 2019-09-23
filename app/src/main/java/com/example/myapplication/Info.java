@@ -108,6 +108,10 @@ public class Info extends AppCompatActivity {
 //                Log.w("Read Firebase database", "Failed to read value.", error.toException());
 //            }
 //        });
+<<<<<<< HEAD
 
+=======
+//    }
+>>>>>>> a7c978b1d36a4167194e2d9a252bfe4ef7e2c380
 
 }
