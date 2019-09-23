@@ -34,14 +34,15 @@ public class User {
     }
 
     public String getPayLoad() { return payLoad; }
-    public void setPayLoad(String payload) { this.payLoad = payload; }
+    public void setPayLoad(String payLoad) { this.payLoad = payLoad; }
 
     public User() { }
 
-    public User(String address, String name, String privateKey) {
+    public User(String address, String name, String privateKey, String payload) {
         this.address = address;
         this.name = name;
         this.privateKey = privateKey;
+        this.payLoad = payload;
     }
 
 

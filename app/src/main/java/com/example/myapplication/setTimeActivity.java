@@ -1,5 +1,8 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,19 +20,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import aergo.hacker_edu.AergoCommon;
+import aergo.hacker_edu.AergoTransaction;
 import aergo.hacker_edu.SampleMain;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import hera.api.model.TxHash;
+import hera.wallet.Wallet;
 
 public class setTimeActivity extends AppCompatActivity {
 
     //DB코드
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-
+    ProgressDialog dialog;
     //로그인한 유저
-    User jiwoo = new User("addr","jiwoo","key ");
+    User jiwoo = new User("addr","jiwoo","key ","3000-1000");
 
     String payLoad = "";
     TextView user_addr = null;
@@ -38,13 +41,6 @@ public class setTimeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_time);
-
-        // 타이틀
-        ActionBar ab = getSupportActionBar() ;
-        ab.setTitle("test") ;
-        ab.setIcon(R.drawable.gucc) ;
-        ab.setDisplayUseLogoEnabled(true) ;
-        ab.setDisplayShowHomeEnabled(true) ;
 
         Button btn_startTimeSelect = findViewById(R.id.btn_startTimeSelect);
         btn_startTimeSelect.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +82,6 @@ public class setTimeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Submit 클릭하면 Firebase에 저장 후 원래 액티비티로
-
                 // 시작 시간
                 TextView tv1 = findViewById(R.id.tv_timeView1);
                 long time1 = getMill((String) tv1.getText());
@@ -111,7 +106,10 @@ public class setTimeActivity extends AppCompatActivity {
 
                 Log.d("들어오는지","체크4 ");
 
+
+
                 Intent goToSetBack = new Intent(getApplicationContext(), testActivity.class);
+                goToSetBack.putExtra("classname","setTime");
                 startActivity(goToSetBack);
             }
         });
@@ -138,8 +136,7 @@ public class setTimeActivity extends AppCompatActivity {
                     } else if(snapshot.getKey().equals(jiwoo.getName())){
                         tmpValue = snapshot.getValue(User.class);
                         Log.d("유저db",tmpValue.getAddress());
-                        //PrivateKey= 송신자 키, getAddress=수신자 주소를 넣으면 돼.
-                        TxHash txHash = SampleMain.toGetTxHash(admin.getAddress(), tmpValue.getPrivateKey(), payLoad);
+                        TxHash txHash = SampleMain.sendTransaction(admin.getAddress(), tmpValue.getPrivateKey(), payLoad);
 
                         // 이걸 왜 관리자 리스트에 추가하지??
                         // 트랜잭션이 "jiwoo >> admin" 이면 jiwoo 리스트에 추가되야 하는거 아닌가??

@@ -105,14 +105,17 @@ public class SampleMain {
 	}
 
 	//원본아님. address=받을 사람 주소(학생), key=보내는 사람 주소(관리자)
-	public static void sendTransaction(String address, String key, String payload) {
+	public static TxHash sendTransaction(String toAddress,String encPrivateKey, String payLoad) {
 		//client 생성
 		Wallet wallet = AergoCommon.getAergoWallet(endpoint);
 
-		//paylaod data
+		//전송 토큰
 		String amount = "1";
 
-		TxHash txhash = AergoTransaction.sendTransaction(wallet, address, password, key, payload, amount, fee);
+		//paylaod data
+		String payload = payLoad;
+
+		TxHash txhash = AergoTransaction.sendTransaction(wallet, toAddress, password, encPrivateKey, payload, amount, fee);
 
 
 		//comfirm을 위해 대기
@@ -123,6 +126,7 @@ public class SampleMain {
 			e.printStackTrace();
 		}
 
+
 		//트랜잭션 조회
 		Transaction transactionInfo = AergoQuery.getTransactionInfo(wallet, txhash.getEncoded());
 
@@ -132,8 +136,11 @@ public class SampleMain {
 		//블록 조회
 		AergoQuery.getBlockInfo(wallet, transactionInfo.getBlockHash().toString());
 
+
 		//client 종료
 		wallet.close();
+
+		return txhash;
 	}
 	//유저 주소, 관리자 키, 페이로드 만으로 txHash를 얻고 싶을때. 마찬가지로 원본 아님.
 	public static TxHash toGetTxHash(String address, String key, String payload) {

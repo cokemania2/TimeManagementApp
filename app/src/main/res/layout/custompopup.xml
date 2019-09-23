@@ -24,13 +24,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/gucc3"
+            android:src="@drawable/money"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="100포인트가 지급되었습니다"
+            android:text="캐시가 지급되었습니다"
             android:textStyle="bold"
             android:textColor="@color/backgroundcolor"
             android:layout_gravity="center_horizontal"
