@@ -52,11 +52,11 @@ public class testActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
         myDialog = new Dialog(this);
         View vieww = new View(this   );
-        Intent intent = getIntent(); /*데이터 수신*/
-        String name = intent.getExtras().getString("classname"); /*String형*/
-        if (name.equals("setTime")) {
-            ShowPopup(vieww);
-        }
+//        Intent intent = getIntent(); /*데이터 수신*/
+//        String name = intent.getExtras().getString("classname"); /*String형*/
+//        if (name.equals("setTime")) {
+//            ShowPopup(vieww);
+//        }
 
         CardView gorest = (CardView)findViewById(R.id.gorest);
         CardView Info = (CardView)findViewById(R.id.bankcardId);
@@ -120,11 +120,6 @@ public class testActivity extends AppCompatActivity {
 
 
     }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 329d628095cfdb785ad9ffea28abf41a285d4629
     void loadFromFirebase(final DatabaseReference ref) {
         // 해당 DB참조의 값변화리스너 추가
         final String[] ul = new String[1];
@@ -171,16 +166,11 @@ public class testActivity extends AppCompatActivity {
                             ((TextView) findViewById(R.id.timerr)).setText("오늘의 휴식시간을 설정하세요");
                             return;
                         }
-<<<<<<< HEAD
-                    }
-                    else
-=======
->>>>>>> 329d628095cfdb785ad9ffea28abf41a285d4629
 
 
                         tmp = payLoad.split("_");
                         time = Long.parseLong(tmp[1]) - Long.parseLong(tmp[0]);
-                        ((TextView)findViewById(R.id.starttime)).setText("시작시간 : " + Long.parseLong(tmp[1])/1000 / 3600 + " 시" + (Long.parseLong(tmp[1])/1000 % 3600 / 60) + " 분" + (Long.parseLong(tmp[1])/1000 % 3600 % 60 + " 초"));
+                        ((TextView)findViewById(R.id.starttime)).setText("시작시간 : " + Long.parseLong(tmp[0])/1000 / 3600 + " 시" + (Long.parseLong(tmp[0])/1000 % 3600 / 60) + " 분" + (Long.parseLong(tmp[0])/1000 % 3600 % 60 + " 초"));
 
                         ((TextView)findViewById(R.id.timerr)).setText(time/1000 / 3600 + " 시" + (time/1000 % 3600 / 60) + " 분" + time/1000 % 3600 % 60 + " 초");
                         break;
@@ -196,6 +186,10 @@ public class testActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
     public void ShowPopup(View v) {
 
         TextView txtclose;
