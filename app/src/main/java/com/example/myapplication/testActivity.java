@@ -21,7 +21,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import aergo.hacker_edu.AergoCommon;
 import aergo.hacker_edu.AergoQuery;
@@ -38,6 +41,8 @@ public class testActivity extends AppCompatActivity {
     private ArrayList<User> userList;
     private String key;
     private String address;
+    long startTime = 0;
+    long endTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,17 +77,27 @@ public class testActivity extends AppCompatActivity {
             }
         });
 
-        // 시간 깜빡이게 하기
-        /*
-        TextView timerr = (TextView)findViewById(R.id.timerr);
-        Animation anim = new AlphaAnimation(1,0);
-        anim.setDuration(50); //You can manage the time of the blink with this parameter
-        anim.setStartOffset(20);
-        anim.setRepeatMode(Animation.REVERSE);
-        anim.setRepeatCount(Animation.INFINITE);
 
-        timerr.startAnimation(anim);
-        */
+
+        long time = 21120000 - 18900000;
+
+
+
+        final DatabaseReference childRef = database.getReference("user_list"); //송신할 사용자 계정
+        loadFromFirebase(childRef, startTime, endTime);
+
+
+
+
+
+//        Animation anim = new AlphaAnimation(1,0);
+//        anim.setDuration(50); //You can manage the time of the blink with this parameter
+//        anim.setStartOffset(20);
+//        anim.setRepeatMode(Animation.REVERSE);
+//        anim.setRepeatCount(Animation.INFINITE);
+//        timerr.startAnimation(anim);
+
+
 
         CardView linear_restTime = findViewById(R.id.linear_restTime);
         linear_restTime.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +136,6 @@ public class testActivity extends AppCompatActivity {
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
     }
-
     void loadFromFirebase(final DatabaseReference ref) {
         // 해당 DB참조의 값변화리스너 추가
         final String[] ul = new String[1];
@@ -151,4 +165,42 @@ public class testActivity extends AppCompatActivity {
             }
         });
     }
+
+    void loadFromFirebase(final DatabaseReference ref, final long startTime, final long endTime) {
+
+        try {
+            ref.addValueEventListener(new ValueEventListener() {
+                long st = 0;
+                long et = 0;
+                long time = 0;
+                public void onDataChange(DataSnapshot dataSnapshot) throws NullPointerException {
+                    String payLoad = null;
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (snapshot.getKey().equals("jiwoo")) {
+                            payLoad = snapshot.getValue(User.class).getPayload();
+                            st = Long.parseLong((payLoad.split("_"))[0]);
+                            et = Long.parseLong((payLoad.split("_"))[1]);
+                            time = et-st;
+                        }
+                        break;
+                    }
+                    if (payLoad.equals(null))
+                        throw new NullPointerException();
+
+                    else
+                        ((TextView)findViewById(R.id.timerr)).setText(time/1000 / 3600 + " 시" + (time/1000 % 3600 / 60) + " 분" + time/1000 % 3600 % 60 + " 초");
+
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w("Read Firebase database", "Failed to read value.", error.toException());
+                }
+            });
+        }catch (NullPointerException e) {
+            ((TextView) findViewById(R.id.timerr)).setText("오늘의 휴식시간이 설정하세여");
+        }
+
+    }
+
 }
