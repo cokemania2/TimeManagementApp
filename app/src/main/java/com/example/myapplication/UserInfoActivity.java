@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -44,6 +45,7 @@ public class UserInfoActivity extends AppCompatActivity {
     TextView tv_userName;
     ImageView userimg;
 
+    ProgressDialog dialog;
 
     RecyclerView recycler_txList;
     Transaction_List_Adapter transaction_list_adapter;
@@ -69,13 +71,11 @@ public class UserInfoActivity extends AppCompatActivity {
         tv_userName = findViewById(R.id.user_name);
         userimg = findViewById(R.id.imagee);
 
-
         // Intent로 계정 정보 넘어오고
         Intent intent = getIntent(); /*데이터 수신*/
         String userName = intent.getExtras().getString("userName");
 
         // 이미지 삽입
-
         if (userName.equals("jiwoo")) {
             userimg.setImageResource(R.drawable.jiwoo);
         }
@@ -158,9 +158,9 @@ public class UserInfoActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                // exception
             }
         });
-
     }
 
 // 1 aergo = 1,000,000,000 gaer = 1,000,000,000,000,000,000 aer

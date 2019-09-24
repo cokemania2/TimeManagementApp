@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.R;
 import com.example.myapplication.UserInfoActivity;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 import hera.api.model.Transaction;
@@ -38,7 +39,8 @@ public class Transaction_List_Adapter extends RecyclerView.Adapter<Transaction_L
         holder.tx_hash.setText(txList.get(position).getHash().toString());
         holder.sender.setText(txList.get(position).getSender().toString());
         holder.receiver.setText(txList.get(position).getRecipient().toString());
-        holder.amount.setText(txList.get(position).getAmount().toString());
+        BigInteger bi = txList.get(position).getAmount().getValue();
+        holder.amount.setText(String.format("%,d", bi.divide(new BigInteger("1000000000"))));
     }
 
     @Override
