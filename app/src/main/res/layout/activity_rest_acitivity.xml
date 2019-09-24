@@ -57,6 +57,7 @@
                 android:id="@+id/check1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:onClick="timerStart"
                 android:background="@drawable/cb_check_on_off"
                 android:textColor="#FFFFFF"
@@ -95,6 +96,7 @@
                 android:id="@+id/check2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:onClick="timerStart"
                 android:background="@drawable/cb_check_on_off"
                 tools:ignore="MissingConstraints" />
@@ -130,6 +132,7 @@
                 android:id="@+id/check3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:onClick="timerStart"
                 android:background="@drawable/cb_check_on_off"
                 tools:ignore="MissingConstraints" />
@@ -204,7 +207,7 @@
                 android:layout_marginBottom="28dp"
                 android:clickable="false"
                 android:onClick="timerFast"
-                android:text="1시간 GO"
+                android:text="FAST Go"
                 android:textSize="24dp"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/gradientbackground"/>
@@ -238,7 +241,7 @@
                 android:layout_marginBottom="28dp"
                 android:clickable="false"
                 android:onClick="timerBack"
-                android:text="5초 백"
+                android:text="5 Sec BACK"
                 android:textSize="24dp"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/gradientbackground"/>

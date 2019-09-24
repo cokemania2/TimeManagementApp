@@ -37,14 +37,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            android:text="잔액(gear)"/>
+            android:text="잔액(Point)"/>
         <TextView
             android:id="@+id/tv_userBalance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="잔액"/>
     </LinearLayout>
-
+    <!--
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,6 +55,7 @@
         android:layout_marginRight="29.3dp"
         android:textSize="9dp"
         android:text="1 aergo = 1,000,000,000 gaer = 1,000,000,000,000,000,000 aer"/>
+    -->
 
     <View
         android:layout_width="match_parent"
