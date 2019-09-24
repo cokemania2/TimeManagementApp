@@ -50,12 +50,11 @@ public class testActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         myDialog = new Dialog(this);
-        View vieww = new View(this   );
-//        Intent intent = getIntent(); /*데이터 수신*/
-//        String name = intent.getExtras().getString("classname"); /*String형*/
-//        if (name.equals("setTime")) {
-//            ShowPopup(vieww);
-//        }
+        Intent intent = getIntent(); /*데이터 수신*/
+        String name = intent.getExtras().getString("classname"); /*String형*/
+        if (name.equals("setTime") || name.equals("okTime") ) {
+            ShowPopup();
+        }
 
         CardView gorest = (CardView)findViewById(R.id.gorest);
         CardView Info = (CardView)findViewById(R.id.bankcardId);
@@ -78,10 +77,7 @@ public class testActivity extends AppCompatActivity {
         Info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent gotoUserInfo = new Intent(getApplicationContext(), UserInfoActivity.class);
-
-                gotoUserInfo.putExtra("userName", "jiwoo");
-                startActivity(gotoUserInfo);
+                ShowPopup();
             }
         });
 

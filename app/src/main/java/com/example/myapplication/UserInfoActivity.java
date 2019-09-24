@@ -43,7 +43,6 @@ public class UserInfoActivity extends AppCompatActivity {
 
     RecyclerView recycler_txList;
     Transaction_List_Adapter transaction_list_adapter;
-
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("RestrictedApi")
@@ -51,6 +50,9 @@ public class UserInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
+
+        dialog = ProgressDialog.show(UserInfoActivity.this, "",
+                "Loading. Please wait...", true);
 
         // 타이틀
         ActionBar ab = getSupportActionBar() ;
@@ -151,6 +153,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
                 // wallet 종료
                 wallet.close();
+                dialog.dismiss();
             }
 
             @Override
