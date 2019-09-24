@@ -43,7 +43,6 @@ public class UserInfoActivity extends AppCompatActivity {
 
     RecyclerView recycler_txList;
     Transaction_List_Adapter transaction_list_adapter;
-    ProgressDialog dialog;
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("RestrictedApi")
