@@ -1,12 +1,5 @@
 package com.example.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
@@ -25,16 +18,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
-import adapter.Item_Home_Adapter;
 import adapter.Transaction_List_Adapter;
 import aergo.hacker_edu.AergoCommon;
 import aergo.hacker_edu.AergoQuery;
-import aergo.hacker_edu.SampleMain;
-import hera.api.model.Aer;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import hera.api.model.Transaction;
 import hera.wallet.Wallet;
 
@@ -45,6 +39,7 @@ public class UserInfoActivity extends AppCompatActivity {
     TextView tv_userName;
     ImageView userimg;
 
+    ProgressDialog dialog;
 
     RecyclerView recycler_txList;
     Transaction_List_Adapter transaction_list_adapter;
@@ -73,13 +68,11 @@ public class UserInfoActivity extends AppCompatActivity {
         tv_userName = findViewById(R.id.user_name);
         userimg = findViewById(R.id.imagee);
 
-
         // Intent로 계정 정보 넘어오고
         Intent intent = getIntent(); /*데이터 수신*/
         String userName = intent.getExtras().getString("userName");
 
         // 이미지 삽입
-
         if (userName.equals("jiwoo")) {
             userimg.setImageResource(R.drawable.jiwoo);
         }
@@ -163,9 +156,9 @@ public class UserInfoActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                // exception
             }
         });
-
     }
 
 // 1 aergo = 1,000,000,000 gaer = 1,000,000,000,000,000,000 aer

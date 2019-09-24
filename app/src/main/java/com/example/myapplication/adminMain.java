@@ -37,8 +37,7 @@ public class adminMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
 
-        dialog = ProgressDialog.show(adminMain.this, "",
-                "Loading. Please wait...", true);
+        dialog = ProgressDialog.show(adminMain.this, "", "Loading. Please wait...", true);
 
         // 타이틀
         ActionBar ab = getSupportActionBar() ;
