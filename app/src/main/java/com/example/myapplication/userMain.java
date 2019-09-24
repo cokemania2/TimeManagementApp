@@ -63,34 +63,6 @@ public class userMain extends AppCompatActivity {
         tv_userList = findViewById(R.id.name);
         loadFromFirebase(dbRef);
 
-
-
-        //테스트용
-        /*
-        Button makekey = findViewById(R.id.makeKey);
-        makekey.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AergoCommon.createAergoKey();
-            }
-        });
-        Button getBlances = findViewById(R.id.getBlances);
-        getBlances.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SampleMain.getBlances();
-            }
-        });
-        Button sendTransaction = findViewById(R.id.sendTransaction);
-        sendTransaction.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SampleMain.sendTransaction();
-            }
-        });
-        */
-
-
     }
 
     public void ShowPopup(View v) {
