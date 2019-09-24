@@ -32,7 +32,6 @@ import aergo.hacker_edu.SampleMain;
 
 public class testActivity extends AppCompatActivity {
 
-
     private DatabaseReference mDatabase;
     Dialog myDialog;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -163,31 +162,34 @@ public class testActivity extends AppCompatActivity {
     void loadFromFirebase(final DatabaseReference ref, final long startTime, final long endTime) {
         Log.d("함수", "들어옴");
         ref.addValueEventListener(new ValueEventListener() {
+            long st = 0;
+            long et = 0;
             long time = 0;
-            ;
 
             public void onDataChange(DataSnapshot dataSnapshot) throws NullPointerException {
-                Log.d("함수", "들어옴2");
-                String payLoad = null;
-                String[] tmp = null;
+                String payLoad;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if (snapshot.getKey().equals("jiwoo")) {
-                        Log.d("해쉬", snapshot.getValue(User.class).getAddress());
-                        payLoad = snapshot.getValue(User.class).getPayLoad();
-                        if (payLoad == null || payLoad.equals("")) {
-                            ((TextView) findViewById(R.id.timerr)).setText("오늘의 휴식시간을 설정하세요");
-                            return;
+                        User jiwoo = snapshot.getValue(User.class);
+                        Log.d("TEST jiwoo", "value is " + jiwoo.toString());
+                        payLoad = jiwoo.getPayLoad();
+
+                        if (payLoad == null) {
+                            throw new NullPointerException();
                         }
 
+                        st = Long.parseLong((payLoad.split("_"))[0]);
+                        et = Long.parseLong((payLoad.split("_"))[1]);
+                        time = et - st;
 
-                        tmp = payLoad.split("_");
-                        time = Long.parseLong(tmp[1]) - Long.parseLong(tmp[0]);
-                        ((TextView) findViewById(R.id.starttime)).setText("시작시간 : " + Long.parseLong(tmp[0]) / 1000 / 3600 + " 시" + (Long.parseLong(tmp[0]) / 1000 % 3600 / 60) + " 분" + (Long.parseLong(tmp[0]) / 1000 % 3600 % 60 + " 초"));
-
-                        ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + " 시" + (time / 1000 % 3600 / 60) + " 분" + time / 1000 % 3600 % 60 + " 초");
                         break;
                     }
                 }
+
+                ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + "시간 " + (time / 1000 % 3600 / 60) + "분");
+
+                SimpleDateFormat sdfDate = new SimpleDateFormat("HH:mm");
+                ((TextView) findViewById(R.id.tv_between)).setText("(" + sdfDate.format(st) + " ~ " + sdfDate.format(et) + ")");
             }
 
             @Override

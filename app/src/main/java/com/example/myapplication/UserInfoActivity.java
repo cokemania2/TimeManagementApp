@@ -63,7 +63,7 @@ public class UserInfoActivity extends AppCompatActivity {
         tv_userBalance = findViewById(R.id.tv_userBalance);
         tv_userAccount = findViewById(R.id.user_account);
         tv_userName = findViewById(R.id.user_name);
-        userimg = findViewById(R.id.image);
+        userimg = findViewById(R.id.imagee);
 
         // Intent로 계정 정보 넘어오고
         Intent intent = getIntent(); /*데이터 수신*/
