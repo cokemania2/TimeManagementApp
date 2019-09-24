@@ -22,18 +22,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <TextView
-                    android:id="@+id/tv_txHash"
-                    android:fontFamily="@font/roboto_medium"
+                    android:fontFamily="@font/roboto_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="15sp"
-                    android:textColor="#394556"
                     android:letterSpacing="0.03"
-                    android:text="Transaction Hash"/>
+                    android:text="트랜잭션 Hash"/>
 
                 <!-- 송/수신자 주소, 거래금액 -->
+                <TextView
+                    android:id="@+id/tv_txHash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:letterSpacing="0.03"
+                    android:text="Transaction Hash"
+                    android:textColor="#394556"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="14dp"
+                    android:autoLink="web"
+                    />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -75,7 +85,7 @@
                             android:textSize="11sp"
                             android:letterSpacing="0.03"
                             android:textColor="#6c7581"
-                            android:text="거래 금액(gear)"/>
+                            android:text="거래 금액(Point)"/>
                     </LinearLayout>
                     <!-- 앞에 속성을 보여주는 text 부분 END-->
 

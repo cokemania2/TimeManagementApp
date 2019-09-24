@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="24.7dp">
+    android:layout_marginBottom="24.7dp"
+    android:orientation="horizontal">
 
 
     <ImageView
         android:id="@+id/imagee"
         android:layout_width="80.3dp"
         android:layout_height="80.3dp"
-        android:src="@mipmap/ic_launcher"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,46 +26,58 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_weight="1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/user_name"
-                    android:fontFamily="@font/roboto_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:textColor="#394556"
-                    android:letterSpacing="0.03"
-                    android:text="사용자 이름"/>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:orientation="horizontal">
-
+                    >
                     <TextView
-                        android:id="@+id/user_account"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="11.7sp"
+                        android:fontFamily="@font/roboto_medium"
                         android:letterSpacing="0.03"
-                        android:textColor="#6c7581"
-                        android:text="사용자 지갑 주소"/>
-
-
-
-
+                        android:text="사용자 이름 : "
+                        android:textColor="#394556"
+                        android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:letterSpacing="0.03"
+                        android:text="name"
+                        android:textColor="#394556"
+                        android:textSize="15sp" />
                 </LinearLayout>
-
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_regular"
+                        android:letterSpacing="0.03"
+                        android:text="사용자 지갑 주소"
+                        android:textColor="#6c7581"
+                        android:textSize="11.7sp" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/user_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_regular"
+                    android:letterSpacing="0.03"
+                    android:text="사용자 지갑 주소"
+                    android:textColor="#6c7581"
+                    android:textSize="9.8sp" />
             </LinearLayout>
-
-
         </LinearLayout>
 
     </LinearLayout>
