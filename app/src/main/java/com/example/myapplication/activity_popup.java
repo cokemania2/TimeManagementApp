@@ -31,6 +31,7 @@ public class activity_popup extends DialogFragment implements View.OnClickListen
     public void onClick(View v){
         dismiss();
         Intent goTochild = new Intent(getActivity().getBaseContext(),testActivity.class);
+        goTochild.putExtra("classname","okTime");
         startActivity(goTochild);
     }
 
