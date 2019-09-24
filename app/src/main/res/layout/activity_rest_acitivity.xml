@@ -57,6 +57,7 @@
                 android:id="@+id/check1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:onClick="timerStart"
                 android:background="@drawable/cb_check_on_off"
                 android:textColor="#FFFFFF"
@@ -96,6 +97,7 @@
                 android:id="@+id/check2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:onClick="timerStart"
                 android:background="@drawable/cb_check_on_off"
                 tools:ignore="MissingConstraints" />
@@ -132,6 +134,7 @@
                 android:id="@+id/check3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:onClick="timerStart"
                 android:background="@drawable/cb_check_on_off"
                 tools:ignore="MissingConstraints" />
@@ -206,7 +209,11 @@
                 android:layout_marginBottom="28dp"
                 android:clickable="false"
                 android:onClick="timerFast"
+<<<<<<< HEAD
+                android:text="FAST Go"
+=======
                 android:text="FAST GO"
+>>>>>>> b3f81dc7b109362e676385b766638f6a2e904eb8
                 android:textSize="24dp"
                 android:textColor="#FFFFFF"
                 android:background="@color/colorPrimaryDark"/>
@@ -240,7 +247,11 @@
                 android:layout_marginBottom="28dp"
                 android:clickable="false"
                 android:onClick="timerBack"
+<<<<<<< HEAD
+                android:text="5 Sec BACK"
+=======
                 android:text="5SEC BACK"
+>>>>>>> b3f81dc7b109362e676385b766638f6a2e904eb8
                 android:textSize="24dp"
                 android:textColor="#FFFFFF"
                 android:background="@color/colorPrimaryDark"/>

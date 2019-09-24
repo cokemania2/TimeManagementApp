@@ -111,6 +111,9 @@ public class UserInfoActivity extends AppCompatActivity {
 
                 Wallet wallet = AergoCommon.getAergoWallet("testnet.aergo.io:7845");
                 String balance = AergoQuery.getBalance_(wallet, userAccount);
+
+                String userAccountToPoint = userAccount.substring(userAccount.length()-4, userAccount.length());
+
                 Log.d("TEST balance", "value is : " + balance);
                 tv_userBalance.setText(balance);
 
