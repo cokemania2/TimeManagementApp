@@ -42,15 +42,15 @@
                 android:layout_width="200dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/gradientbackground"
+                android:background="@color/k2"
                 android:text="API 칩 인식"
                 android:textColor="#FFFFFF"
-                android:textSize="24dp"
-                />
+                android:textSize="24dp" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="right"
             >
             <CheckBox
@@ -82,7 +82,7 @@
                 android:layout_width="200dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/gradientbackground"
+                android:background="@color/k2"
                 android:text="모션 안정화"
                 android:textColor="#FFFFFF"
                 android:textSize="24dp" />
@@ -90,6 +90,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="right"
             >
             <CheckBox
@@ -118,7 +119,7 @@
                 android:layout_width="200dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/gradientbackground"
+                android:background="@color/k2"
                 android:text="CPU 휴식"
                 android:textColor="#FFFFFF"
                 android:textSize="24dp" />
@@ -126,6 +127,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:gravity="right"
             >
             <CheckBox
@@ -194,12 +196,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="bottom"
+        android:gravity="center"
         >
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="left">
+            android:layout_gravity="bottom">
             <Button
                 android:id="@+id/button4"
                 android:layout_width="120dp"
@@ -207,10 +209,14 @@
                 android:layout_marginBottom="28dp"
                 android:clickable="false"
                 android:onClick="timerFast"
+<<<<<<< HEAD
                 android:text="FAST Go"
+=======
+                android:text="FAST GO"
+>>>>>>> b3f81dc7b109362e676385b766638f6a2e904eb8
                 android:textSize="24dp"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/gradientbackground"/>
+                android:background="@color/colorPrimaryDark"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -224,10 +230,10 @@
                 android:layout_marginBottom="28dp"
                 android:clickable="false"
                 android:onClick="timerPause"
-                android:text="중지"
+                android:text="STOP"
                 android:textSize="24dp"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/gradientbackground"/>
+                android:background="@color/colorPrimaryDark"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -241,10 +247,14 @@
                 android:layout_marginBottom="28dp"
                 android:clickable="false"
                 android:onClick="timerBack"
+<<<<<<< HEAD
                 android:text="5 Sec BACK"
+=======
+                android:text="5SEC BACK"
+>>>>>>> b3f81dc7b109362e676385b766638f6a2e904eb8
                 android:textSize="24dp"
                 android:textColor="#FFFFFF"
-                android:background="@drawable/gradientbackground"/>
+                android:background="@color/colorPrimaryDark"/>
         </LinearLayout>
     </LinearLayout>
 
