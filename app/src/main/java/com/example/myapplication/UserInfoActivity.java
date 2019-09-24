@@ -111,9 +111,17 @@ public class UserInfoActivity extends AppCompatActivity {
 
                 Wallet wallet = AergoCommon.getAergoWallet("testnet.aergo.io:7845");
                 String balance = AergoQuery.getBalance_(wallet, userAccount);
-
-                balance = balance.substring(balance.length()-5, balance.length());
-
+                if(balance.length()>5) {
+                    balance = balance.substring(balance.length() - 5, balance.length());
+                    for(int i=5; i>0; i--){
+                        if((balance.substring(0,1).equals("0") || balance.substring(0,1).equals(",")) && (balance.length()>1)){
+                            balance = balance.substring(1,balance.length());
+                        }
+                        else{
+                            break;
+                        }
+                    }
+                }
                 Log.d("TEST balance", "value is : " + balance);
                 tv_userBalance.setText(balance);
 

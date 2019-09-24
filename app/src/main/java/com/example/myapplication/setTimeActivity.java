@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,11 +18,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import aergo.hacker_edu.AergoCommon;
-import aergo.hacker_edu.AergoTransaction;
 import aergo.hacker_edu.SampleMain;
+import androidx.appcompat.app.AppCompatActivity;
 import hera.api.model.TxHash;
-import hera.wallet.Wallet;
 
 public class setTimeActivity extends AppCompatActivity {
 
@@ -138,10 +134,9 @@ public class setTimeActivity extends AppCompatActivity {
                         Log.d("유저db",tmpValue.getAddress());
                         TxHash txHash = SampleMain.sendTransaction(admin.getAddress(), tmpValue.getPrivateKey(), payLoad);
 
-                        // 이걸 왜 관리자 리스트에 추가하지??
-                        // 트랜잭션이 "jiwoo >> admin" 이면 jiwoo 리스트에 추가되야 하는거 아닌가??
-                        //전송한 해쉬값 관리자 txlist에 추가
+                        //전송한 해쉬값 관리자,지우 txlist에 추가
                         SampleMain.txListPush(database.getReference("user_list/admin/txList"), txHash.toString());
+                        SampleMain.txListPush(database.getReference("user_list/jiwoo/txList"), txHash.toString());
 
                         Log.d("payLoad2",payLoad);
                         //유저 db에 payLoad 저장

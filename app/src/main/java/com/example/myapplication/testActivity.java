@@ -1,16 +1,11 @@
 package com.example.myapplication;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
-
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,14 +15,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import aergo.hacker_edu.AergoCommon;
+import aergo.hacker_edu.AergoTransaction;
 import aergo.hacker_edu.SampleMain;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import hera.api.model.TxHash;
+import hera.wallet.Wallet;
+
+import static com.example.myapplication.restAcitivity.endpoint;
+import static com.example.myapplication.restAcitivity.toAddress;
+import static com.example.myapplication.restAcitivity.encPrivateKey;
+import static com.example.myapplication.restAcitivity.fee;
 
 
 public class testActivity extends AppCompatActivity {
@@ -40,6 +43,36 @@ public class testActivity extends AppCompatActivity {
     private String address;
     long startTime = 0;
     long endTime = 0;
+
+
+    //
+    DatabaseReference jw_dbref = database.getReference("user_list/jiwoo/txList");
+    DatabaseReference ad_dbref = database.getReference("user_list/admin/txList");
+
+    public void txList_update_from_firebase(final DatabaseReference ref, final String txhash) {
+        // 해당 DB참조의 값변화리스너 추가 한번만 됨.
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            int count = 0;
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String tmpHash;
+                    tmpHash = snapshot.getValue(String.class);
+                    count = count+1;
+                    Log.d("FirebaseTestActivity", "ValueEventListener : " + tmpHash);
+                }
+                String count_tostring = Integer.toString(count);
+                ref.child(count_tostring).setValue(txhash);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Read Firebase database", "Failed to read value.", error.toException());
+            }
+        });
+    }
+
 
 //    ProgressDialog dialog;
 //    private RecommendThread recommendThread;
@@ -93,15 +126,25 @@ public class testActivity extends AppCompatActivity {
             }
         });
 
+
         // 추천하기
         CardView invite = findViewById(R.id.invite);
         invite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
                 DatabaseReference dbRef = database.getReference("user_list");
                 loadFromFirebase(dbRef);
                 SampleMain.sendTransaction();
-                loadFromFirebase(dbRef);
+                */
+                Wallet wallet = AergoCommon.getAergoWallet(endpoint);
+
+                TxHash tx = AergoTransaction.sendTransaction(wallet, toAddress, "password", encPrivateKey, "resister", "10", fee);
+                String tx_string = tx.toString();
+
+                txList_update_from_firebase(jw_dbref, tx_string);
+                txList_update_from_firebase(ad_dbref, tx_string);
+
                 ShowPopup();
             }
         });

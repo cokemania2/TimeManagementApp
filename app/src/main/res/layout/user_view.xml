@@ -39,7 +39,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
                         android:letterSpacing="0.03"
-                        android:text="사용자 이름 : "
+                        android:text="ID : "
                         android:textColor="#394556"
                         android:textSize="15sp" />
                     <TextView
@@ -52,6 +52,11 @@
                         android:textColor="#394556"
                         android:textSize="15sp" />
                 </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#AAAAAA"
+                    />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -61,9 +66,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
+                        android:fontFamily="@font/roboto_bold"
                         android:letterSpacing="0.03"
-                        android:text="사용자 지갑 주소"
+                        android:text="지갑 주소"
                         android:textColor="#6c7581"
                         android:textSize="11.7sp" />
                 </LinearLayout>

@@ -1,21 +1,18 @@
 package adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.myapplication.R;
-import com.example.myapplication.UserInfoActivity;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 
+import androidx.recyclerview.widget.RecyclerView;
 import hera.api.model.Transaction;
 
 public class Transaction_List_Adapter extends RecyclerView.Adapter<Transaction_List_Adapter.ViewHolder>{
@@ -63,22 +60,22 @@ public class Transaction_List_Adapter extends RecyclerView.Adapter<Transaction_L
             amount  = itemView.findViewById(R.id.tv_amount);
 
             // 아이템 클릭 이벤트 처리.
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition() ;
-                    if (pos != RecyclerView.NO_POSITION) {
-                        Transaction item = txList.get(pos) ;
-                        Intent gotoUserInfo = new Intent(context, UserInfoActivity.class);
-
-                        gotoUserInfo.putExtra("tx_hash", item.getHash().toString());
-                        gotoUserInfo.putExtra("sender", item.getSender().toString());
-                        gotoUserInfo.putExtra("receiver", item.getRecipient().toString());
-                        gotoUserInfo.putExtra("amount", item.getAmount().toString());
-                        context.startActivity(gotoUserInfo);
-                    }
-                }
-            });
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    int pos = getAdapterPosition() ;
+//                    if (pos != RecyclerView.NO_POSITION) {
+//                        Transaction item = txList.get(pos) ;
+//                        Intent gotoUserInfo = new Intent(context, UserInfoActivity.class);
+//
+//                        gotoUserInfo.putExtra("tx_hash", item.getHash().toString());
+//                        gotoUserInfo.putExtra("sender", item.getSender().toString());
+//                        gotoUserInfo.putExtra("receiver", item.getRecipient().toString());
+//                        gotoUserInfo.putExtra("amount", item.getAmount().toString());
+//                        context.startActivity(gotoUserInfo);
+//                    }
+//                }
+//            });
         }
     }
 }

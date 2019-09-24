@@ -40,7 +40,7 @@
                     android:text="Transaction Hash"
                     android:textColor="#394556"
                     android:textSize="15sp"
-                    android:layout_marginBottom="14dp"
+                    android:layout_marginBottom="5dp"
                     android:autoLink="web"
                     />
 

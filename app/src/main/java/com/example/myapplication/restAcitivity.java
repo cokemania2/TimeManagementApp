@@ -246,9 +246,9 @@ public class restAcitivity extends AppCompatActivity {
     //DB
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference jw_dbref = database.getReference("user_list/jiwoo/txList");
+    DatabaseReference ad_dbref = database.getReference("user_list/admin/txList");
 
-
-    public void txList_update_from_firebase(DatabaseReference ref, final String txhash) {
+    public void txList_update_from_firebase(final DatabaseReference ref, final String txhash) {
         // 해당 DB참조의 값변화리스너 추가 한번만 됨.
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             int count = 0;
@@ -261,7 +261,7 @@ public class restAcitivity extends AppCompatActivity {
                     Log.d("FirebaseTestActivity", "ValueEventListener : " + tmpHash);
                 }
                 String count_tostring = Integer.toString(count);
-                jw_dbref.child(count_tostring).setValue(txhash);
+                ref.child(count_tostring).setValue(txhash);
             }
 
             @Override
@@ -309,6 +309,7 @@ public class restAcitivity extends AppCompatActivity {
             TxHash tx = AergoTransaction.sendTransaction(wallet, toAddress, password, encPrivateKey, payload, amount, fee);
             String tx_string = tx.toString();
             txList_update_from_firebase(jw_dbref, tx_string);
+            txList_update_from_firebase(ad_dbref, tx_string);
             activity_popup e = activity_popup.getInstance();
             e.show(getSupportFragmentManager(),activity_popup.TAG_EVENT_DIALOG);
         }
