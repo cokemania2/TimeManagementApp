@@ -50,7 +50,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:fontFamily="@font/roboto_regular"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:textSize="11.7sp"
                             android:letterSpacing="0.03"
@@ -60,7 +60,7 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:fontFamily="@font/roboto_regular"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:textSize="11.7sp"
                             android:letterSpacing="0.03"
@@ -70,12 +70,12 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:fontFamily="@font/roboto_regular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:textSize="11.7sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:textSize="11sp"
                             android:letterSpacing="0.03"
                             android:textColor="#6c7581"
-                            android:text="거래 금액"/>
+                            android:text="거래 금액(gear)"/>
                     </LinearLayout>
                     <!-- 앞에 속성을 보여주는 text 부분 END-->
 
@@ -83,15 +83,14 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginRight="30dp"
+                        android:layout_marginRight="15dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tv_sender"
                             android:layout_weight="1"
                             android:fontFamily="@font/roboto_regular"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:textSize="11.7sp"
                             android:letterSpacing="0.03"
@@ -102,7 +101,7 @@
                             android:id="@+id/tv_receiver"
                             android:layout_weight="1"
                             android:fontFamily="@font/roboto_regular"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:textSize="11.7sp"
                             android:letterSpacing="0.03"
@@ -113,8 +112,8 @@
                             android:id="@+id/tv_amount"
                             android:layout_weight="1"
                             android:fontFamily="@font/roboto_regular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
                             android:textSize="11.7sp"
                             android:letterSpacing="0.03"
                             android:textColor="#6c7581"

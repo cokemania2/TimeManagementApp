@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import android.view.View;
@@ -22,22 +24,16 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-import aergo.hacker_edu.AergoCommon;
-import aergo.hacker_edu.AergoQuery;
 import aergo.hacker_edu.SampleMain;
-import hera.wallet.Wallet;
 
 
 public class testActivity extends AppCompatActivity {
 
 
     private DatabaseReference mDatabase;
-    ProgressDialog dialog;
     Dialog myDialog;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private ArrayList<User> userList;
@@ -46,10 +42,14 @@ public class testActivity extends AppCompatActivity {
     long startTime = 0;
     long endTime = 0;
 
+//    ProgressDialog dialog;
+//    private RecommendThread recommendThread;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
         myDialog = new Dialog(this);
         View vieww = new View(this   );
 //        Intent intent = getIntent(); /*데이터 수신*/
@@ -60,7 +60,6 @@ public class testActivity extends AppCompatActivity {
 
         CardView gorest = (CardView)findViewById(R.id.gorest);
         CardView Info = (CardView)findViewById(R.id.bankcardId);
-
 
         // 타이틀
         ActionBar ab = getSupportActionBar() ;
@@ -87,13 +86,8 @@ public class testActivity extends AppCompatActivity {
             }
         });
 
-
-        long time = 21120000 - 18900000;
-
-
         final DatabaseReference childRef = database.getReference("user_list"); //송신할 사용자 계정
         loadFromFirebase(childRef, startTime, endTime);
-
 
         CardView linear_restTime = findViewById(R.id.linear_restTime);
         linear_restTime.setOnClickListener(new View.OnClickListener() {
@@ -104,19 +98,33 @@ public class testActivity extends AppCompatActivity {
             }
         });
 
+        // 추천하기
         CardView invite = findViewById(R.id.invite);
         invite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ProgressBar
                 DatabaseReference dbRef = database.getReference("user_list");
                 loadFromFirebase(dbRef);
                 SampleMain.sendTransaction();
                 loadFromFirebase(dbRef);
-                ShowPopup(view);
+                ShowPopup();
             }
         });
 
+//        // 추천하기. 쓰레드 이용해서 progress 다이얼로그 실행.
+//        CardView invite = findViewById(R.id.invite);
+//        invite.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                // 로딩창 시작
+//                dialog = new ProgressDialog(testActivity.this);
+//                dialog.show(testActivity.this, "", "Loading. Please wait...", true);
+//
+//                // 추천하기를 실행할 스레드 시작
+//                recommendThread = new RecommendThread();
+//                recommendThread.start();
+//            }
+//        });
 
 
     }
@@ -137,9 +145,11 @@ public class testActivity extends AppCompatActivity {
                     Log.d("userList : ",userList.toString());
                     ul[0] = ul[0].concat(tmpUser.toString() + "\n");
                 }
+
                 key = userList.get(0).getPrivateKey(); // 관리자 키
                 address = userList.get(1).getAddress(); // user주소
-                SampleMain.sendTransaction(address,key,"0");
+                SampleMain.sendTransaction(address, key, "0");
+
             }
 
             @Override
@@ -151,18 +161,20 @@ public class testActivity extends AppCompatActivity {
     }
 
     void loadFromFirebase(final DatabaseReference ref, final long startTime, final long endTime) {
-        Log.d("함수","들어옴");
+        Log.d("함수", "들어옴");
         ref.addValueEventListener(new ValueEventListener() {
-            long time = 0;;
+            long time = 0;
+            ;
+
             public void onDataChange(DataSnapshot dataSnapshot) throws NullPointerException {
                 Log.d("함수", "들어옴2");
                 String payLoad = null;
                 String[] tmp = null;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if (snapshot.getKey().equals("jiwoo")) {
-                        Log.d("해쉬",snapshot.getValue(User.class).getAddress());
+                        Log.d("해쉬", snapshot.getValue(User.class).getAddress());
                         payLoad = snapshot.getValue(User.class).getPayLoad();
-                        if (payLoad==null||payLoad.equals("")) {
+                        if (payLoad == null || payLoad.equals("")) {
                             ((TextView) findViewById(R.id.timerr)).setText("오늘의 휴식시간을 설정하세요");
                             return;
                         }
@@ -170,27 +182,23 @@ public class testActivity extends AppCompatActivity {
 
                         tmp = payLoad.split("_");
                         time = Long.parseLong(tmp[1]) - Long.parseLong(tmp[0]);
-                        ((TextView)findViewById(R.id.starttime)).setText("시작시간 : " + Long.parseLong(tmp[0])/1000 / 3600 + " 시" + (Long.parseLong(tmp[0])/1000 % 3600 / 60) + " 분" + (Long.parseLong(tmp[0])/1000 % 3600 % 60 + " 초"));
+                        ((TextView) findViewById(R.id.starttime)).setText("시작시간 : " + Long.parseLong(tmp[0]) / 1000 / 3600 + " 시" + (Long.parseLong(tmp[0]) / 1000 % 3600 / 60) + " 분" + (Long.parseLong(tmp[0]) / 1000 % 3600 % 60 + " 초"));
 
-                        ((TextView)findViewById(R.id.timerr)).setText(time/1000 / 3600 + " 시" + (time/1000 % 3600 / 60) + " 분" + time/1000 % 3600 % 60 + " 초");
+                        ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + " 시" + (time / 1000 % 3600 / 60) + " 분" + time / 1000 % 3600 % 60 + " 초");
                         break;
                     }
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Log.w("Read Firebase database", "Failed to read value.", error.toException());
             }
         });
-
-
     }
 
-
-
-
-    public void ShowPopup(View v) {
+    public void ShowPopup() {
 
         TextView txtclose;
         myDialog.setContentView(R.layout.custompopup);
@@ -208,4 +216,38 @@ public class testActivity extends AppCompatActivity {
         myDialog.show();
     }
 
+//    public class RecommendThread extends Thread {
+//        @Override
+//        public void run() {
+//            DatabaseReference dbRef = database.getReference("user_list");
+//            loadFromFirebase(dbRef);
+//
+//            SampleMain.sendTransaction();
+//
+//            loadFromFirebase(dbRef);
+//
+//            handler.sendMessage(handler.obtainMessage());
+//        }
+//    }
+//
+//    Handler handler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            // 메세지 받으면 progress 다이얼로그 종료
+//            dialog.dismiss();
+//
+//            boolean retry = true;
+//            while (retry) {
+//                try {
+//                    recommendThread.join();
+//                    retry = false;
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            ShowPopup();
+//        }
+//    };
 }
+
+
