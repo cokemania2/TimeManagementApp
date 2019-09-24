@@ -51,6 +51,12 @@ public class testActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         myDialog = new Dialog(this);
+        View vieww = new View(this   );
+//        Intent intent = getIntent(); /*데이터 수신*/
+//        String name = intent.getExtras().getString("classname"); /*String형*/
+//        if (name.equals("setTime")) {
+//            ShowPopup(vieww);
+//        }
 
         CardView gorest = (CardView)findViewById(R.id.gorest);
         CardView Info = (CardView)findViewById(R.id.bankcardId);
@@ -82,14 +88,6 @@ public class testActivity extends AppCompatActivity {
 
         final DatabaseReference childRef = database.getReference("user_list"); //송신할 사용자 계정
         loadFromFirebase(childRef, startTime, endTime);
-
-//        Animation anim = new AlphaAnimation(1,0);
-//        anim.setDuration(50); //You can manage the time of the blink with this parameter
-//        anim.setStartOffset(20);
-//        anim.setRepeatMode(Animation.REVERSE);
-//        anim.setRepeatCount(Animation.INFINITE);
-//        timerr.startAnimation(anim);
-
 
         CardView linear_restTime = findViewById(R.id.linear_restTime);
         linear_restTime.setOnClickListener(new View.OnClickListener() {
@@ -130,24 +128,7 @@ public class testActivity extends AppCompatActivity {
 
 
     }
-
-//    public void ShowPopup(View v) {
-//        TextView txtclose;
-//        myDialog.setContentView(R.layout.custompopup);
-//        txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
-//        txtclose.setText("X");
-//        txtclose.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                myDialog.dismiss();
-//            }
-//        });
-//        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        myDialog.show();
-//    }
-
     void loadFromFirebase(final DatabaseReference ref) {
-
         // 해당 DB참조의 값변화리스너 추가
         final String[] ul = new String[1];
         ul[0] = "";
@@ -157,18 +138,18 @@ public class testActivity extends AppCompatActivity {
                 userList = new ArrayList<>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User tmpUser;
-                    tmpUser = snapshot.getValue(User.class);
+                    tmpUser= snapshot.getValue(User.class);
 
                     Log.d("FirebaseTestActivity", "ValueEventListener : " + tmpUser);
                     userList.add(tmpUser);
-                    Log.d("userList : ", userList.toString());
+                    Log.d("userList : ",userList.toString());
                     ul[0] = ul[0].concat(tmpUser.toString() + "\n");
                 }
 
                 key = userList.get(0).getPrivateKey(); // 관리자 키
                 address = userList.get(1).getAddress(); // user주소
-
                 SampleMain.sendTransaction(address, key, "0");
+
             }
 
             @Override
@@ -180,40 +161,38 @@ public class testActivity extends AppCompatActivity {
     }
 
     void loadFromFirebase(final DatabaseReference ref, final long startTime, final long endTime) {
-
-        try {
-            ref.addValueEventListener(new ValueEventListener() {
-                long st = 0;
-                long et = 0;
-                long time = 0;
-
-                public void onDataChange(DataSnapshot dataSnapshot) throws NullPointerException {
-                    String payLoad;
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        if (snapshot.getKey().equals("jiwoo")) {
-                            User jiwoo = snapshot.getValue(User.class);
-                            Log.d("TEST jiwoo", "value is " + jiwoo.toString());
-                            payLoad = jiwoo.getPayLoad();
-
-                            if (payLoad == null) {
-                                throw new NullPointerException();
-                            }
-
-                            st = Long.parseLong((payLoad.split("_"))[0]);
-                            et = Long.parseLong((payLoad.split("_"))[1]);
-                            time = et - st;
-
-                            break;
+        Log.d("함수","들어옴");
+        ref.addValueEventListener(new ValueEventListener() {
+            long time = 0;;
+            public void onDataChange(DataSnapshot dataSnapshot) throws NullPointerException {
+                Log.d("함수", "들어옴2");
+                String payLoad = null;
+                String[] tmp = null;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if (snapshot.getKey().equals("jiwoo")) {
+                        Log.d("해쉬",snapshot.getValue(User.class).getAddress());
+                        payLoad = snapshot.getValue(User.class).getPayLoad();
+                        if (payLoad==null||payLoad.equals("")) {
+                            ((TextView) findViewById(R.id.timerr)).setText("오늘의 휴식시간을 설정하세요");
+                            return;
                         }
+
+
+                        tmp = payLoad.split("_");
+                        time = Long.parseLong(tmp[1]) - Long.parseLong(tmp[0]);
+                        ((TextView)findViewById(R.id.starttime)).setText("시작시간 : " + Long.parseLong(tmp[0])/1000 / 3600 + " 시" + (Long.parseLong(tmp[0])/1000 % 3600 / 60) + " 분" + (Long.parseLong(tmp[0])/1000 % 3600 % 60 + " 초"));
+
+                        ((TextView)findViewById(R.id.timerr)).setText(time/1000 / 3600 + " 시" + (time/1000 % 3600 / 60) + " 분" + time/1000 % 3600 % 60 + " 초");
+                        break;
                     }
-
-                    ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + "시간 " + (time / 1000 % 3600 / 60) + "분");
-
-                    SimpleDateFormat sdfDate = new SimpleDateFormat("HH:mm");
-                    ((TextView) findViewById(R.id.tv_between)).setText("(" + sdfDate.format(st) + " ~ " + sdfDate.format(et) + ")");
-
                 }
-
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Read Firebase database", "Failed to read value.", error.toException());
+            }
+        });
                 @Override
                 public void onCancelled(DatabaseError error) {
                     // Failed to read value

@@ -15,6 +15,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+import java.util.StringTokenizer;
+
 import aergo.hacker_edu.AergoCommon;
 import aergo.hacker_edu.AergoTransaction;
 import androidx.appcompat.app.ActionBar;
@@ -46,7 +49,7 @@ public class restAcitivity extends AppCompatActivity {
     //중지 가능
     boolean pause_or_go;
 
-    int memed=0;
+    long[] seTime = new long[10];
 
     //Transactions Test
     protected static String endpoint = "testnet.aergo.io:7845";
@@ -93,14 +96,47 @@ public class restAcitivity extends AppCompatActivity {
 
 
         //DB에서 휴식시간 가져와서 넣기
-        goal = 18000*1000;
-        goal_first=18000*1000;
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference jw_p_dbref = database.getReference("user_list/jiwoo");
+
+
+        jw_p_dbref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if(snapshot.getKey().equals("payLoad")) {
+                            String payTime;
+                            payTime = dataSnapshot.child("payLoad").getValue(String.class);
+                            Log.d("eeaa1", payTime);
+
+                            StringTokenizer stringT = new StringTokenizer(payTime, "_");
+                            for (int i = 0; stringT.hasMoreTokens(); i++) {
+                                seTime[i] = Long.parseLong(stringT.nextToken());
+                                Log.d("eeaa2", String.valueOf(seTime[i]));
+                            }
+                            goal = seTime[1]-seTime[0];
+                            goal_first = goal;
+                            ((TextView)findViewById(R.id.targetTime)).setText(goal/1000 / 3600 + " 시" + (goal/1000 % 3600 / 60) + " 분" + goal/1000 % 3600 % 60 + " 초");
+                            ((TextView)findViewById(R.id.restTime)).setText(goal/1000 / 3600 + " 시" + (goal/1000 % 3600 / 60) + " 분" + goal/1000 % 3600 % 60 + " 초");
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w("Read Firebase database", "Failed to read value.", error.toException());
+                }
+        });
+
+/*
+        Log.d("eeaa3", String.valueOf(seTime[0]));
+        Log.d("eeaa3", String.valueOf(seTime[1]));
+        Log.d("eeaa3", String.valueOf(goal));
+        goal = seTime[1]-seTime[0];
+        goal_first = goal;
         ((TextView)findViewById(R.id.targetTime)).setText(goal/1000 / 3600 + " 시" + (goal/1000 % 3600 / 60) + " 분" + goal/1000 % 3600 % 60 + " 초");
         ((TextView)findViewById(R.id.restTime)).setText(goal/1000 / 3600 + " 시" + (goal/1000 % 3600 / 60) + " 분" + goal/1000 % 3600 % 60 + " 초");
-
-
-
-
+*/
 
 
         //시계
@@ -262,11 +298,13 @@ public class restAcitivity extends AppCompatActivity {
             long t=0;
             timer.setText("0 시 0 분 0 초");
             Wallet wallet = AergoCommon.getAergoWallet(endpoint);
-                //전송 토큰
-            String amount = "1";
+            //전송 토큰
+            String amount = "100";
 
-                //paylaod data
-            String payload = "point";
+            Calendar calendar = Calendar.getInstance();
+            //paylaod data
+
+            String payload =calendar.getTime()+"_"+amount+"_end";
 
             TxHash tx = AergoTransaction.sendTransaction(wallet, toAddress, password, encPrivateKey, payload, amount, fee);
             String tx_string = tx.toString();

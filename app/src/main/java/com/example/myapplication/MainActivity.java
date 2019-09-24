@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
         childB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goTochild = new Intent(getApplicationContext(), testActivity.class);
+                Intent goTochild = new Intent(getApplicationContext(),testActivity.class);
+                goTochild.putExtra("classname","setTime2-");
                 startActivity(goTochild);
             }
         });
