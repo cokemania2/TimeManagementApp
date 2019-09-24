@@ -90,7 +90,7 @@
             android:clickable="true"
             android:id="@+id/bankcardId"
             android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_height="190dp"
             android:layout_margin="10dp">
 
             <LinearLayout
@@ -132,8 +132,9 @@
         <androidx.cardview.widget.CardView
             android:foreground="?android:attr/selectableItemBackground"
             android:clickable="true"
+
             android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_height="190dp"
             android:layout_margin="10dp"
             android:id="@+id/linear_restTime">
             <LinearLayout

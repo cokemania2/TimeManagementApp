@@ -161,18 +161,20 @@ public class testActivity extends AppCompatActivity {
     }
 
     void loadFromFirebase(final DatabaseReference ref, final long startTime, final long endTime) {
-        Log.d("함수","들어옴");
+        Log.d("함수", "들어옴");
         ref.addValueEventListener(new ValueEventListener() {
-            long time = 0;;
+            long time = 0;
+            ;
+
             public void onDataChange(DataSnapshot dataSnapshot) throws NullPointerException {
                 Log.d("함수", "들어옴2");
                 String payLoad = null;
                 String[] tmp = null;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if (snapshot.getKey().equals("jiwoo")) {
-                        Log.d("해쉬",snapshot.getValue(User.class).getAddress());
+                        Log.d("해쉬", snapshot.getValue(User.class).getAddress());
                         payLoad = snapshot.getValue(User.class).getPayLoad();
-                        if (payLoad==null||payLoad.equals("")) {
+                        if (payLoad == null || payLoad.equals("")) {
                             ((TextView) findViewById(R.id.timerr)).setText("오늘의 휴식시간을 설정하세요");
                             return;
                         }
@@ -180,28 +182,20 @@ public class testActivity extends AppCompatActivity {
 
                         tmp = payLoad.split("_");
                         time = Long.parseLong(tmp[1]) - Long.parseLong(tmp[0]);
-                        ((TextView)findViewById(R.id.starttime)).setText("시작시간 : " + Long.parseLong(tmp[0])/1000 / 3600 + " 시" + (Long.parseLong(tmp[0])/1000 % 3600 / 60) + " 분" + (Long.parseLong(tmp[0])/1000 % 3600 % 60 + " 초"));
+                        ((TextView) findViewById(R.id.starttime)).setText("시작시간 : " + Long.parseLong(tmp[0]) / 1000 / 3600 + " 시" + (Long.parseLong(tmp[0]) / 1000 % 3600 / 60) + " 분" + (Long.parseLong(tmp[0]) / 1000 % 3600 % 60 + " 초"));
 
-                        ((TextView)findViewById(R.id.timerr)).setText(time/1000 / 3600 + " 시" + (time/1000 % 3600 / 60) + " 분" + time/1000 % 3600 % 60 + " 초");
+                        ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + " 시" + (time / 1000 % 3600 / 60) + " 분" + time / 1000 % 3600 % 60 + " 초");
                         break;
                     }
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Log.w("Read Firebase database", "Failed to read value.", error.toException());
             }
         });
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    // Failed to read value
-                    Log.w("Read Firebase database", "Failed to read value.", error.toException());
-                }
-            });
-        } catch (NullPointerException e) {
-            ((TextView) findViewById(R.id.timerr)).setText("오늘의 휴식시간이 설정하세요.");
-        }
     }
 
     public void ShowPopup() {
