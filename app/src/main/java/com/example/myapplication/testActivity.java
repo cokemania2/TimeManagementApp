@@ -186,7 +186,7 @@ public class testActivity extends AppCompatActivity {
                     }
                 }
 
-                ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + "시간 " + (time / 1000 % 3600 / 60) + "분");
+                ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + "시간 " + String.format("%02d", (time/1000%3600/60)) + "분");
 
                 SimpleDateFormat sdfDate = new SimpleDateFormat("HH:mm");
                 ((TextView) findViewById(R.id.tv_between)).setText("(" + sdfDate.format(st) + " ~ " + sdfDate.format(et) + ")");
@@ -210,8 +210,6 @@ public class testActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 myDialog.dismiss();
-                Intent intent = new Intent(getApplicationContext(),testActivity.class);
-                startActivity(intent);
             }
         });
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
