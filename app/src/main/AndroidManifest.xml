@@ -4,9 +4,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher_foreground"
-        android:label="시간관리앱"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/kcc_foreground"
+        android:label="경기 청년 체인지"
+        android:roundIcon="@mipmap/kcc_foreground"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity_popup"></activity>

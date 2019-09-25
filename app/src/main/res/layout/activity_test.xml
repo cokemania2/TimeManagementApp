@@ -239,7 +239,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="추천하기"
+                    android:text="초대하기"
                     android:textStyle="bold" />
 
                 <View
@@ -253,7 +253,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Recommendation"
+                    android:text="Invite friends"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>

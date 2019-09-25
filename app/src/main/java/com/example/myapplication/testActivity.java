@@ -87,7 +87,7 @@ public class testActivity extends AppCompatActivity {
         myDialog = new Dialog(this);
         Intent intent = getIntent(); /*데이터 수신*/
         String name = intent.getExtras().getString("classname"); /*String형*/
-        if (name.equals("setTime") || name.equals("okTime") ) {
+        if (name.equals("setTime") || name.equals("okTime") || name.equals("okRegister")) {
             ShowPopup();
         }
 
@@ -112,7 +112,8 @@ public class testActivity extends AppCompatActivity {
         Info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ShowPopup();
+                Intent goRegister = new Intent(getApplicationContext(),register.class);
+                startActivity(goRegister);
             }
         });
 
