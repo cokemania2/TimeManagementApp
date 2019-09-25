@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"/>
         <RadioButton
             android:id="@+id/child_btn"
-            android:text="자식"
+            android:text="자녀"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         </RadioGroup>
