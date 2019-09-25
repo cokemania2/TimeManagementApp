@@ -48,6 +48,8 @@ public class restAcitivity extends AppCompatActivity {
     long goal_first;
     //중지 가능
     boolean pause_or_go;
+    //누적 시간
+    long total_time;
 
     long[] seTime = new long[10];
 
@@ -107,6 +109,8 @@ public class restAcitivity extends AppCompatActivity {
                         if(snapshot.getKey().equals("payLoad")) {
                             String payTime;
                             payTime = dataSnapshot.child("payLoad").getValue(String.class);
+                            String total_Time = dataSnapshot.child("totalTime").getValue(String.class);
+
                             Log.d("eeaa1", payTime);
 
                             StringTokenizer stringT = new StringTokenizer(payTime, "_");
@@ -114,6 +118,7 @@ public class restAcitivity extends AppCompatActivity {
                                 seTime[i] = Long.parseLong(stringT.nextToken());
                                 Log.d("eeaa2", String.valueOf(seTime[i]));
                             }
+                            total_time = Long.parseLong(total_Time);
                             goal = seTime[1]-seTime[0];
                             goal_first = goal;
                             ((TextView)findViewById(R.id.targetTime)).setText(goal/1000 / 3600 + " 시" + (goal/1000 % 3600 / 60) + " 분" + goal/1000 % 3600 % 60 + " 초");
@@ -247,6 +252,7 @@ public class restAcitivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference jw_dbref = database.getReference("user_list/jiwoo/txList");
     DatabaseReference ad_dbref = database.getReference("user_list/admin/txList");
+    DatabaseReference jw_parent_dbref = database.getReference("user_list/jiwoo");
 
     public void txList_update_from_firebase(final DatabaseReference ref, final String txhash) {
         // 해당 DB참조의 값변화리스너 추가 한번만 됨.
@@ -310,6 +316,8 @@ public class restAcitivity extends AppCompatActivity {
             String tx_string = tx.toString();
             txList_update_from_firebase(jw_dbref, tx_string);
             txList_update_from_firebase(ad_dbref, tx_string);
+            Log.d("totalTest", String.valueOf(total_time)+","+String.valueOf(seTime[0])+","+String.valueOf(seTime[1]));
+            jw_parent_dbref.child("totalTime").setValue(Long.toString(total_time+seTime[1]-seTime[0]));
             activity_popup e = activity_popup.getInstance();
             e.show(getSupportFragmentManager(),activity_popup.TAG_EVENT_DIALOG);
         }
