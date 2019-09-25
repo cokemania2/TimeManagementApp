@@ -118,7 +118,7 @@ public class testActivity extends AppCompatActivity {
         });
 
         final DatabaseReference childRef = database.getReference("user_list"); //송신할 사용자 계정
-        loadFromFirebase(childRef, startTime, endTime);
+        loadFromFirebase(childRef);
 
         CardView linear_restTime = findViewById(R.id.linear_restTime);
         linear_restTime.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +169,7 @@ public class testActivity extends AppCompatActivity {
 
 
     }
+    /*
     void loadFromFirebase(final DatabaseReference ref) {
         // 해당 DB참조의 값변화리스너 추가
         final String[] ul = new String[1];
@@ -199,47 +200,36 @@ public class testActivity extends AppCompatActivity {
                 Log.w("Read Firebase database", "Failed to read value.", error.toException());
             }
         });
-    }
+    }*/
 
-    void loadFromFirebase(final DatabaseReference ref, final long startTime, final long endTime) {
+    void loadFromFirebase(final DatabaseReference ref) {
         Log.d("함수", "들어옴");
         ref.addValueEventListener(new ValueEventListener() {
             long st = 0;
             long et = 0;
             long time = 0;
+            long time1 = 0;
             String point;
-            /*
+
             public void onDataChange(DataSnapshot dataSnapshot) throws NullPointerException {
+                String totaltime;
                 String payLoad;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if (snapshot.getKey().equals("jiwoo")) {
                         User jiwoo = snapshot.getValue(User.class);
                         Log.d("TEST jiwoo", "value is " + jiwoo.toString());
+                        totaltime = jiwoo.getTotalTime();
                         payLoad = jiwoo.getPayLoad();
-
-                        if (payLoad == null) {
-                            throw new NullPointerException();
-                        }
+                        String userAccount = jiwoo.getAddress();
 
                         st = Long.parseLong((payLoad.split("_"))[0]);
                         et = Long.parseLong((payLoad.split("_"))[1]);
-                        time = et - st;
+                        time1 = et - st;
 
-                        break;
-                    }
-                }
-            */
-            public void onDataChange(DataSnapshot dataSnapshot) throws NullPointerException {
-                String totaltime;
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    if (snapshot.getKey().equals("jiwoo")) {
-                        User jiwoo = snapshot.getValue(User.class);
-                        Log.d("TEST jiwoo", "value is " + jiwoo.toString());
-                        totaltime = jiwoo.getTotalTime();
 
-                        String userAccount = jiwoo.getAddress();
                         Wallet wallet = AergoCommon.getAergoWallet("testnet.aergo.io:7845");
                         String balance = AergoQuery.getBalance_(wallet, userAccount);
+
                         if(balance.length()>5) {
                             balance = balance.substring(balance.length() - 5, balance.length());
                             for (int i = 5; i > 0; i--) {
@@ -257,8 +247,9 @@ public class testActivity extends AppCompatActivity {
                     }
                 }
                 ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + "시간 " + String.format("%02d", (time/1000%3600/60)) + "분");
+                ((TextView) findViewById(R.id.timer)).setText(time1 / 1000 / 3600 + "시간 " + String.format("%02d", (time1/1000%3600/60)) + "분");
                 SimpleDateFormat sdfDate = new SimpleDateFormat("HH:mm");
-                //((TextView) findViewById(R.id.tv_between)).setText("(" + sdfDate.format(st) + " ~ " + sdfDate.format(et) + ")");
+                ((TextView) findViewById(R.id.tv_between)).setText("(" + sdfDate.format(st) + " ~ " + sdfDate.format(et) + ")");
                 ((TextView) findViewById(R.id.tv_point)).setText(point+ " Point");
             }
             @Override

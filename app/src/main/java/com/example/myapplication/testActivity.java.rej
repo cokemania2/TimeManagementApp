@@ -1,0 +1,12 @@
+diff a/app/src/main/java/com/example/myapplication/testActivity.java b/app/src/main/java/com/example/myapplication/testActivity.java	(rejected hunks)
+@@ -186,6 +186,10 @@
+ 
+ 
+     }
++
++
++
++
+     public void ShowPopup(View v) {
+ 
+         TextView txtclose;

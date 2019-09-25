@@ -30,43 +30,90 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/buttonstyle"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="horizontal">
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:orientation="horizontal">
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:gravity="center">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:layout_marginRight="50dp"
-                        android:text="누적 휴식시간"
+                        android:text="오늘 스마트폰 휴식시간"
                         android:textColor="#fff"
                         android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/timer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="00"
+                        android:textColor="#fff"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        android:gravity="center"/>
 
+                    <TextView
+                        android:id="@+id/tv_between"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="000"
+                        android:textColor="#fff"
+                        android:textStyle="bold" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:text="누적 시간"
+                            android:textSize="10dp"
+                            android:gravity="center"
+                            android:textColor="#fcfcfc"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"></TextView>
+                        <TextView
+                            android:id="@+id/tv_point"
+                            android:text="000"
+                            android:gravity="center"
+                            android:textColor="#fcfcfc"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"></TextView>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:padding="10dp"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:text="누적 시간"
+                            android:textSize="10dp"
+                            android:gravity="center"
+                            android:textColor="#fcfcfc"
+                            android:layout_width="match_parent"
+                            android:layout_height="15dp"></TextView>
+                        <TextView
+                            android:id="@+id/timerr"
+                            android:text="000"
+                            android:gravity="center"
+                            android:textColor="#fcfcfc"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"></TextView>
+                    </LinearLayout>
                 </LinearLayout>
 
 
-                <TextView
-                    android:id="@+id/timerr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text=""
-                    android:textColor="#fff"
-                    android:textSize="40dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_point"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="0 Point"
-                    android:textColor="#fff"
-                    android:textStyle="bold" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -76,6 +123,7 @@
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.cardview.widget.CardView
@@ -239,7 +287,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="초대하기"
+                    android:text="추천하기"
                     android:textStyle="bold" />
 
                 <View
@@ -253,7 +301,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Invite friends"
+                    android:text="Recommendation"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>
