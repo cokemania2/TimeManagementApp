@@ -32,15 +32,22 @@
                 android:background="@drawable/buttonstyle"
                 android:gravity="center"
                 android:orientation="vertical">
-
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="오늘 스마트폰 휴식시간"
-                    android:textColor="#fff"
-                    android:textStyle="bold" />
+                    android:gravity="left"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="50dp"
+                        android:text="누적 휴식시간"
+                        android:textColor="#fff"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/timerr"
@@ -53,11 +60,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_between"
+                    android:id="@+id/tv_point"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="(00:00 ~ 24:00)"
+                    android:text="0 Point"
                     android:textColor="#fff"
                     android:textStyle="bold" />
 
@@ -232,7 +239,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="추천하기"
+                    android:text="초대하기"
                     android:textStyle="bold" />
 
                 <View
@@ -246,7 +253,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Recommendation"
+                    android:text="Invite friends"
                     android:textColor="@android:color/darker_gray" />
 
             </LinearLayout>

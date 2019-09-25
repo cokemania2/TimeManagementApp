@@ -22,9 +22,9 @@
             android:gravity="center"
             android:background="@drawable/cerclebackgroundpurple"/>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/money"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
+            android:src="@drawable/points"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"/>
         <TextView

@@ -27,7 +27,6 @@ public class register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_register);
 
-
         // 타이틀
         ActionBar ab = getSupportActionBar() ;
         ab.setTitle("test") ;
@@ -35,31 +34,37 @@ public class register extends AppCompatActivity {
         ab.setDisplayUseLogoEnabled(true) ;
         ab.setDisplayShowHomeEnabled(true) ;
 
-        //입력 받은 값
-        nameE = (EditText) findViewById(R.id.nameEdit);
-        keyE = (EditText) findViewById(R.id.keyEdit);
-        recommendedkeyE = (EditText) findViewById(R.id.recommendedkeyEdit);
         super.onCreate(savedInstanceState);
-
-        //가입 버튼
         sendbt = (Button) findViewById(R.id.register_sendbt);
-        sendbt.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v) {
-                msg = keyE.getText().toString();
-                databaseReference.child("child").child("testChild3").child("key").push().setValue(msg);
-                msg = nameE.getText().toString();
-                databaseReference.child("child").child("testChild3").child("name").push().setValue(msg);
-                databaseReference.child("child").child("testChild3").child("point").push().setValue("100");
-                msg = recommendedkeyE.getText().toString();
-                databaseReference.child("child").child("testChild3").child("recommededKey").push().setValue(msg);
-            }
-        });
+
+//        //입력 받은 값
+//        nameE = (EditText) findViewById(R.id.nameEdit);
+//        keyE = (EditText) findViewById(R.id.keyEdit);
+//        recommendedkeyE = (EditText) findViewById(R.id.recommendedkeyEdit);
+//
+//
+//        //가입 버튼
+
+//        sendbt.setOnClickListener(new Button.OnClickListener() {
+//            public void onClick(View v) {
+//                msg = keyE.getText().toString();
+//                databaseReference.child("child").child("testChild3").child("key").push().setValue(msg);
+//                msg = nameE.getText().toString();
+//                databaseReference.child("child").child("testChild3").child("name").push().setValue(msg);
+//                databaseReference.child("child").child("testChild3").child("point").push().setValue("100");
+//                msg = recommendedkeyE.getText().toString();
+//                databaseReference.child("child").child("testChild3").child("recommededKey").push().setValue(msg);
+//            }
+//        });
+
         sendbt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent goToMain = new Intent(getApplicationContext(),MainActivity.class);
+                Intent goToMain = new Intent(getApplicationContext(),testActivity.class);
+                goToMain.putExtra("classname","okRegister");
                 startActivity(goToMain);
             }
         });
+
     }
 }

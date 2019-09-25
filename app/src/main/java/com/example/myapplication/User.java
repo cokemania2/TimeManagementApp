@@ -9,6 +9,7 @@ public class User {
     private String name;
     private String privateKey;
     private String payLoad;
+    private String totalTime;
     private ArrayList<String> txList;
 
 
@@ -36,19 +37,22 @@ public class User {
     public String getPayLoad() { return payLoad; }
     public void setPayLoad(String payLoad) { this.payLoad = payLoad; }
 
+    public String getTotalTime() { return totalTime; }
+    public void setTotalTime(String totaltime) { this.totalTime = totaltime; }
+
     public User() { }
 
-    public User(String address, String name, String privateKey, String payload) {
+    public User(String address, String name, String privateKey, String payload, String total_time) {
         this.address = address;
         this.name = name;
         this.privateKey = privateKey;
         this.payLoad = payload;
+        this.totalTime = total_time;
     }
-
 
     @Override
     public String toString() {
-        return "[" + name + "]" + " address: " + address + "\nprivateKey : "+ privateKey + "\npayload : " + payLoad + "\ntransaction: " + txList;
+        return "[" + name + "]" + " address: " + address + "\nprivateKey : "+ privateKey + "\npayload : " + payLoad + "\ntotalTime : "+ totalTime + "\ntransaction: " + txList;
     }
 
     public String getName() {
