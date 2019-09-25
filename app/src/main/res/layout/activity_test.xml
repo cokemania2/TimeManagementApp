@@ -76,7 +76,7 @@
                         android:padding="10dp"
                         android:orientation="vertical">
                         <TextView
-                            android:text="누적 시간"
+                            android:text="보유 포인트"
                             android:textSize="10dp"
                             android:gravity="center"
                             android:textColor="#fcfcfc"
