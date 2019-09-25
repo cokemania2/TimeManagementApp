@@ -30,7 +30,7 @@
             android:text="가입 유형"/>
         <RadioGroup
             android:id="@+id/radioGroup"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <RadioButton
@@ -152,6 +152,7 @@
         android:paddingTop="9dp"
         android:paddingBottom="9dp"
         android:background="@drawable/rect">
+
         <EditText
             android:id="@+id/recommendedkeyEdit"
             android:fontFamily="@font/roboto_regular"
@@ -164,6 +165,48 @@
             android:paddingLeft="3dp"
             android:layout_marginTop="3.5dp"
             android:textColor="#6c7581"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="청소년 인증"></TextView>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="25dp"
+        android:background="@drawable/rect"
+        android:paddingTop="9dp"
+        android:paddingBottom="9dp">
+
+        <Button
+            android:id="@+id/authenticate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3.5dp"
+            android:background="#00000000"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="인증하기"
+            android:maxLength="12"
+            android:paddingLeft="3dp"
+            android:textColor="#6c7581"
+            android:textSize="15sp" />
     </LinearLayout>
 
     <Button
@@ -180,8 +223,7 @@
         android:layout_marginRight="24.7dp"
         android:layout_marginLeft="25.3dp"
         android:letterSpacing="0.03"
-        android:layout_marginTop="120.7dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="12.7dp"
         android:elevation="1dp"
         android:text="NEXT"/>
 
