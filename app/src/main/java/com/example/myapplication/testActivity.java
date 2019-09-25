@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import aergo.hacker_edu.AergoCommon;
 import aergo.hacker_edu.AergoQuery;
 import aergo.hacker_edu.AergoTransaction;
-import aergo.hacker_edu.SampleMain;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -142,7 +141,7 @@ public class testActivity extends AppCompatActivity {
                 */
                 Wallet wallet = AergoCommon.getAergoWallet(endpoint);
 
-                TxHash tx = AergoTransaction.sendTransaction(wallet, toAddress, "password", encPrivateKey, "resister", "10", fee);
+                TxHash tx = AergoTransaction.sendTransaction(wallet, toAddress, "password", encPrivateKey, "resistered_jiwoo", "10", fee);
                 String tx_string = tx.toString();
 
                 txList_update_from_firebase(jw_dbref, tx_string);
