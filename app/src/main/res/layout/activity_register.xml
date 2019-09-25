@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"/>
         <RadioButton
             android:id="@+id/child_btn"
-            android:text="자식"
+            android:text="자녀"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         </RadioGroup>
@@ -185,38 +185,33 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="3dp"
-        android:layout_marginRight="25dp"
-        android:background="@drawable/rect"
-        android:paddingTop="9dp"
-        android:paddingBottom="9dp">
-
-        <Button
-            android:id="@+id/authenticate"
+    <Button
+            android:id="@+id/buttonn"
+            android:fontFamily="@font/roboto_regular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3.5dp"
-            android:background="#00000000"
-            android:fontFamily="@font/roboto_regular"
-            android:hint="인증하기"
-            android:maxLength="12"
-            android:paddingLeft="3dp"
-            android:textColor="#6c7581"
-            android:textSize="15sp" />
-    </LinearLayout>
+        android:background="@drawable/gradientbackground"
+            android:textColor="#FFFFFF"
+            android:textSize="16.7sp"
+            android:gravity="center"
+            android:paddingTop="12.5dp"
+            android:paddingBottom="13.5dp"
+            android:layout_marginRight="24.7dp"
+            android:layout_marginLeft="25.3dp"
+            android:letterSpacing="0.03"
+            android:layout_marginTop="12.7dp"
+            android:elevation="1dp"
+            android:text="인증하기"/>
 
     <Button
         android:id="@+id/register_sendbt"
         android:fontFamily="@font/roboto_regular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:textColor="#FFFFFF"
         android:textSize="16.7sp"
-        android:background="#d5d5d5"
+        android:background="@drawable/buttonstyle"
         android:gravity="center"
         android:paddingTop="12.5dp"
         android:paddingBottom="13.5dp"
