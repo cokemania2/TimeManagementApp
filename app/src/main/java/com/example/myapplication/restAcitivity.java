@@ -187,6 +187,21 @@ public class restAcitivity extends AppCompatActivity {
                 CDT.start();
                 btnstop.setText("중지");
                 btnstop.setClickable(true);
+
+                Wallet wallet = AergoCommon.getAergoWallet(endpoint);
+                //전송 토큰
+                String amount = "0";
+
+                Calendar calendar = Calendar.getInstance();
+                //paylaod data
+                /*
+                String payload = calendar.getTime()+"_"+amount+"_start!!!";
+                TxHash tx = AergoTransaction.sendTransaction(wallet, toAddress, password, encPrivateKey, payload, amount, fee);
+                String tx_string = tx.toString();
+                txList_update_from_firebase(jw_dbref, tx_string);
+                txList_update_from_firebase(ad_dbref, tx_string);
+                */
+
             }
             else {
                 pause_or_go = true;
@@ -255,6 +270,30 @@ public class restAcitivity extends AppCompatActivity {
     DatabaseReference jw_parent_dbref = database.getReference("user_list/jiwoo");
 
     public void txList_update_from_firebase(final DatabaseReference ref, final String txhash) {
+        // 해당 DB참조의 값변화리스너 추가 한번만 됨.
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            int count = 0;
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String tmpHash;
+                    tmpHash = snapshot.getValue(String.class);
+                    count = count+1;
+                    Log.d("FirebaseTestActivity", "ValueEventListener : " + tmpHash);
+                }
+                String count_tostring = Integer.toString(count);
+                ref.child(count_tostring).setValue(txhash);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w("Read Firebase database", "Failed to read value.", error.toException());
+            }
+        });
+    }
+
+    public void txList_start_from_firebase(final DatabaseReference ref, final String txhash) {
         // 해당 DB참조의 값변화리스너 추가 한번만 됨.
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             int count = 0;

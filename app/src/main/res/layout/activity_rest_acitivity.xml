@@ -43,7 +43,7 @@
                 android:layout_height="60dp"
                 android:layout_marginTop="16dp"
                 android:background="@color/k2"
-                android:text="API 칩 인식"
+                android:text="NFC 칩 인식"
                 android:textColor="#FFFFFF"
                 android:textSize="24dp" />
         </LinearLayout>
