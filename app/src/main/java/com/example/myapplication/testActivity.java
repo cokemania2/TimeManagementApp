@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import aergo.hacker_edu.AergoCommon;
+import aergo.hacker_edu.AergoQuery;
 import aergo.hacker_edu.AergoTransaction;
 import aergo.hacker_edu.SampleMain;
 import androidx.annotation.NonNull;
@@ -205,6 +206,7 @@ public class testActivity extends AppCompatActivity {
             long st = 0;
             long et = 0;
             long time = 0;
+            String point;
             /*
             public void onDataChange(DataSnapshot dataSnapshot) throws NullPointerException {
                 String payLoad;
@@ -234,18 +236,29 @@ public class testActivity extends AppCompatActivity {
                         Log.d("TEST jiwoo", "value is " + jiwoo.toString());
                         totaltime = jiwoo.getTotalTime();
 
-                        if (totaltime == null) {
-                            throw new NullPointerException();
+                        String userAccount = jiwoo.getAddress();
+                        Wallet wallet = AergoCommon.getAergoWallet("testnet.aergo.io:7845");
+                        String balance = AergoQuery.getBalance_(wallet, userAccount);
+                        if(balance.length()>5) {
+                            balance = balance.substring(balance.length() - 5, balance.length());
+                            for (int i = 5; i > 0; i--) {
+                                if ((balance.substring(0, 1).equals("0") || balance.substring(0, 1).equals(",")) && (balance.length() > 1)) {
+                                    balance = balance.substring(1, balance.length());
+                                } else {
+                                    break;
+                                }
+                            }
                         }
 
                         time = Long.parseLong(totaltime);
-
+                        point = balance;
                         break;
                     }
                 }
                 ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + "시간 " + String.format("%02d", (time/1000%3600/60)) + "분");
                 SimpleDateFormat sdfDate = new SimpleDateFormat("HH:mm");
                 //((TextView) findViewById(R.id.tv_between)).setText("(" + sdfDate.format(st) + " ~ " + sdfDate.format(et) + ")");
+                ((TextView) findViewById(R.id.tv_point)).setText(point+ " Point");
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
