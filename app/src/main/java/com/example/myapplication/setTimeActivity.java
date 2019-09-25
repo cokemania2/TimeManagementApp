@@ -28,7 +28,7 @@ public class setTimeActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     ProgressDialog dialog;
     //로그인한 유저
-    User jiwoo = new User("addr","jiwoo","key ","3000-1000");
+    User jiwoo = new User("addr","jiwoo","key ","3000-1000", "7200000");
 
     String payLoad = "";
     TextView user_addr = null;

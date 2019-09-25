@@ -21,16 +21,17 @@ import java.util.ArrayList;
 import aergo.hacker_edu.AergoCommon;
 import aergo.hacker_edu.AergoTransaction;
 import aergo.hacker_edu.SampleMain;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import hera.api.model.TxHash;
 import hera.wallet.Wallet;
 
-import static com.example.myapplication.restAcitivity.endpoint;
-import static com.example.myapplication.restAcitivity.toAddress;
 import static com.example.myapplication.restAcitivity.encPrivateKey;
+import static com.example.myapplication.restAcitivity.endpoint;
 import static com.example.myapplication.restAcitivity.fee;
+import static com.example.myapplication.restAcitivity.toAddress;
 
 
 public class testActivity extends AppCompatActivity {
@@ -204,7 +205,7 @@ public class testActivity extends AppCompatActivity {
             long st = 0;
             long et = 0;
             long time = 0;
-
+            /*
             public void onDataChange(DataSnapshot dataSnapshot) throws NullPointerException {
                 String payLoad;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -224,17 +225,33 @@ public class testActivity extends AppCompatActivity {
                         break;
                     }
                 }
+            */
+            public void onDataChange(DataSnapshot dataSnapshot) throws NullPointerException {
+                String totaltime;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if (snapshot.getKey().equals("jiwoo")) {
+                        User jiwoo = snapshot.getValue(User.class);
+                        Log.d("TEST jiwoo", "value is " + jiwoo.toString());
+                        totaltime = jiwoo.getTotalTime();
 
+                        if (totaltime == null) {
+                            throw new NullPointerException();
+                        }
+
+                        time = Long.parseLong(totaltime);
+
+                        break;
+                    }
+                }
                 ((TextView) findViewById(R.id.timerr)).setText(time / 1000 / 3600 + "시간 " + String.format("%02d", (time/1000%3600/60)) + "분");
-
                 SimpleDateFormat sdfDate = new SimpleDateFormat("HH:mm");
-                ((TextView) findViewById(R.id.tv_between)).setText("(" + sdfDate.format(st) + " ~ " + sdfDate.format(et) + ")");
+                //((TextView) findViewById(R.id.tv_between)).setText("(" + sdfDate.format(st) + " ~ " + sdfDate.format(et) + ")");
             }
-
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
                 Log.w("Read Firebase database", "Failed to read value.", error.toException());
+                throw error.toException();
             }
         });
     }
